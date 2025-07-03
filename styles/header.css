@@ -1,0 +1,40 @@
+.pseudo-header-border {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  background-image: linear-gradient(to bottom, rgb(121, 121, 193), transparent);
+}
+
+.header {
+  position: static;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 50px;
+  width: 99.8%;
+  background-image: linear-gradient(to bottom, rgb(0, 0, 0), black);
+  border-image: linear-gradient(to bottom, rgb(198, 198, 199)) 1;
+  border-top: 1px;
+}
+
+p {
+  margin: 0 0;
+  color: white;
+  
+}
+
+a:link {
+  color: rgb(255, 255, 255);
+  transition: ease-in color 1s;
+}
+
+a:visited {
+  color: rgb(255, 255, 255);
+  transition: ease-in color 1s;
+}
+
+a:hover {
+  color: rgb(121, 121, 193);
+  transition: ease-in color 1s;
+}

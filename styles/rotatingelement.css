@@ -1,0 +1,131 @@
+
+/* main div containing all the panels */
+.rotatingelementdiv {
+  color: #fff;
+  height: 400px;
+  min-height: 30%;
+  display: grid;
+  place-items: center;
+  perspective: 500px;
+  perspective-origin: 50% calc(50% - 100px);
+  margin-bottom: 40px;
+}
+
+.scene {
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.banner {
+  display: flex;
+  transform-style: preserve-3d;
+  animation: rotate 15s infinite linear;
+}
+
+@keyframes rotate {
+  to {
+    transform: rotateY(-360deg);
+  }
+}
+
+.panel {
+  position: absolute;
+  transform: translate(-50%, -50%) rotateY(var(--angle)) translateZ(170px);
+  overflow: hidden;
+}
+
+/* each panel child has to be calculated manually. children are however many divs you have inside the spinning element html. used a scss to css website */
+
+.panel:nth-child(1) {
+  --left: 0px;
+  --angle: 0deg;
+}
+
+.panel:nth-child(2) {
+  --left: -50px;
+  --angle: 22.5deg;
+}
+
+.panel:nth-child(3) {
+  --left: -100px;
+  --angle: 45deg;
+}
+
+.panel:nth-child(4) {
+  --left: -150px;
+  --angle: 67.5deg;
+}
+
+.panel:nth-child(5) {
+  --left: -200px;
+  --angle: 90deg;
+}
+
+.panel:nth-child(6) {
+  --left: -250px;
+  --angle: 112.5deg;
+}
+
+.panel:nth-child(7) {
+  --left: -300px;
+  --angle: 135deg;
+}
+
+.panel:nth-child(8) {
+  --left: -350px;
+  --angle: 157.5deg;
+}
+
+.panel:nth-child(9) {
+  --left: -400px;
+  --angle: 180deg;
+}
+
+.panel:nth-child(10) {
+  --left: -450px;
+  --angle: 202.5deg;
+}
+
+.panel:nth-child(11) {
+  --left: -500px;
+  --angle: 225deg;
+}
+
+.panel:nth-child(12) {
+  --left: -550px;
+  --angle: 247.5deg;
+}
+
+.panel:nth-child(13) {
+  --left: -600px;
+  --angle: 270deg;
+}
+
+.panel:nth-child(14) {
+  --left: -650px;
+  --angle: 292.5deg;
+}
+
+.panel:nth-child(15) {
+  --left: -700px;
+  --angle: 315deg;
+}
+
+.panel:nth-child(16) {
+  --left: -750px;
+  --angle: 337.5deg;
+}
+
+.screen {
+  position: absolute;
+  width: 400px;
+  height: 200px;
+  background-image: linear-gradient(90deg, #000 a, #000 4, #000 a);
+  transform: translate(-50%, -50%);
+}
+
+.text {
+  font-family: monospace;
+  font-size: 45px;
+}
+
