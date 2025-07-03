@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="./styles/rotatingelement.css" />
     <link rel="stylesheet" href="./styles/body.css" />
     <link rel="stylesheet" href="./styles/header.css" />
-    <link rel="stylesheet" href="./styles/terminalwindow.css">
+    <link rel="stylesheet" href="./styles/terminalwindow.css" />
+    <link rel="stylesheet" href="./styles/js-shell.css" />
     <style></style>
   </head>
   <body>
@@ -47,13 +48,16 @@
       <div class="terminal-window">
         <div class="terminal-titlebar">
           <div class="titlebar-left">
-            <img class="term-icon" src="./icons/utilities-terminal.svg">
-            <p class="term-title">&#126;&#58;<span class="zshtext">zsh</span> &#8213; Terminal</p>
+            <img class="term-icon" src="./icons/utilities-terminal.svg" />
+            <p class="term-title">
+              &#126;&#58;<span class="zshtext">zsh</span> &#8213; Terminal
+              &#8213; I love Ami
+            </p>
           </div>
           <div class="titlebar-right">
-            <img class="term-minimize" src="./icons/go-down.svg">
-            <img class="term-maximize" src="./icons/go-up.svg">
-            <img class="term-close" src="./icons/window-close.svg">
+            <img class="term-minimize" src="./icons/go-down.svg" />
+            <img class="term-maximize" src="./icons/go-up.svg" />
+            <img class="term-close" src="./icons/window-close.svg" />
           </div>
         </div>
         <div class="terminal-toolbar">
@@ -67,11 +71,27 @@
         </div>
         <div class="terminal-main-body">
           <div class="terminal-shell">
-            <p><span class="username">name</span>@<span class="sitename">neocities</span>&#58;&#126;&#36; <span class="blinking-block">&#9608;</span></p>
+            <p class="css-shell">
+              <span class="username">name</span>@<span class="sitename"
+                >neocities</span
+              >&#58;&#126;&#36; <span class="blinking-block">&#9608;</span>
+            </p>
+            <div class="js-shell">
+              <p class="js-initialize-shell"></p>
+            </div>
           </div>
           <div class="terminal-scrollbar"></div>
         </div>
       </div>
     </div>
+    <!-- this no script tag hides any js code by setting it to display none. -->
+    <noscript>
+      <style>
+        .js-shell {
+          display: none !important;
+        }
+      </style>
+    </noscript>
+    <script src="./scripts/terminal.js"></script>
   </body>
 </html>
