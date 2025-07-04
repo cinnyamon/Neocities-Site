@@ -1,3 +1,32 @@
-.js-clear-shell {
-  color: rgb(237, 62, 62);
+.js-terminal-shell {
+  overflow: auto;
+  scrollbar-color: rgb(33, 33, 33) rgb(13, 16, 18);
+  height: 100%;
+  font-family: "Space Mono";
+  color: white;
+  margin: 0 0 0 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* styling for the writable input inside the shell */
+
+.writable-textarea {
+  height: 20px;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+  overflow: hidden;
+  color: rgb(255, 255, 255);
+  font-family: "Space Mono";
+  font-size: inherit;
+  min-width: 20px;
+}
+
+#shell-input-container {
+  display: flex;
+  align-items: center;
+  justify-content: stretch;
 }

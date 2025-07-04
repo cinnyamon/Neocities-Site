@@ -9,3 +9,7 @@
 .header-text p {
   font-size: 22px;
 }
+
+.header-text span {
+  text-decoration: underline dotted;
+}
