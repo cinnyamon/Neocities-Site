@@ -142,4 +142,7 @@ window.addEventListener('scrollend', (event) => {
   };
 })
 
+// idea: couldve added a settimeout to the hasscrolled for 6 seconds
+// to turn true and then used that to trigger the 
+// shellColors function to run on the shell div
 
