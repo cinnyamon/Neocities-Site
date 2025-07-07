@@ -10,8 +10,6 @@
 6. let user enter any text inside shell
 7. ideally make the shell scrollable when new text is added by user but probably quite difficult to implement. */
 
-import { shellColors } from "./shellColors.js";
-import DOMPurify from '../node_modules/dompurify/dist/purify.es.mjs';
 
 
 DOMPurify.sanitize()
