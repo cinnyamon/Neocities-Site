@@ -17,6 +17,7 @@ import DOMPurify from '../node_modules/dompurify/dist/purify.es.mjs';
 DOMPurify.sanitize()
 
 // storing the css and js shells texts into constants
+const badWordWarning = document.querySelector('.js-badwords-div');
 const cssShell = document.querySelector('.css-shell');
 const jsTermShell = document.querySelector('.js-terminal-shell');
 const jsShellHTML = `JavaScript detected. Initialize console ...`;
@@ -24,6 +25,7 @@ const shellName = `<span class="username">name</span>@<span class="sitename"
                 >neocities</span
               >&#58;&#126;&#36;&nbsp;`;
 let shellBlinkingBlock = `<span class="blinking-block">&#9608;</span>`;
+
 
 //on scroll detection for running the clearShell function
 //and displaying shellColors
@@ -156,16 +158,44 @@ function maxCharacterInput(writableBox) {
 }
 
 function displayCmndInShell(writableBox, preTest, textArea) {
-  const userInputArray = []
+  // create array to store the user's input
+  const userInputArray = [];
+  
+  // set previous timer object to store the id of the setInterval and clear it later on
+  let previousTimerId = {};
   writableBox.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
+      // push the text content from the input box into the array
       userInputArray.push(writableBox.textContent);
       
+      // only take the last item to be put into the shell
       const enteredText = userInputArray[userInputArray.length - 1];
+      // use DOMPurify lib to only allow p span and classes to these items for the user's entered text
       const safeUserInput = DOMPurify.sanitize(enteredText, {
         ALLOWED_TAGS: ['p', 'span'],
         ALLOWED_ATTR: ['class']
       });
+
+      
+      // create array of bad words
+      const badWords = ['fag', 'faggot', 'idiot', 'idot', 'retard', 'dumbass', 'dumb', 'nig', 'nigger', 'dummy', 'cunt', 'stupid', 'stoopi', 'sucker', 'jew', 'kike', ];
+      badWords.forEach(badword => {
+        if (enteredText.includes(badword)) {
+          badWordWarning.classList.add('js-badwords-div-visible');
+          
+          // check if previous interval id exists and clear it
+          if (previousTimerId) {
+            clearTimeout(previousTimerId)
+          }
+          // write the timeout id into the object
+          previousTimerId = setTimeout(() => {
+            badWordWarning.classList.remove('js-badwords-div-visible');
+            // clear the timer id 
+            previousTimerId = {}
+          }, 2000)
+        }
+      });
+
 
       preTest.innerHTML += `<p>${shellName}${safeUserInput}</p>`;
 
@@ -176,7 +206,6 @@ function displayCmndInShell(writableBox, preTest, textArea) {
     };
   });
 }
-
 
 /* 
 new ideas:

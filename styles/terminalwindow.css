@@ -8,6 +8,7 @@
   max-width: 1000px;
   background-color: rgb(32, 32, 32);
   border-radius: 8px;
+  position: relative
 }
 
 .terminal-titlebar {
