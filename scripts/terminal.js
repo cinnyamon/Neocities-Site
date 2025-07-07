@@ -11,8 +11,10 @@
 7. ideally make the shell scrollable when new text is added by user but probably quite difficult to implement. */
 
 import { shellColors } from "./shellColors.js";
+import DOMPurify from '../node_modules/dompurify/dist/purify.es.mjs';
 
 
+DOMPurify.sanitize()
 
 // storing the css and js shells texts into constants
 const cssShell = document.querySelector('.css-shell');
@@ -20,7 +22,7 @@ const jsTermShell = document.querySelector('.js-terminal-shell');
 const jsShellHTML = `JavaScript detected. Initialize console ...`;
 const shellName = `<span class="username">name</span>@<span class="sitename"
                 >neocities</span
-              >&#58;&#126;&#36;`;
+              >&#58;&#126;&#36;&nbsp;`;
 let shellBlinkingBlock = `<span class="blinking-block">&#9608;</span>`;
 
 //on scroll detection for running the clearShell function
@@ -95,7 +97,7 @@ clearShell().then((jsDetectionText) => {
     </pre>
     <div id="pre-test"></div>
     <div id="shell-input-container">
-      ${shellName}&nbsp;
+      ${shellName}
         <span id="writable-box" role="textbox" tabindex="0" class="writable-textarea" maxlength="60" contenteditable>
         </span>${shellBlinkingBlock}
     </div>`
@@ -154,23 +156,20 @@ function maxCharacterInput(writableBox) {
 }
 
 function displayCmndInShell(writableBox, preTest, textArea) {
-  const testArray = []
+  const userInputArray = []
   writableBox.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
-      testArray.push(writableBox.textContent);
+      userInputArray.push(writableBox.textContent);
       
-      const enteredText = testArray[testArray.length - 1];
+      const enteredText = userInputArray[userInputArray.length - 1];
       const safeUserInput = DOMPurify.sanitize(enteredText, {
         ALLOWED_TAGS: ['p', 'span'],
         ALLOWED_ATTR: ['class']
       });
-      preTest.innerHTML += safeUserInput;
 
-      if (enteredText === 'bad-word') {
-        console.log('why would you call me that..')
-      }
+      preTest.innerHTML += `<p>${shellName}${safeUserInput}</p>`;
 
-
+      
 
       // hopefully this runs last
       textArea.textContent = '';
