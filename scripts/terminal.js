@@ -93,8 +93,6 @@ clearShell().then((jsDetectionText) => {
   jsTermShell.innerHTML = `
     ${savedJsShellText}
     ${shellColors()}
-    <pre>
-    </pre>
     <div id="pre-test"></div>
     <div id="shell-input-container">
       ${shellName}
@@ -161,7 +159,9 @@ function displayCmndInShell(writableBox, preTest, textArea) {
   
   // set previous timer object to store the id of the setInterval and clear it later on
   let previousTimerId = {};
+  let previousTimerIdCaret = {};
   writableBox.addEventListener('keydown', (event) => {
+    console.log(event.key)
     if (event.key === 'Enter') {
       // push the text content from the input box into the array
       userInputArray.push(writableBox.textContent);
@@ -203,7 +203,21 @@ function displayCmndInShell(writableBox, preTest, textArea) {
       textArea.textContent = '';
     };
   });
-}
+  // add event listener for arrow keys to show the caret
+  writableBox.addEventListener('keydown', (arrow) => {
+    if (arrow.key === 'ArrowLeft' || arrow.key === 'ArrowRight' || arrow.key === 'Control') {
+      writableBox.classList.add('writable-textarea-caret');
+          // check if previous interval id exists and clear it
+           if (previousTimerIdCaret) {clearTimeout(previousTimerIdCaret)}
+          // write the timeout id into the object
+          previousTimerIdCaret = setTimeout(() => {
+            writableBox.classList.remove('writable-textarea-caret');
+            // clear the timer id 
+            previousTimerIdCaret = {}
+          }, 2000) 
+  }
+  });
+};
 
 /* 
 new ideas:

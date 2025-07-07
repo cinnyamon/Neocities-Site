@@ -25,6 +25,10 @@
   caret-color: transparent;
 }
 
+.writable-textarea-caret {
+  caret-color: rgb(255, 255, 255);
+}
+
 #shell-input-container {
   display: flex;
   align-items: center;
