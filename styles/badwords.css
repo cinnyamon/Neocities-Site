@@ -1,8 +1,8 @@
 .badwords-div {
-  background-image: linear-gradient(to right, rgb(236, 47, 211), rgb(112, 30, 174));
+  background-image: linear-gradient(to right, rgb(143, 36, 225), rgb(54, 54, 54));
   position: absolute;
-  bottom: -80px;
-  left: 0px;
+  bottom: 60px;
+  left: -20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,12 +10,13 @@
   height: 55px;
   border-radius: 8px;
   opacity: 0;
+  box-shadow: 10px 10px 30px rgb(0, 0, 0);
   transition: ease-in-out 0.3s;
 }
 
 .badwords-div-inner {
   color: white;
-  background-color: rgb(39, 14, 29);
+  background-image: linear-gradient(to right, black);
   display: flex;
   align-items: center;
   justify-content: center;
