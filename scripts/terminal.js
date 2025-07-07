@@ -81,38 +81,64 @@ function clearShell() {
   return clearCssAndJsShell(); //returns the promise to global scope
 }
 
-
-
 // the code below basically receives the value passed to resolve(jsInitshell) and names it jsDetectionText now so we can use it to console log it or store it in a variable
 clearShell().then((jsDetectionText) => {
   savedJsShellText = jsDetectionText
+    // setting up the scrolling observer in a constant for future potential cleanup
+  const scrollObserver = shellScrollObserver(jsTermShell);
+    // clean up when needed
+    // observer.disconnect();
   jsTermShell.innerHTML = `
     ${savedJsShellText}
     ${shellColors()}
     <pre>
     </pre>
-    Hello!!
-    <pre>
-    </pre>
-    <div id="shell-input-container">${shellName}<span id="editable" role="textbox" class="writable-textarea" maxlength="60" contenteditable></span>${shellBlinkingBlock}</div>`
+    <div id="pre-test"></div>
+    <div id="shell-input-container">
+      ${shellName}&nbsp;
+        <span id="writable-box" role="textbox" tabindex="0" class="writable-textarea" maxlength="60" contenteditable>
+        </span>${shellBlinkingBlock}
+    </div>`
     
-    const shellInput = document.querySelector('.writable-textarea')
-    jsTermShell.scrollTo({
-      top: shellInput.offsetTop - jsTermShell.offsetTop,
-      behavior: 'smooth'
-    });
+    let preTest = document.getElementById('pre-test');
+    const writableBox = document.getElementById('writable-box');
+    const textArea = document.querySelector('.writable-textarea');
 
-    const editable = document.getElementById('editable');
-    const maxChars = 60;
-    editable.addEventListener('input', () => {
-      const text = editable.textContent;
+    focusTextBoxOnClick(writableBox);
+    maxCharacterInput(writableBox);
+    displayCmndInShell(writableBox, preTest, textArea, jsTermShell);
+});
+
+function shellScrollObserver(jsTermShell) {
+    const observer = new MutationObserver(() => {
+        jsTermShell.scrollTop = jsTermShell.scrollHeight;
+    });
+    
+    observer.observe(jsTermShell, {
+        childList: true,
+        subtree: true
+    });
+    
+    return observer;
+}
+
+function focusTextBoxOnClick(writableBox) {
+  jsTermShell.addEventListener('click', () => {
+      writableBox.focus();
+    });
+}
+
+function maxCharacterInput(writableBox) {
+  writableBox.addEventListener('input', () => {
+      const maxChars = 60;
+      const text = writableBox.textContent;
   
       if (text.length > maxChars) {
         // Trim excess characters
-        editable.textContent = text.slice(0, maxChars);
+        writableBox.textContent = text.slice(0, maxChars);
   
         // Move caret to the end
-        placeCaretAtEnd(editable);
+        placeCaretAtEnd(writableBox);
       }
 
       function placeCaretAtEnd(el) {
@@ -125,11 +151,29 @@ clearShell().then((jsDetectionText) => {
       }
 
     });
-});
+}
+
+function displayCmndInShell(writableBox, preTest, textArea) {
+  const testArray = []
+  writableBox.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      testArray.push(writableBox.textContent);
+      
+      const enteredText = testArray[testArray.length - 1];
+      preTest.innerHTML += `<p>${shellName} ${enteredText}</p>`
+
+      if (enteredText === 'nigger') {
+        console.log('why would you call me that..')
+      }
+      // hopefully this runs last
+      textArea.textContent = '';
+    };
+  });
+}
 
 
 /* 
 new ideas:
 1. should do something about the blinking block still blinking after checking for any character inside the span. remove class or something
-2. wait for the key enter and then take the text input from the span and place it above the username and span textbox. should be pretty ez defining a variable and then placing it +1 +1 and updating each +1 with the new content.
+2. wait for the key enter and then take the text input from the span and place it above the username and span textbox. should be pretty ez defining a variable and then placing it +1 +1 and updating each +1 with the new content. wrong. do array.
 3. fuckin finish this goddamn terminal mockup */

@@ -12,7 +12,7 @@
 /* styling for the writable input inside the shell */
 
 .writable-textarea {
-  height: 20px;
+  height: 24px;
   align-items: center;
   background-color: transparent;
   border: none;
@@ -22,7 +22,7 @@
   color: rgb(255, 255, 255);
   font-family: "Space Mono";
   font-size: inherit;
-  min-width: 20px;
+  caret-color: transparent;
 }
 
 #shell-input-container {
