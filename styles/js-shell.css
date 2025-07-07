@@ -23,6 +23,7 @@
   font-family: "Space Mono";
   font-size: inherit;
   min-width: 20px;
+  caret-color: transparent;
 }
 
 #shell-input-container {
