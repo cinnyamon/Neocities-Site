@@ -1,6 +1,5 @@
 .badwords-div {
-  background-image: linear-gradient(to right, rgb(236, 47, 47),
-    rgb(143, 36, 225));
+  background-image: linear-gradient(to right, rgb(236, 47, 211), rgb(112, 30, 174));
   position: absolute;
   bottom: -80px;
   left: 0px;
@@ -16,7 +15,7 @@
 
 .badwords-div-inner {
   color: white;
-  background-color: rgb(45, 0, 28);
+  background-color: rgb(39, 14, 29);
   display: flex;
   align-items: center;
   justify-content: center;

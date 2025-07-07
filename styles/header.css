@@ -3,7 +3,8 @@
   align-items: center;
   justify-content: center;
   height: 52px;
-  background-image: linear-gradient(to bottom, rgb(121, 121, 193), transparent);
+  background-image: linear-gradient(to bottom, rgb(143, 36, 225),
+    transparent);
 }
 
 .header {
@@ -21,20 +22,70 @@
 p {
   margin: 0 0;
   color: white;
-  
 }
 
-a:link {
+.homelink a {
+  background: linear-gradient(to right, 
+  #00affa 20%,
+  #234bea 30%,
+  #e6348d 50%,
+  #6f00ff 70%,
+  #00affa 80%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 500% auto;
+  animation: textgradient 5s ease-in-out infinite alternate;
+  transition: 
+    color 0.3s ease-in,
+    -webkit-text-fill-color 0.3s ease-in,
+    background-clip 0.3s ease-in;
+  color: transparent;
+    /* Initial color (hidden by -webkit-text-fill-color) */
+}
+
+.homelink a:hover {
+  -webkit-background-clip: initial;
+    /* Remove text clipping */
+    background-clip: initial;
+    -webkit-text-fill-color: initial;
+    /* Restore normal text color */
+    color: rgb(255, 255, 255);
+    /* Set the desired color */
+}
+
+.gitlink a {
+  background: linear-gradient(to right,
+      #00affa 20%,
+      #234bea 30%,
+      #e6348d 50%,
+      #6f00ff 70%,
+      #00affa 80%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 500% auto;
+  animation: textgradient 5s ease-in-out infinite alternate;
+  transition:
+    color 0.3s ease-in,
+    -webkit-text-fill-color 0.3s ease-in,
+    background-clip 0.3s ease-in;
+  color: transparent;
+}
+
+.gitlink a:hover {
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  -webkit-text-fill-color: initial;
   color: rgb(255, 255, 255);
-  transition: ease-in color 1s;
 }
 
-a:visited {
-  color: rgb(255, 255, 255);
-  transition: ease-in color 1s;
-}
+@keyframes textgradient {
+  0% {
+    background-position: 0% 50%;
+  }
 
-a:hover {
-  color: rgb(121, 121, 193);
-  transition: ease-in color 1s;
+  100% {
+    background-position: 100% 50%;
+  }
 }
