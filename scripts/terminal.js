@@ -160,11 +160,18 @@ function displayCmndInShell(writableBox, preTest, textArea) {
       testArray.push(writableBox.textContent);
       
       const enteredText = testArray[testArray.length - 1];
-      preTest.innerHTML += `<p>${shellName} ${enteredText}</p>`
+      const safeUserInput = DOMPurify.sanitize(enteredText, {
+        ALLOWED_TAGS: ['p', 'span'],
+        ALLOWED_ATTR: ['class']
+      });
+      preTest.innerHTML += safeUserInput;
 
-      if (enteredText === 'nigger') {
+      if (enteredText === 'bad-word') {
         console.log('why would you call me that..')
       }
+
+
+
       // hopefully this runs last
       textArea.textContent = '';
     };
