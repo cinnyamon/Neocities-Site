@@ -33,6 +33,10 @@
   font-size: 16px;
 }
 
+.term-title a {
+  text-decoration: none;
+  cursor: pointer;
+}
 .zshtext {
   background: linear-gradient(to right,
       #00affa 20%,
