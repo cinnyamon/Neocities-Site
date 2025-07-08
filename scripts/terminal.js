@@ -161,7 +161,6 @@ function displayCmndInShell(writableBox, preTest, textArea) {
   let previousTimerId = {};
   let previousTimerIdCaret = {};
   writableBox.addEventListener('keydown', (event) => {
-    console.log(event.key)
     if (event.key === 'Enter') {
       // push the text content from the input box into the array
       userInputArray.push(writableBox.textContent);
@@ -170,8 +169,8 @@ function displayCmndInShell(writableBox, preTest, textArea) {
       const enteredText = userInputArray[userInputArray.length - 1];
       // use DOMPurify lib to only allow p span and classes to these items for the user's entered text
       const safeUserInput = DOMPurify.sanitize(enteredText, {
-        ALLOWED_TAGS: ['p', 'span'],
-        ALLOWED_ATTR: ['class']
+        ALLOWED_TAGS: ['p', 'span', 'div', 'br', ],
+        ALLOWED_ATTR: ['class', 'style']
       });
 
       
@@ -221,6 +220,7 @@ function displayCmndInShell(writableBox, preTest, textArea) {
 
 /* 
 new ideas:
-1. should do something about the blinking block still blinking after checking for any character inside the span. remove class or something
-2. wait for the key enter and then take the text input from the span and place it above the username and span textbox. should be pretty ez defining a variable and then placing it +1 +1 and updating each +1 with the new content. wrong. do array.
-3. fuckin finish this goddamn terminal mockup */
+1. add a box with something fun that appears when the x button on the console gets pressed
+2. possibly do the same for the other buttons too.
+3. add a link to the zsh project when clicking on the zsh text
+?. fuckin finish this goddamn terminal mockup */
