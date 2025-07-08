@@ -1,0 +1,76 @@
+.badwords-div {
+  background-image: linear-gradient(to right, rgb(209, 36, 225), rgb(54, 54, 54));
+  position: absolute;
+  bottom: 60px;
+  left: -20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  height: 55px;
+  border-radius: 8px;
+  opacity: 0;
+  box-shadow: 10px 10px 30px rgb(0, 0, 0);
+  transition: ease-in-out 0.3s;
+}
+
+.badwords-div-inner {
+  color: white;
+  background-image: linear-gradient(to right, black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 398px;
+  height: 53px;
+  gap: 15px;
+  border-radius: 8px;
+}
+
+.badwords-div-inner span {
+  font-size: 20px;
+  border: 1px solid white;
+  border-radius: 8px;
+  padding: 4px 0;
+}
+
+.js-badwords-div-visible {
+  opacity: 1;
+  transition: ease-in-out 0.3s;
+}
+
+
+/* styles for the closing shell check  */
+
+
+.closing-shell-check {
+  background-image: linear-gradient(to right, rgb(209, 36, 225), rgb(54, 54, 54));
+  position: absolute;
+  top: 40px;
+  right: -20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 280px;
+  height: 55px;
+  border-radius: 8px;
+  opacity: 0;
+  box-shadow: -15px 10px 30px rgb(0, 0, 0);
+  transition: ease-in-out 0.15s;
+}
+
+.closing-shell-check-inner {
+  color: white;
+  background-image: linear-gradient(to right, black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 262px;
+  height: 53px;
+  border-radius: 8px;
+  padding: 0 8px;
+}
+
+.js-closing-shell-check-visible {
+  opacity: 1;
+  transition: ease-in-out 0.15s;
+}

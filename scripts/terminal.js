@@ -18,6 +18,11 @@ DOMPurify.sanitize()
 const badWordWarning = document.querySelector('.js-badwords-div');
 const cssShell = document.querySelector('.css-shell');
 const jsTermShell = document.querySelector('.js-terminal-shell');
+const termClose = document.querySelector('.term-close');
+const closeShellWindow = document.querySelector('.js-closing-shell-check');
+const closeShellText = document.getElementById('js-close-shell-text');
+const originalText = closeShellText.innerHTML;
+
 const jsShellHTML = `JavaScript detected. Initialize console ...`;
 const shellName = `<span class="username">name</span>@<span class="sitename"
                 >neocities</span
@@ -218,6 +223,66 @@ function displayCmndInShell(writableBox, preTest, textArea) {
   });
 };
 
+
+termClose.addEventListener('click', () => {
+  showClosePopupOnClick();
+});
+
+// unfortunately have to make these global, dunno how to fix.
+let timerId = {};
+let closeBtnAttempts = 0;
+function showClosePopupOnClick() {
+  function closePopup() {
+    closeBtnAttempts++
+    closeShellWindow.classList.add('js-closing-shell-check-visible');
+    if (timerId) {clearTimeout(timerId)}
+    // write the timeout id into the object
+    switch (true) {
+      case closeBtnAttempts < 3:
+        closeShellText.innerHTML = originalText;
+        timerId = setTimeout(() => {
+          closeShellWindow.classList.remove('js-closing-shell-check-visible');
+          timerId = {};
+        }, 2000);
+        break;
+    
+      case closeBtnAttempts >= 3 && closeBtnAttempts < 6:
+        closeShellText.textContent = 'STOP IT!!!!';
+        timerId = setTimeout(() => {
+          closeShellWindow.classList.remove('js-closing-shell-check-visible');
+          timerId = {};
+        }, 2000);
+        break;
+    
+      case closeBtnAttempts >= 6 && closeBtnAttempts < 10:
+        closeShellText.textContent = 'HAHA YOU CANT CLOSE THIS WINDOW. FUCK YOU!!!!';
+        timerId = setTimeout(() => {
+          closeShellWindow.classList.remove('js-closing-shell-check-visible');
+          timerId = {};
+        }, 2000);
+        break;
+    
+      case closeBtnAttempts >= 10 && closeBtnAttempts < 15:
+        closeShellText.textContent = "Okay, stop pressing, I won't remove this element";
+        timerId = setTimeout(() => {
+          closeShellWindow.classList.remove('js-closing-shell-check-visible');
+          timerId = {};
+        }, 2000);
+        break;
+
+      case closeBtnAttempts >= 15:
+        closeShellText.textContent = "Dumbass, this element is the main focus";
+        timerId = setTimeout(() => {
+          closeShellWindow.classList.remove('js-closing-shell-check-visible');
+          timerId = {};
+          closeBtnAttempts = 0;
+        }, 2000);
+        break;
+    }
+    console.log(closeBtnAttempts)
+  };
+  closePopup();
+}
 /* 
 new ideas:
 1. add a box with something fun that appears when the x button on the console gets pressed

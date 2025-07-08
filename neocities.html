@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="./styles/terminalwindow.css" />
     <link rel="stylesheet" href="./styles/js-shell.css" />
     <link rel="stylesheet" href="./styles/headtext.css" />
-    <link rel="stylesheet" href="./styles/badwords.css" />
+    <link rel="stylesheet" href="./styles/term-checks.css" />
     <style></style>
   </head>
   <body>
@@ -114,9 +114,14 @@
             <span>&#180;&#8226;&#8276;&#8226;&#180;</span>
           </div>
         </div>
+        <div class="closing-shell-check js-closing-shell-check">
+          <div class="closing-shell-check-inner">
+            <p id="js-close-shell-text">Stop trying to close this window. &#96;&#8231;&#8248;&#8231;&#180; </p>
+          </div>
+        </div>
       </div>
     </div>
-
+    
     <!-- this no script tag hides any js code by setting it to display none. -->
     <noscript>
       <style>
