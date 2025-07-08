@@ -1,6 +1,7 @@
 .terminal-window-body {
   display: flex;
   justify-content: center;
+  margin: 40px 0;
 }
 
 .terminal-window {
@@ -127,6 +128,7 @@
   margin: 0 6px;
   cursor: default;
   transition: background-color 0.1s;
+  position: relative;
 }
 
 #toolbar:hover {
@@ -168,3 +170,30 @@
 }
 
 /* shell text body styles ^^^ */
+
+/* toolbar tooltip styles */
+
+#toolbar .tooltiptext {
+  visibility: hidden;
+  text-wrap: nowrap;
+  background-color: rgb(27, 27, 27);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 5px;
+  box-shadow: 5px 5px 20px rgb(0, 0, 0);
+
+  /* Position the tooltip */
+  position: absolute;
+  bottom: -40px;
+  left: 0px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+#toolbar:hover .tooltiptext {
+  visibility: visible;
+  transition: all 0.2s ease;
+  transition-delay: 0.7s;
+  pointer-events: none;
+}
