@@ -5,6 +5,7 @@
   height: 52px;
   background-image: linear-gradient(to bottom, rgb(143, 36, 225),
     transparent);
+  z-index: 100;
 }
 
 .header {

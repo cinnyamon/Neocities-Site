@@ -6,7 +6,7 @@ body {
   width: 100%;
   font-family: "Space Mono";
   color: white;
-  position: relative;
+ /*  position: relative; */
 }
 
 html {
@@ -14,4 +14,23 @@ html {
   width: 100%;
 }
 
+/* super inneficient */
+/* .trail-x {
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  background-image: url(/icons/window-close.svg);
+  pointer-events: none;
+  opacity: 0.3;
+  transform: translate(-50%, -50%);
+  animation: fadeOut 2s forwards;
+  z-index: 0;
+}
 
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.01);
+  }
+}
+ */
