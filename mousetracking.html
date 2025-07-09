@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mouse tracking</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            height: 100vh;
+            background-color: #000115;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cursor {
+            position: fixed;
+            z-index: 999;
+            width: 20px;
+            height: 20px;
+            background-color: #2696E8;
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 20px #2696E8,
+                        0 0 60px #2696E8,
+                        0 0 100px #2696E8;
+            animation: colors 5s infinite;
+            display: none;
+        }
+
+        @keyframes colors {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        .cursor:before {
+            content: '';
+            position: absolute;
+            background-color: #2696E8;
+            width: 50px;
+            height: 50px;
+            opacity: 0.2;
+            transform: translate(-30%, -30%);
+            border-radius: 50%;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="cursor"></div>
+    <script type="text/javascript">
+        const cursor = document.querySelector('.cursor')
+
+        //follow cursor on mouse move 
+        document.addEventListener('mousemove', (event) => {
+            let x = event.pageX;
+            let y = event.pageY;
+
+            cursor.style.top = `${y}px`
+            cursor.style.left = `${x}px`
+            cursor.style.display = 'block'
+        })
+        document.addEventListener('mouseout', () => {
+            cursor.style.display = 'none'
+        })
+    </script>
+</body>
+</html>
