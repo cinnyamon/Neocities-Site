@@ -1,5 +1,9 @@
-    function init() {
-      let headpatsCounter = 0;
+const catHeaderDiv = document.querySelector('.cat-header');
+const headpatNum = document.querySelector('.headpat-number');
+let headpatsCounter = 0;
+
+function init() {
+
       const catWrapper = document.querySelector(".cat_wrapper");
       const wrapper = document.querySelector(".wrapper");
       const cat = document.querySelector(".cat");
@@ -70,7 +74,7 @@
       };
 
       const headMotion = () => {
-        pos.y > wrapper.clientHeight - 100
+        pos.y > wrapper.clientHeight + 40
           ? (head.style.top = "-15px")
           : (head.style.top = "-30px");
       };
@@ -83,11 +87,25 @@
 
         head.appendChild(span);
         setTimeout(() => span.remove(), 1000);
+
+        //Update the headpat counter on the page.
+        switch (true) {
+          case (headpatsCounter % 10 === 0):
+            headpatNum.innerHTML = `Headpat Counter: [<span>${headpatsCounter}</span>]<img src="./icons/pixel-heart.svg">`;
+            break;
+          case (headpatsCounter % 100 === 0):
+            headpatNum.innerHTML = `Headpat Counter: [<span>${headpatsCounter}</span>]<img src="./icons/pixel-heart.svg">`;
+            break;
+          default:
+            headpatNum.innerHTML = `Headpat Counter: [${headpatsCounter}]<img src="./icons/pixel-heart.svg">`;
+            break;
+        }
+
       });
 
       const jump = () => {
         catWrapper.classList.remove("jump");
-        if (pos.y < wrapper.clientHeight - 250) {
+        if (pos.y < wrapper.clientHeight - 150) {
           setTimeout(() => {
             catWrapper.classList.add("jump");
           }, 100);
@@ -104,10 +122,6 @@
         }
       };
 
-      cat.addEventListener("mouseenter", () => {
-        legs.forEach((leg) => leg.classList.remove("walk")); // Stop the walking animation
-      });
-
       setInterval(() => {
         if (!pos.x || !pos.y) return;
         decideTurnDirection();
@@ -120,8 +134,13 @@
         jump();
       }, 1000);
 
+
       document.addEventListener("mousemove", handleMouseMotion);
       document.addEventListener("mousemove", handleTouchMotion);
-    }
+}
 
-    window.addEventListener("DOMContentLoaded", init);
+window.addEventListener("DOMContentLoaded", init);
+
+
+
+

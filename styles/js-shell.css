@@ -4,7 +4,7 @@
   height: 100%;
   font-family: "Space Mono";
   color: white;
-  margin: 0 0 0 10px;
+  margin: 0 5px 0 10px;
   display: flex;
   flex-direction: column;
 }

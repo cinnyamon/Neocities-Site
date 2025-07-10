@@ -1,41 +1,45 @@
 .badwords-div {
+  display: none;
   background-image: linear-gradient(to right, rgb(209, 36, 225), rgb(54, 54, 54));
   position: absolute;
   bottom: 60px;
   left: -20px;
-  display: flex;
   align-items: center;
   justify-content: center;
-  width: 400px;
-  height: 55px;
+  padding: 1px 1px;
   border-radius: 8px;
   opacity: 0;
   box-shadow: 10px 10px 30px rgb(0, 0, 0);
-  transition: ease-in-out 0.3s;
+  transition: ease-in-out 0.15s;
 }
+
 
 .badwords-div-inner {
   color: white;
   background-image: linear-gradient(to right, black);
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 398px;
-  height: 53px;
+  width: 400px;
+  height: 55px;
   gap: 15px;
   border-radius: 8px;
 }
 
 .badwords-div-inner span {
-  font-size: 20px;
-  border: 1px solid white;
+  color: white;
+  background-image: linear-gradient(to right, black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 1px white;
   border-radius: 8px;
-  padding: 4px 0;
+  padding: 0 8px;
 }
 
 .js-badwords-div-visible {
+  display: flex;
   opacity: 1;
-  transition: ease-in-out 0.3s;
+  transition: ease-in-out 0.15s;
 }
 
 

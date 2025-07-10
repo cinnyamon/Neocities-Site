@@ -6,16 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+
     <link rel="stylesheet" href="./styles/rotatingelement.css" />
     <link rel="stylesheet" href="./styles/body.css" />
     <link rel="stylesheet" href="./styles/header.css" />
     <link rel="stylesheet" href="./styles/terminalwindow.css" />
     <link rel="stylesheet" href="./styles/js-shell.css" />
-    <link rel="stylesheet" href="./styles/headtext.css" />
+    <link rel="stylesheet" href="./styles/headertexts.css" />
     <link rel="stylesheet" href="./styles/term-checks.css" />
-    <link rel="stylesheet" href="./styles/catstyles.css">
+    <link rel="stylesheet" href="./styles/catstyles.css" />
     <style></style>
   </head>
   <body>
@@ -135,10 +138,7 @@
           </div>
         </div>
         <div class="badwords-div js-badwords-div">
-          <div class="badwords-div-inner">
-            <p>Why would you call me that..</p>
-            <span>&#180;&#8226;&#8276;&#8226;&#180;</span>
-          </div>
+          
         </div>
         <div class="closing-shell-check js-closing-shell-check">
           <div class="closing-shell-check-inner">
@@ -157,8 +157,14 @@
       <span></span>
       <span></span>
       <span></span>
-     </div>
-     <div class="outer_wrapper">
+    </div>
+    <div class="cat-header">
+      <p>Careful with the kitten, he <span id="bites">bites</span></p>
+      <p class="headpat-number">
+        Headpat Counter: [0]<img src="./icons/pixel-heart.svg" />
+      </p>
+    </div>
+    <div class="outer_wrapper">
       <div class="wrapper">
         <div class="cat_wrapper">
           <div class="cat first_pose">
@@ -287,7 +293,10 @@
       </style>
     </noscript>
     <script defer src="./node_modules/dompurify/dist/purify.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"
+    ></script>
     <script defer src="./scripts/bodyTracker.js"></script>
     <script defer src="./scripts/shellColors.js"></script>
     <script defer src="./scripts/terminal.js"></script>

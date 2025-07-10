@@ -118,6 +118,7 @@
 
 .terminal-toolbar {
   display: flex;
+  flex-wrap: wrap;
   padding: 4px 0px;
   background-color: rgb(27, 27, 27);
 }
@@ -174,10 +175,11 @@
 /* toolbar tooltip styles */
 
 #toolbar .tooltiptext {
-  visibility: hidden;
+  display: none;
   text-wrap: nowrap;
   background-color: rgb(27, 27, 27);
   color: #fff;
+  opacity: 0;
   text-align: center;
   border-radius: 6px;
   padding: 5px 5px;
@@ -189,11 +191,26 @@
   left: 0px;
   z-index: 1;
   pointer-events: none;
+  
 }
 
 #toolbar:hover .tooltiptext {
-  visibility: visible;
-  transition: all 0.2s ease;
-  transition-delay: 0.7s;
+  display: block;
   pointer-events: none;
+  animation: tooltip 1s forwards cubic-bezier(0, 0.99, 0, 1);
+}
+
+@keyframes tooltip {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  50% {
+    display: block;
+    opacity: 0;
+  }
+  100% {
+    display: block;
+    opacity: 1;
+  }
 }

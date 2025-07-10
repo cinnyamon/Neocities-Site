@@ -7,7 +7,7 @@
 }
 
 .header-text p {
-  font-size: 22px;
+  font-size: 25px;
 }
 
 .header-text span:nth-child(1) {
@@ -46,4 +46,33 @@
   100% {
     background-position: 100% 50%;
   }
+}
+
+
+/* styles for the cat header */
+
+.cat-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40px 0;
+  text-align: center;
+  flex-direction: column;
+}
+
+.cat-header {
+  font-size: 25px;
+}
+#bites {
+  text-decoration: underline dotted;
+}
+.headpat-number {
+  font-size: 20px;
+}
+.headpat-number span {
+  color: rgb(255, 215, 0)
+}
+.headpat-number img {
+  height: 20px;
+  width: 20px;
 }

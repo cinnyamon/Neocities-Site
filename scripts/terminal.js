@@ -178,30 +178,18 @@ function displayCmndInShell(writableBox, preTest, textArea) {
         ALLOWED_ATTR: ['class', 'style']
       });
 
-      
+      // create variable that stores if checkbox has been shown already
+      let checkBoxShown = 0
       // create array of bad words
       const badWords = ['fag', 'faggot', 'idiot', 'idot', 'retard', 'dumbass', 'dumb', 'nig', 'nigger', 'dummy', 'cunt', 'stupid', 'stoopi', 'sucker', 'jew', 'kike', ];
-      badWords.forEach(badword => {
+      // this is basically a for each loop but one where we can use break
+      for (let badword of badWords) {
         if (enteredText.includes(badword)) {
-          badWordWarning.classList.add('js-badwords-div-visible');
-          
-          // check if previous interval id exists and clear it
-          if (previousTimerId) {
-            clearTimeout(previousTimerId)
-          }
-          // write the timeout id into the object
-          previousTimerId = setTimeout(() => {
-            badWordWarning.classList.remove('js-badwords-div-visible');
-            // clear the timer id 
-            previousTimerId = {}
-          }, 2000)
+          showCheckBox(enteredText, badword, checkBoxShown, previousTimerId);
+          break; // stops after the first match
         }
-      });
-
-
+      }
       preTest.innerHTML += `<p>${shellName}${safeUserInput}</p>`;
-
-      
 
       // hopefully this runs last
       textArea.textContent = '';
@@ -222,7 +210,6 @@ function displayCmndInShell(writableBox, preTest, textArea) {
   }
   });
 };
-
 
 termClose.addEventListener('click', () => {
   showClosePopupOnClick();
@@ -279,9 +266,74 @@ function showClosePopupOnClick() {
         }, 2000);
         break;
     }
-    console.log(closeBtnAttempts)
   };
   closePopup();
+}
+
+function showClosePopup() {
+  const closingShellChkInner = document.createElement('div');
+  closingShellChkInner.classList.add('closing-shell-check');
+
+  const closingShellChkP = document.createElement('p');
+  closingShellChkP.innerHTML = `Stop trying to close this window. &#96;&#8231;&#8248;&#8231;&#180;`;
+
+  // append them
+  closingShellChkInner.appendChild(closingShellChkP);
+  closeShellWindow.appendChild(closingShellChkInner);
+
+  closeShellWindow.classList.add('js-closing-shell-check-visible');
+}
+
+
+
+
+
+// I LEFT HERE I NEED TO COPY WHATS ON THE BOTTOM TO THE TOP OF THIS AND THEN STYLE EVERYTHING CORRECTLY IN CSS.
+
+
+
+
+
+
+
+function showCheckBox(enteredText,badword,checkBoxShown,previousTimerId) {
+  if (enteredText.includes(badword)) {
+    if (checkBoxShown === 0) {
+      checkBoxShown = 1;
+  
+      // Create outer warning wrapper
+      const badWordWarnInner = document.createElement('div');
+      badWordWarnInner.classList.add('badwords-div-inner');
+  
+      // Create p and span
+      const badWordsInnerP = document.createElement('p');
+      badWordsInnerP.textContent = 'Why would you call me that..';
+  
+      const badWordsInnerSpan = document.createElement('span');
+      badWordsInnerSpan.innerHTML = '&#180;&#8226;&#8276;&#8226;&#180;';
+  
+      // append all the created elements to the divs
+      badWordWarnInner.appendChild(badWordsInnerP);
+      badWordWarnInner.appendChild(badWordsInnerSpan);
+      badWordWarning.appendChild(badWordWarnInner);
+  
+      // Show warning
+      badWordWarning.classList.add('js-badwords-div-visible');
+  
+      // Clear previous timer if it exists
+      if (previousTimerId) {
+        clearTimeout(previousTimerId);
+      }
+  
+      // Start timer to hide warning
+      previousTimerId = setTimeout(() => {
+        badWordWarning.classList.remove('js-badwords-div-visible');
+        badWordWarning.innerHTML = ""; // Remove message contents
+        checkBoxShown = 0; // Reset so it can show again
+        previousTimerId = null;
+      }, 1000);
+    }
+  }
 }
 /* 
 new ideas:
