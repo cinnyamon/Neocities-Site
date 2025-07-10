@@ -1,11 +1,12 @@
-/* document.addEventListener('mousemove', (event) => {
-  const x = event.pageX;
-  const y = event.pageY;
+document.addEventListener("mousemove", (event) => {
+  const x = event.pageX,
+  y = event.pageY;
 
-  const trail = document.createElement('div');
-  trail.classList.add('trail-x');
-  trail.style.left = `${x}px`;
-  trail.style.top = `${y}px`;
-
-  document.body.appendChild(trail);
-}) */
+  // lag cursor behind mouse
+  gsap.to("#cursor-follow > span", {
+      duration: (i) => 0.1 + i/10,
+      scale: (i) => 3 - i/10,
+      x,
+      y
+    });
+});
