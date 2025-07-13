@@ -1,6 +1,8 @@
-document.addEventListener("mousemove", (event) => {
-  const x = event.pageX,
-  y = event.pageY;
+const mainEl = document.getElementById('gsapcursor')
+
+mainEl.addEventListener("mousemove", (event) => {
+  const x = event.clientX,
+  y = event.clientY;
 
   // lag cursor behind mouse
   gsap.to("#cursor-follow > span", {

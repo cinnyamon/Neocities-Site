@@ -1,0 +1,15 @@
+.header-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40px 0;
+  text-align: center;
+}
+
+.header-text p {
+  font-size: 22px;
+}
+
+.header-text span {
+  text-decoration: underline dotted;
+}

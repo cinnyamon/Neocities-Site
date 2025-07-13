@@ -15,7 +15,7 @@ body {
 }
 
 #cursor-follow > span {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   background-color: transparent;
@@ -25,10 +25,11 @@ body {
   border-radius: 6px;
   pointer-events: none;
   user-select: none;
-  background-image: url(/icons/window-close.svg);
-  
+  z-index: 10000;
 }
-
+#cursor-follow img {
+  overflow: hidden;
+}
 /* .cursor {
   position: fixed;
   left: 0;
