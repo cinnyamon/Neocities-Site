@@ -18,8 +18,10 @@ body {
   position: fixed;
   top: 0;
   left: 0;
+  display: flex;
+  opacity: 0;
+  transition: opacity 0.3s ease;
   background-color: transparent;
-  transform: translate(-50%, -50%);
   width: 12px;
   height: 12px;
   border-radius: 6px;
@@ -27,40 +29,3 @@ body {
   user-select: none;
   z-index: 10000;
 }
-#cursor-follow img {
-  overflow: hidden;
-}
-/* .cursor {
-  position: fixed;
-  left: 0;
-  border-radius: 50%;
-  pointer-events: none;
-  background-color: rgb(232, 232, 232);
-  top: 0;
-  width: 20px;
-  height: 20px;
-  z-index: 999;
-}
- */
-
-
-/* super inneficient */
-/* .trail-x {
-  position: fixed;
-  width: 50px;
-  height: 50px;
-  background-image: url(/icons/window-close.svg);
-  pointer-events: none;
-  opacity: 0.3;
-  transform: translate(-50%, -50%);
-  animation: fadeOut 2s forwards;
-  z-index: 0;
-}
-
-@keyframes fadeOut {
-  to {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.01);
-  }
-}
- */
