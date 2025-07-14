@@ -1,4 +1,4 @@
-export function shellColors() {
+function shellColors() {
   const T = '////';
   const container = document.getElementById("shellColors");
 

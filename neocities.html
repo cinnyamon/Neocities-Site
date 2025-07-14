@@ -1,94 +1,295 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
       rel="stylesheet"
     />
+
     <link rel="stylesheet" href="./styles/rotatingelement.css" />
     <link rel="stylesheet" href="./styles/body.css" />
     <link rel="stylesheet" href="./styles/header.css" />
     <link rel="stylesheet" href="./styles/terminalwindow.css" />
     <link rel="stylesheet" href="./styles/js-shell.css" />
-    <link rel="stylesheet" href="./styles/headtext.css" />
+    <link rel="stylesheet" href="./styles/headertexts.css" />
+    <link rel="stylesheet" href="./styles/term-checks.css" />
+    <link rel="stylesheet" href="./styles/catstyles.css" />
+    <link rel="stylesheet" href="./styles/underdevelopment.css">
     <style></style>
   </head>
   <body>
-    <div class="pseudo-header-border">
-      <div class="header">
-        <p class="homelink">
-          &lt; <a href="https://cinny.neocities.org">home</a> &gt;
-        </p>
-        <p class="gitlink">
-          &lt; <a href="https://github.com/cinnyamon">github</a> &gt;
+    <div id="gsapcursor">
+      <div id="cursor-follow">
+        <span><img src="./icons/window-close.svg"></span>
+        <span><img src="./icons/window-close.svg"></span>
+        <span><img src="./icons/window-close.svg"></span>
+        <span><img src="./icons/window-close.svg"></span>
+        <span><img src="./icons/window-close.svg"></span>
+        <span><img src="./icons/window-close.svg"></span>
+        <span><img src="./icons/window-close.svg"></span>
+      </div>
+      <div id="underdevelopment">
+        <p>This website is under active development!</p>
+        <p>Any features currently implemented may not be final nor finished.</p>
+        <button id="underdevbutton">Okay, I understand and want to proceed.</button>
+      </div>
+      <div class="pseudo-header-border">
+        <div class="header">
+          <p class="homelink">
+            &lt; <a href="https://cinny.neocities.org">home</a> &gt;
+          </p>
+          <p class="gitlink">
+            &lt; <a href="https://github.com/cinnyamon">github</a> &gt;
+          </p>
+        </div>
+      </div>
+      <div class="rotatingelementdiv">
+        <div class="scene">
+          <div class="banner">
+            <div class="panel"><span class="text">W</span></div>
+            <div class="panel"><span class="text">H</span></div>
+            <div class="panel"><span class="text">O</span></div>
+            <div class="panel"><span class="text"></span></div>
+            <div class="panel"><span class="text">A</span></div>
+            <div class="panel"><span class="text">R</span></div>
+            <div class="panel"><span class="text">E</span></div>
+            <div class="panel"><span class="text"></span></div>
+            <div class="panel"><span class="text">Y</span></div>
+            <div class="panel"><span class="text">O</span></div>
+            <div class="panel"><span class="text">U</span></div>
+            <div class="panel"><span class="text"></span></div>
+            <div class="panel"><span class="text">F</span></div>
+            <div class="panel"><span class="text">A</span></div>
+            <div class="panel"><span class="text">G</span></div>
+            <div class="panel"><span class="text"></span></div>
+          </div>
+          <!-- <div class="banner">
+            <div class="panel"><span class="text">M</span></div>
+            <div class="panel"><span class="text">A</span></div>
+            <div class="panel"><span class="text">R</span></div>
+            <div class="panel"><span class="text">D</span></div>
+            <div class="panel"><span class="text">E</span></div>
+            <div class="panel"><span class="text">R</span></div>
+            <div class="panel"><span class="text"></span></div>
+            <div class="panel"><span class="text">I</span></div>
+            <div class="panel"><span class="text">S</span></div>
+            <div class="panel"><span class="text"></span></div>
+            <div class="panel"><span class="text">A</span></div>
+            <div class="panel"><span class="text"></span></div>
+            <div class="panel"><span class="text">F</span></div>
+            <div class="panel"><span class="text">A</span></div>
+            <div class="panel"><span class="text">G</span></div>
+            <div class="panel"><span class="text"></span></div>
+          </div> -->
+          <div class="screen"></div>
+        </div>
+      </div>
+      <div class="header-text">
+        <p>
+          Make the Internet, an <span>HTML</span> and <span>CSS</span> <br />
+          safe place.
         </p>
       </div>
-    </div>
-    <div class="rotatingelementdiv">
-      <div class="scene">
-        <div class="banner">
-          <div class="panel"><span class="text">S</span></div>
-          <div class="panel"><span class="text"></span></div>
-          <div class="panel"><span class="text">A</span></div>
-          <div class="panel"><span class="text"></span></div>
-          <div class="panel"><span class="text">Y</span></div>
-          <div class="panel"><span class="text"></span></div>
-          <div class="panel"><span class="text"></span></div>
-          <div class="panel"><span class="text">G</span></div>
-          <div class="panel"><span class="text"></span></div>
-          <div class="panel"><span class="text">E</span></div>
-          <div class="panel"><span class="text"></span></div>
-          <div class="panel"><span class="text"></span></div>
-          <div class="panel"><span class="text">X</span></div>
-          <div class="panel"><span class="text"></span></div>
-          <div class="panel"><span class="text"></span></div>
-          <div class="panel"><span class="text"></span></div>
+      <div class="terminal-window-body">
+        <div class="terminal-window">
+          <div class="terminal-titlebar">
+            <div class="titlebar-left">
+              <img class="term-icon" src="./icons/utilities-terminal.svg" />
+              <p class="term-title">
+                &#126;&#58;<a href="https://ohmyz.sh/"
+                  ><span class="zshtext">zsh</span></a
+                >
+                &#8213; Terminal
+              </p>
+            </div>
+            <div class="titlebar-right">
+              <img class="term-minimize" src="./icons/go-down.svg" />
+              <img class="term-maximize" src="./icons/go-up.svg" />
+              <img class="term-close" src="./icons/window-close.svg" />
+            </div>
+          </div>
+          <div class="terminal-toolbar">
+            <p id="toolbar">
+              File
+              <span class="tooltiptext">Save yourself</span>
+            </p>
+            <p id="toolbar">
+              Edit
+              <span class="tooltiptext">Edit yourself</span>
+            </p>
+            <p id="toolbar">
+              View
+              <span class="tooltiptext">View yourself</span>
+            </p>
+            <p id="toolbar">
+              Bookmarks
+              <span class="tooltiptext">Bookmark yourself</span>
+            </p>
+            <p id="toolbar">
+              Plugins
+              <span class="tooltiptext">Plug yourself</span>
+            </p>
+            <p id="toolbar">
+              Settings
+              <span class="tooltiptext">Set yourself</span>
+            </p>
+            <p id="toolbar">
+              Help
+              <span class="tooltiptext">Kill yourself</span>
+            </p>
+          </div>
+          <div class="terminal-main-body">
+            <div class="terminal-shell">
+              <p class="css-shell">
+                <span class="username">name</span>@<span class="sitename"
+                  >neocities</span
+                >&#58;&#126;&#36; <span class="blinking-block">&#9608;</span>
+              </p>
+              <div class="js-terminal-shell"></div>
+            </div>
+          </div>
+          <div class="badwords-div js-badwords-div">
+            
+          </div>
+          <div class="closing-shell-check js-closing-shell-check">
+            <div class="closing-shell-check-inner">
+              <p id="js-close-shell-text">
+                Stop trying to close this window. &#96;&#8231;&#8248;&#8231;&#180;
+              </p>
+            </div>
+          </div>
         </div>
-        <div class="screen"></div>
       </div>
-    </div>
-    <div class="header-text">
-      <p>
-        Make the Internet, an <span>HTML</span> and <span>CSS</span> <br />
-        safe place.
-      </p>
-    </div>
-    <div class="terminal-window-body">
-      <div class="terminal-window">
-        <div class="terminal-titlebar">
-          <div class="titlebar-left">
-            <img class="term-icon" src="./icons/utilities-terminal.svg" />
-            <p class="term-title">
-              &#126;&#58;<span class="zshtext">zsh</span> &#8213; Terminal
-            </p>
-          </div>
-          <div class="titlebar-right">
-            <img class="term-minimize" src="./icons/go-down.svg" />
-            <img class="term-maximize" src="./icons/go-up.svg" />
-            <img class="term-close" src="./icons/window-close.svg" />
+      <div class="cat-header">
+        <p>Careful with the kitten, he <span id="bites">bites</span></p>
+        <p class="headpat-number">
+          Headpat Counter: [0]<img src="./icons/pixel-heart.svg" />
+        </p>
+      </div>
+      <div class="outer_wrapper">
+        <div class="wrapper">
+          <div class="cat_wrapper">
+            <div class="cat first_pose">
+              <div class="cat_head">
+                <svg
+                  x="0px"
+                  y="0px"
+                  width="100%"
+                  height="100%"
+                  viewBox="0 0 76.4 61.2"
+                >
+                  <polygon
+                    class="eyes"
+                    points="63.8,54.1 50.7,54.1 50.7,59.6 27.1,59.6 27.1,54.1 12.4,54.1 12.4,31.8 63.8,31.8 "
+                  />
+                  <path
+                    d="M15.3,45.9h5.1V35.7h-5.1C15.3,35.7,15.3,45.9,15.3,45.9z M45.8,56.1V51H30.6v5.1H45.8z M61.1,35.7H56v10.2h5.1
+                  V35.7z M10.2,61.2v-5.1H5.1V51H0V25.5h5.1V15.3h5.1V5.1h5.1V0h5.1v5.1h5.1v5.1h5.1v5.1c0,0,15.2,0,15.2,0v-5.1h5.1V5.1H56V0h5.1v5.1
+                  h5.1v10.2h5.1v10.2h5.1l0,25.5h-5.1v5.1h-5.1v5.1H10.2z"
+                  />
+                </svg>
+                <div class="heart-div">
+                  <img src="./icons/pixel-heart.svg" /> +1
+                </div>
+              </div>
+              <div class="body">
+                <svg
+                  x="0px"
+                  y="0px"
+                  width="100%"
+                  height="100%"
+                  viewBox="0 0 91.7 40.8"
+                >
+                  <path
+                    class="st0"
+                    d="M91.7,40.8H0V10.2h5.1V5.1h5.1V0h66.2v5.1h10.2v5.1h5.1L91.7,40.8z"
+                  />
+                </svg>
+
+                <div class="tail">
+                  <svg
+                    x="0px"
+                    y="0px"
+                    width="100%"
+                    height="100%"
+                    viewBox="0 0 25.5 61.1"
+                  >
+                    <polygon
+                      class="st0"
+                      points="10.2,56 10.2,50.9 5.1,50.9 5.1,40.7 0,40.7 0,20.4 5.1,20.4 5.1,10.2 10.2,10.2 10.2,5.1 15.3,5.1 
+                    15.3,0 25.5,0 25.5,10.2 20.4,10.2 20.4,15.3 15.3,15.3 15.3,20.4 10.2,20.4 10.2,40.7 15.3,40.7 15.3,45.8 20.4,45.8 20.4,50.9 
+                    25.5,50.9 25.5,61.1 15.3,61.1 15.3,56 "
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              <div class="front_legs">
+                <div class="leg one">
+                  <svg
+                    x="0px"
+                    y="0px"
+                    width="100%"
+                    height="100%"
+                    viewBox="0 0 14 30.5"
+                  >
+                    <polygon
+                      points="15.3,30.5 5.1,30.5 5.1,25.4 0,25.4 0,0 15.3,0 "
+                    />
+                  </svg>
+                </div>
+                <div class="leg two">
+                  <svg
+                    x="0px"
+                    y="0px"
+                    width="100%"
+                    height="100%"
+                    viewBox="0 0 14 30.5"
+                  >
+                    <polygon
+                      points="15.3,30.5 5.1,30.5 5.1,25.4 0,25.4 0,0 15.3,0 "
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              <div class="back_legs">
+                <div class="leg three">
+                  <svg
+                    x="0px"
+                    y="0px"
+                    width="100%"
+                    height="100%"
+                    viewBox="0 0 14 30.5"
+                  >
+                    <polygon
+                      points="15.3,30.5 5.1,30.5 5.1,25.4 0,25.4 0,0 15.3,0 "
+                    />
+                  </svg>
+                </div>
+                <div class="leg four">
+                  <svg
+                    x="0px"
+                    y="0px"
+                    width="100%"
+                    height="100%"
+                    viewBox="0 0 14 30.5"
+                  >
+                    <polygon
+                      points="15.3,30.5 5.1,30.5 5.1,25.4 0,25.4 0,0 15.3,0 "
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="terminal-toolbar">
-          <p id="toolbar">File</p>
-          <p id="toolbar">Edit</p>
-          <p id="toolbar">View</p>
-          <p id="toolbar">Bookmarks</p>
-          <p id="toolbar">Plugins</p>
-          <p id="toolbar">Settings</p>
-          <p id="toolbar">Help</p>
-        </div>
-        <div class="terminal-main-body">
-          <div class="terminal-shell">
-            <p class="css-shell">
-              <span class="username">name</span>@<span class="sitename"
-                >neocities</span
-              >&#58;&#126;&#36; <span class="blinking-block">&#9608;</span>
-            </p>
-            <div class="js-terminal-shell"></div>
-          </div>
-        </div>
+        <div class="ground"></div>
       </div>
     </div>
     <!-- this no script tag hides any js code by setting it to display none. -->
@@ -99,6 +300,15 @@
         }
       </style>
     </noscript>
-    <script type="module" src="./scripts/terminal.js"></script>
+    <script defer src="./node_modules/dompurify/dist/purify.js"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"
+    ></script>
+    <script defer src="./scripts/underDevelopment.js"></script>
+    <script defer src="./scripts/bodyTracker.js"></script>
+    <script defer src="./scripts/shellColors.js"></script>
+    <script defer src="./scripts/terminal.js"></script>
+    <script defer src="./scripts/catTracker.js"></script>
   </body>
 </html>

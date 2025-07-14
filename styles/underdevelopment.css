@@ -1,0 +1,33 @@
+#underdevelopment {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 150px;
+    z-index: 999;
+    background-image: linear-gradient(to top, rgb(241, 45, 78), transparent);
+}
+
+#underdevelopment p {
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    text-decoration: underline;
+}
+
+#underdevelopment button {
+    padding: 10px 15px;
+    border: 0.5px solid rgb(241, 45, 78);
+    font-family: Space Mono;
+    color: white;
+    border-radius: 6px;
+    background-color: black;
+}
+
+#underdevelopment button:hover {
+    background-color: rgb(70, 12, 22);
+}

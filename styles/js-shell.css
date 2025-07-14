@@ -4,7 +4,7 @@
   height: 100%;
   font-family: "Space Mono";
   color: white;
-  margin: 0 0 0 10px;
+  margin: 0 5px 0 10px;
   display: flex;
   flex-direction: column;
 }
@@ -23,6 +23,13 @@
   font-family: "Space Mono";
   font-size: inherit;
   caret-color: transparent;
+<<<<<<< HEAD
+=======
+}
+
+.writable-textarea-caret {
+  caret-color: rgb(255, 255, 255);
+>>>>>>> 2ce53d7c3072dcb0f0d5a8b8210f4511eef19d10
 }
 
 #shell-input-container {

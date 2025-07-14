@@ -1,0 +1,78 @@
+.header-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40px 0;
+  text-align: center;
+}
+
+.header-text p {
+  font-size: 25px;
+}
+
+.header-text span:nth-child(1) {
+  background: linear-gradient(to right,
+      #e6348d 20%,
+      #6f00ff 30%,
+      #00affa 50%,
+      #234bea 70%,
+      #e74abd 80%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 500% auto;
+  animation: textgradient 5s ease-in-out infinite alternate;
+}
+
+.header-text span:nth-child(2) {
+  background: linear-gradient(to right,
+      #00affa 20%,
+      #234bea 30%,
+      #e6348d 50%,
+      #6f00ff 70%,
+      #00affa 80%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 500% auto;
+  animation: textgradient 5s ease-in-out infinite alternate;
+}
+
+@keyframes textgradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+
+/* styles for the cat header */
+
+.cat-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40px 0;
+  text-align: center;
+  flex-direction: column;
+}
+
+.cat-header {
+  font-size: 25px;
+}
+#bites {
+  text-decoration: underline dotted;
+}
+.headpat-number {
+  font-size: 20px;
+}
+.headpat-number span {
+  color: rgb(255, 215, 0)
+}
+.headpat-number img {
+  height: 20px;
+  width: 20px;
+}

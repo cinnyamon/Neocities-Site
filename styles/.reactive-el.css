@@ -1,0 +1,17 @@
+.reactive-background {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  justify-items: center;
+  position: absolute;
+}
+
+.reactive-div {
+  position: inherit;
+  height: 100px;
+  width: 200px;
+  border: 1px solid blue;
+  opacity: 0;
+  transition: opacity 0.1s;
+}
+
+

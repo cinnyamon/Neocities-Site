@@ -1,6 +1,7 @@
 .terminal-window-body {
   display: flex;
   justify-content: center;
+  margin: 40px 0;
 }
 
 .terminal-window {
@@ -8,6 +9,7 @@
   max-width: 1000px;
   background-color: rgb(32, 32, 32);
   border-radius: 8px;
+  position: relative
 }
 
 .terminal-titlebar {
@@ -32,10 +34,31 @@
   font-size: 16px;
 }
 
+.term-title a {
+  text-decoration: none;
+  cursor: pointer;
+}
 .zshtext {
-  background: linear-gradient( rgb(236, 47, 47), rgb(143, 36, 225));
+  background: linear-gradient(to right,
+      #00affa 20%,
+      #234bea 30%,
+      #e6348d 50%,
+      #6f00ff 70%,
+      #00affa 80%);
+  -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-size: 500% auto;
+  animation: textgradient 5s ease-in-out infinite alternate;
+}
+@keyframes textgradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 100% 50%;
+  }
 }
 
 /* right side titlebar styles */
@@ -95,6 +118,7 @@
 
 .terminal-toolbar {
   display: flex;
+  flex-wrap: wrap;
   padding: 4px 0px;
   background-color: rgb(27, 27, 27);
 }
@@ -105,6 +129,7 @@
   margin: 0 6px;
   cursor: default;
   transition: background-color 0.1s;
+  position: relative;
 }
 
 #toolbar:hover {
@@ -132,7 +157,7 @@
 }
 
 .username {
-  background: linear-gradient(rgb(18, 98, 169), rgb(99, 191, 234));
+  background: linear-gradient(to right, rgb(236, 47, 211), rgb(143, 36, 225));
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -141,22 +166,51 @@
   animation: blink 1.5s steps(1, start) infinite;
 }
 
-@keyframes blink {
-  0% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
 .css-shell {
   margin-left: 10px;
 }
 
 /* shell text body styles ^^^ */
+
+/* toolbar tooltip styles */
+
+#toolbar .tooltiptext {
+  display: none;
+  text-wrap: nowrap;
+  background-color: rgb(27, 27, 27);
+  color: #fff;
+  opacity: 0;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 5px;
+  box-shadow: 5px 5px 20px rgb(0, 0, 0);
+
+  /* Position the tooltip */
+  position: absolute;
+  bottom: -40px;
+  left: 0px;
+  z-index: 1;
+  pointer-events: none;
+  
+}
+
+#toolbar:hover .tooltiptext {
+  display: block;
+  pointer-events: none;
+  animation: tooltip 1s forwards cubic-bezier(0, 0.99, 0, 1);
+}
+
+@keyframes tooltip {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  50% {
+    display: block;
+    opacity: 0;
+  }
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
