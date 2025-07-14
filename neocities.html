@@ -33,10 +33,13 @@
         <span><img src="./icons/window-close.svg"></span>
         <span><img src="./icons/window-close.svg"></span>
       </div>
-      <div id="underdevelopment">
+      <div id="underdevelopment" class="hidden-by-default">
         <p>This website is under active development!</p>
         <p>Any features currently implemented may not be final nor finished.</p>
-        <button id="underdevbutton">Okay, I understand and want to proceed.</button>
+        <div>
+          <button id="underdevbutton">Okay, I understand and want to proceed.</button>
+          <button id="underdevbutton" class="exitbtn">I want to leave.</button>
+        </div>
       </div>
       <div class="pseudo-header-border">
         <div class="header">
@@ -154,7 +157,10 @@
             </div>
           </div>
           <div class="badwords-div js-badwords-div">
-            
+            <div class="badwords-div-inner">
+              <p>Why would you call me that..</p>
+              <span>&#180;&#8226;&#8276;&#8226;&#180;</span>
+            </div>
           </div>
           <div class="closing-shell-check js-closing-shell-check">
             <div class="closing-shell-check-inner">

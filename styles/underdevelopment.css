@@ -13,6 +13,11 @@
     background-image: linear-gradient(to top, rgb(241, 45, 78), transparent);
 }
 
+.hidden-by-default {
+    display: none;
+    opacity: 0;
+}
+
 #underdevelopment p {
     font-size: 20px;
     color: rgb(255, 255, 255);
