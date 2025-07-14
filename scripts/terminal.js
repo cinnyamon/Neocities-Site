@@ -237,6 +237,7 @@ function showClosePopupOnClick() {
     closeShellWindow.classList.add('js-closing-shell-check-visible');
     if (timerId) {clearTimeout(timerId)}
     // write the timeout id into the object
+    
     switch (true) {
       case closeBtnAttempts < 3:
         closeShellText.innerHTML = originalText;
