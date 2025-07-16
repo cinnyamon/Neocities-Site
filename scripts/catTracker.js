@@ -1,6 +1,7 @@
 const catHeaderDiv = document.querySelector('.cat-header');
 const headpatNum = document.querySelector('.headpat-number');
 let headpatsCounter = 0;
+const outerWrapper = document.querySelector('.outer_wrapper');
 
 function init() {
 
@@ -23,8 +24,8 @@ function init() {
 
       const handleMouseMotion = (e) => {
         if (isWalking) {
-          pos.x = e.clientX;
-          pos.y = e.clientY;
+          pos.x = e.clientX
+          pos.y = e.clientY
           walk();
         }
       };
@@ -135,8 +136,15 @@ function init() {
       }, 1000);
 
 
-      document.addEventListener("mousemove", handleMouseMotion);
-      document.addEventListener("mousemove", handleTouchMotion);
+      outerWrapper.addEventListener("mousemove", handleMouseMotion);
+      outerWrapper.addEventListener("mousemove", handleTouchMotion);
+      outerWrapper.addEventListener('mouseleave', () => {
+        pos.x = null;
+        pos.y = null;
+        catWrapper.classList.remove("jump");
+        cat.classList.add("first_pose");
+        legs.forEach((leg) => leg.classList.remove("walk"));
+      })
 }
 
 window.addEventListener("DOMContentLoaded", init);

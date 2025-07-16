@@ -176,7 +176,7 @@ function displayCmndInShell(writableBox, preTest, textArea) {
     if (event.key === 'Enter') {
       // push the text content from the input box into the array
       userInputArray.push(writableBox.textContent);
-      
+      console.log(userInputArray)
       
       // only take the last item to be put into the shell
       const enteredText = userInputArray[userInputArray.length - 1];
@@ -252,7 +252,6 @@ function displayCmndInShell(writableBox, preTest, textArea) {
         preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}</p>`;
       }
 
-
       // hopefully this runs last
       textArea.textContent = '';
     };
@@ -269,30 +268,44 @@ function displayCmndInShell(writableBox, preTest, textArea) {
             // clear the timer id 
             previousTimerIdCaret = {}
           }, 2000) 
-  }
+    }
+    let maxArrowUpCounter = userInputArray.length;
+
+    console.log(maxArrowUpCounter)
     if (arrow.key === 'ArrowUp') {
-      for (const [index, value] of userInputArray.entries()) {
+      const reversed = userInputArray.toReversed();
+      for (const [index, value] of reversed.entries()) {
         if (index === arrowUpCounter) {
 
+
           console.log('Found:', value);
+          writableBox.textContent = value
+          console.log(arrowUpCounter)
         }
       }
-      arrowUpCounter++;
+      if (arrowUpCounter < maxArrowUpCounter) {
+        arrowUpCounter++;
+      }
     }
 
     if (arrow.key === 'ArrowDown') {
-      for (const [index, value] of userInputArray.entries()) {
+      const reversed = userInputArray.toReversed();
+      for (const [index, value] of reversed.entries()) {
         if (index === arrowUpCounter) {
 
           console.log('Found:', value);
+          writableBox.textContent = value
+          console.log(arrowUpCounter)
+          console.log(reversed.length)
         }
       }
-      arrowUpCounter--;
+      if (arrowUpCounter - 1 === maxArrowUpCounter) {
+        
+      }
+        arrowUpCounter--;
     }
   });
 };
-
-
 
 termClose.addEventListener('click', () => {
   showClosePopupOnClick();
