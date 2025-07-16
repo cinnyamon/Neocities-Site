@@ -1,5 +1,6 @@
 //my plan is to load the website and replace the html with javascript if it is enabled. if it is not then simply fall back to a simpler shell with no interactivity.
 
+
 //if the user has js enabled then the shell will clear itself and initialize a delay of 1-5 seconds once the user has started scrolling (non dependant on scroll position) and display the shell colors script.
 
 /* 1. clear console
@@ -13,6 +14,8 @@
 
 
 DOMPurify.sanitize()
+
+
 
 // storing the css and js shells texts into constants
 const badWordWarning = document.querySelector('.js-badwords-div');
@@ -161,6 +164,7 @@ function maxCharacterInput(writableBox) {
 function displayCmndInShell(writableBox, preTest, textArea) {
   // create array to store the user's input
   const userInputArray = [];
+  let arrowUpCounter = 0;
   
   // set previous timer object to store the id of the setInterval and clear it later on
   let previousTimerId = {};
@@ -170,15 +174,47 @@ function displayCmndInShell(writableBox, preTest, textArea) {
       // push the text content from the input box into the array
       userInputArray.push(writableBox.textContent);
       
+      
       // only take the last item to be put into the shell
       const enteredText = userInputArray[userInputArray.length - 1];
       // use DOMPurify lib to only allow p span and classes to these items for the user's entered text
+      
       const safeUserInput = DOMPurify.sanitize(enteredText, {
         ALLOWED_TAGS: ['p', 'span', 'div', 'br', ],
         ALLOWED_ATTR: ['class', 'style']
       });
 
+      /* const result = math.evaluate(safeUserInput)
+      console.log('The result is:', result)
+      console.log(Boolean(result)) */
+
+
+      // const regex = /[+\-*/]/g;
+      // console.log(Function(`"use strict"; return ${safeUserInput}`)())
+      // // this is eval() and takes a string and does the calculation on it.
+
+
+      // const isCalculation = regex.test(safeUserInput)
+      // console.log({isCalculation})
+      // // this checks if the calculation has a regex symbol from the ones listed in there like: + - * and /
+
+
+      // if (isCalculation) {
+      //   return console.log(eval(safeUserInput))
+      // }
+      // // if calculation is true then do the eval()
       
+
+      /* if (!isNaN(safeUserInput)) {
+
+        console.log('number detected');
+        console.log(typeof Number(safeUserInput));
+        
+        operators.forEach((operator) => {
+        })
+      } */
+
+
       // create array of bad words
       const badWords = ['fag', 'faggot', 'idiot', 'idot', 'retard', 'dumbass', 'dumb', 'nig', 'nigger', 'dummy', 'cunt', 'stupid', 'stoopi', 'sucker', 'jew', 'kike', ];
       badWords.forEach(badword => {
@@ -198,10 +234,21 @@ function displayCmndInShell(writableBox, preTest, textArea) {
         }
       });
 
+      const safeInputTrimmed = safeUserInput.trim();
+      const bannedLettersRGX = /^[etisghlbm]$/i
 
-      preTest.innerHTML += `<p>${shellName}${safeUserInput}</p>`;
+      try {
+        if (bannedLettersRGX.test(safeInputTrimmed) === true) {
+          preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}</p>`;
+        } else {
+          const result = math.evaluate(safeInputTrimmed);
+          preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}&nbsp;<span style="color: grey">= ${result}</span></p>`;
+        }
+      } 
+      catch {
+        preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}</p>`;
+      }
 
-      
 
       // hopefully this runs last
       textArea.textContent = '';
@@ -220,8 +267,28 @@ function displayCmndInShell(writableBox, preTest, textArea) {
             previousTimerIdCaret = {}
           }, 2000) 
   }
+    if (arrow.key === 'ArrowUp') {
+      for (const [index, value] of userInputArray.entries()) {
+        if (index === arrowUpCounter) {
+
+          console.log('Found:', value);
+        }
+      }
+      arrowUpCounter++;
+    }
+
+    if (arrow.key === 'ArrowDown') {
+      for (const [index, value] of userInputArray.entries()) {
+        if (index === arrowUpCounter) {
+
+          console.log('Found:', value);
+        }
+      }
+      arrowUpCounter--;
+    }
   });
 };
+
 
 
 termClose.addEventListener('click', () => {

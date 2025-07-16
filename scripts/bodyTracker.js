@@ -24,16 +24,6 @@ mainEl.addEventListener("mouseenter", () => {
     });
 });
 
-mainEl.addEventListener("mouseleave", () => {
-
-  gsap.killTweensOf(mainEl);
-  gsap.to("#cursor-follow > span", {
-      duration: 0.3,
-      opacity: 0,
-      ease: "power2.out"
-    });
-});
-
 window.addEventListener('mouseout', (event) => {
   if (!event.relatedTarget) {
     gsap.killTweensOf(mainEl);
