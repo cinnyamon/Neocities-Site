@@ -146,15 +146,16 @@
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   background-color: rgb(13, 16, 18);
-  padding-bottom: 10px;
+  overflow: auto;
+  scrollbar-color: rgb(33, 33, 33) rgb(13, 16, 18);
+  font-family: "Space Mono";
+  color: white;
+  display: flex;
+  flex-direction: column;
 }
 
 
 /* shell text body styles vvv*/
-
-.terminal-shell {
-  height: 100%;
-}
 
 .username {
   background: linear-gradient(to right, rgb(236, 47, 211), rgb(143, 36, 225));
@@ -164,10 +165,6 @@
 
 .blinking-block {
   animation: blink 1.5s steps(1, start) infinite;
-}
-
-.css-shell {
-  margin-left: 10px;
 }
 
 /* shell text body styles ^^^ */

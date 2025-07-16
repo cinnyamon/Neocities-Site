@@ -1,0 +1,429 @@
+#css-shell {
+  margin: 0 0 0 10px;
+    overflow: auto;
+}
+
+.css-termcolors {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  
+}
+
+.m-numtop {
+  text-indent: 75px;
+  word-spacing: 30px;
+  text-wrap: nowrap;
+}
+
+#maincolors-div {
+  display: flex;
+  gap: 10px;
+}
+
+.vert-nums {
+  display: flex;
+  flex-direction: column;
+}
+
+.vert-nums p {
+  text-align: end;
+}
+
+.vert-colors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  flex-wrap: nowrap;
+}
+
+.shell-colors-div {
+  padding: 0 10px;
+}
+
+/* .shell-colors-div:nth-child(1) {
+  background-color: rgb(0, 0, 0);
+
+  & .fw-slash-shell:nth-child(1) {
+      color: rgb(0, 0, 0);}
+  & .fw-slash-shell-bold:nth-child(2) {
+      color: rgb(0, 0, 0); }
+  & .fw-slash-shell:nth-child(3) {
+      color: rgb(255, 52, 38);}
+  & .fw-slash-shell-bold:nth-child(4) {
+      color: rgb(255, 52, 38);}
+  & .fw-slash-shell:nth-child(5) {
+      color: rgb(83, 255, 44);}
+  & .fw-slash-shell-bold:nth-child(6) {
+      color: rgb(83, 255, 44);}
+  & .fw-slash-shell:nth-child(7) {
+      color: rgb(255, 139, 44);} 
+  & .fw-slash-shell-bold:nth-child(8) {
+      color: rgb(255, 139, 44);}
+  & .fw-slash-shell:nth-child(9) {
+      color: rgb(40, 140, 227);} 
+  & .fw-slash-shell-bold:nth-child(10) {
+      color: rgb(40, 140, 227);}
+  & .fw-slash-shell:nth-child(11) {
+      color: rgb(183, 73, 211);} 
+  & .fw-slash-shell-bold:nth-child(12) {
+      color: rgb(183, 73, 211);}
+  & .fw-slash-shell:nth-child(13) {
+      color: rgb(103, 208, 175);} 
+  & .fw-slash-shell-bold:nth-child(14) {
+      color: rgb(103, 208, 175);}
+  & .fw-slash-shell:nth-child(15) {
+      color: rgb(255, 255, 255);} 
+  & .fw-slash-shell-bold:nth-child(16) {
+      color: rgb(255, 255, 255);}
+}
+
+.shell-colors-div:nth-child(2) {
+  background-color: rgb(255, 52, 38);
+
+  & .fw-slash-shell:nth-child(1) {
+    color: rgb(0, 0, 0);}
+  & .fw-slash-shell-bold:nth-child(2) {
+      color: rgb(0, 0, 0); }
+  & .fw-slash-shell:nth-child(3) {
+      color: rgb(255, 52, 38);}
+  & .fw-slash-shell-bold:nth-child(4) {
+      color: rgb(255, 52, 38);}
+  & .fw-slash-shell:nth-child(5) {
+      color: rgb(83, 255, 44);}
+  & .fw-slash-shell-bold:nth-child(6) {
+      color: rgb(83, 255, 44);}
+  & .fw-slash-shell:nth-child(7) {
+      color: rgb(255, 139, 44);} 
+  & .fw-slash-shell-bold:nth-child(8) {
+      color: rgb(255, 139, 44);}
+  & .fw-slash-shell:nth-child(9) {
+      color: rgb(40, 140, 227);} 
+  & .fw-slash-shell-bold:nth-child(10) {
+      color: rgb(40, 140, 227);}
+  & .fw-slash-shell:nth-child(11) {
+      color: rgb(183, 73, 211);} 
+  & .fw-slash-shell-bold:nth-child(12) {
+      color: rgb(183, 73, 211);}
+  & .fw-slash-shell:nth-child(13) {
+      color: rgb(103, 208, 175);} 
+  & .fw-slash-shell-bold:nth-child(14) {
+      color: rgb(103, 208, 175);}
+  & .fw-slash-shell:nth-child(15) {
+      color: rgb(255, 255, 255);} 
+  & .fw-slash-shell-bold:nth-child(16) {
+      color: rgb(255, 255, 255);}
+}
+
+.shell-colors-div:nth-child(3) {
+  background-color: rgb(83, 255, 44);
+
+  & .fw-slash-shell:nth-child(1) {
+    color: rgb(0, 0, 0);}
+  & .fw-slash-shell-bold:nth-child(2) {
+      color: rgb(0, 0, 0); }
+  & .fw-slash-shell:nth-child(3) {
+      color: rgb(255, 52, 38);}
+  & .fw-slash-shell-bold:nth-child(4) {
+      color: rgb(255, 52, 38);}
+  & .fw-slash-shell:nth-child(5) {
+      color: rgb(83, 255, 44);}
+  & .fw-slash-shell-bold:nth-child(6) {
+      color: rgb(83, 255, 44);}
+  & .fw-slash-shell:nth-child(7) {
+      color: rgb(255, 139, 44);} 
+  & .fw-slash-shell-bold:nth-child(8) {
+      color: rgb(255, 139, 44);}
+  & .fw-slash-shell:nth-child(9) {
+      color: rgb(40, 140, 227);} 
+  & .fw-slash-shell-bold:nth-child(10) {
+      color: rgb(40, 140, 227);}
+  & .fw-slash-shell:nth-child(11) {
+      color: rgb(183, 73, 211);} 
+  & .fw-slash-shell-bold:nth-child(12) {
+      color: rgb(183, 73, 211);}
+  & .fw-slash-shell:nth-child(13) {
+      color: rgb(103, 208, 175);} 
+  & .fw-slash-shell-bold:nth-child(14) {
+      color: rgb(103, 208, 175);}
+  & .fw-slash-shell:nth-child(15) {
+      color: rgb(255, 255, 255);} 
+  & .fw-slash-shell-bold:nth-child(16) {
+      color: rgb(255, 255, 255);}
+}
+
+.shell-colors-div:nth-child(4) {
+  background-color: rgb(255, 139, 44);
+
+  & .fw-slash-shell:nth-child(1) {
+    color: rgb(0, 0, 0);}
+  & .fw-slash-shell-bold:nth-child(2) {
+      color: rgb(0, 0, 0); }
+  & .fw-slash-shell:nth-child(3) {
+      color: rgb(255, 52, 38);}
+  & .fw-slash-shell-bold:nth-child(4) {
+      color: rgb(255, 52, 38);}
+  & .fw-slash-shell:nth-child(5) {
+      color: rgb(83, 255, 44);}
+  & .fw-slash-shell-bold:nth-child(6) {
+      color: rgb(83, 255, 44);}
+  & .fw-slash-shell:nth-child(7) {
+      color: rgb(255, 139, 44);} 
+  & .fw-slash-shell-bold:nth-child(8) {
+      color: rgb(255, 139, 44);}
+  & .fw-slash-shell:nth-child(9) {
+      color: rgb(40, 140, 227);} 
+  & .fw-slash-shell-bold:nth-child(10) {
+      color: rgb(40, 140, 227);}
+  & .fw-slash-shell:nth-child(11) {
+      color: rgb(183, 73, 211);} 
+  & .fw-slash-shell-bold:nth-child(12) {
+      color: rgb(183, 73, 211);}
+  & .fw-slash-shell:nth-child(13) {
+      color: rgb(103, 208, 175);} 
+  & .fw-slash-shell-bold:nth-child(14) {
+      color: rgb(103, 208, 175);}
+  & .fw-slash-shell:nth-child(15) {
+      color: rgb(255, 255, 255);} 
+  & .fw-slash-shell-bold:nth-child(16) {
+      color: rgb(255, 255, 255);}
+}
+
+.shell-colors-div:nth-child(5) {
+  background-color: rgb(40, 140, 227);
+
+  & .fw-slash-shell:nth-child(1) {
+    color: rgb(0, 0, 0);}
+  & .fw-slash-shell-bold:nth-child(2) {
+      color: rgb(0, 0, 0); }
+  & .fw-slash-shell:nth-child(3) {
+      color: rgb(255, 52, 38);}
+  & .fw-slash-shell-bold:nth-child(4) {
+      color: rgb(255, 52, 38);}
+  & .fw-slash-shell:nth-child(5) {
+      color: rgb(83, 255, 44);}
+  & .fw-slash-shell-bold:nth-child(6) {
+      color: rgb(83, 255, 44);}
+  & .fw-slash-shell:nth-child(7) {
+      color: rgb(255, 139, 44);} 
+  & .fw-slash-shell-bold:nth-child(8) {
+      color: rgb(255, 139, 44);}
+  & .fw-slash-shell:nth-child(9) {
+      color: rgb(40, 140, 227);} 
+  & .fw-slash-shell-bold:nth-child(10) {
+      color: rgb(40, 140, 227);}
+  & .fw-slash-shell:nth-child(11) {
+      color: rgb(183, 73, 211);} 
+  & .fw-slash-shell-bold:nth-child(12) {
+      color: rgb(183, 73, 211);}
+  & .fw-slash-shell:nth-child(13) {
+      color: rgb(103, 208, 175);} 
+  & .fw-slash-shell-bold:nth-child(14) {
+      color: rgb(103, 208, 175);}
+  & .fw-slash-shell:nth-child(15) {
+      color: rgb(255, 255, 255);} 
+  & .fw-slash-shell-bold:nth-child(16) {
+      color: rgb(255, 255, 255);}
+}
+
+.shell-colors-div:nth-child(6) {
+  background-color: rgb(183, 73, 211);
+
+  & .fw-slash-shell:nth-child(1) {
+    color: rgb(0, 0, 0);}
+  & .fw-slash-shell-bold:nth-child(2) {
+      color: rgb(0, 0, 0); }
+  & .fw-slash-shell:nth-child(3) {
+      color: rgb(255, 52, 38);}
+  & .fw-slash-shell-bold:nth-child(4) {
+      color: rgb(255, 52, 38);}
+  & .fw-slash-shell:nth-child(5) {
+      color: rgb(83, 255, 44);}
+  & .fw-slash-shell-bold:nth-child(6) {
+      color: rgb(83, 255, 44);}
+  & .fw-slash-shell:nth-child(7) {
+      color: rgb(255, 139, 44);} 
+  & .fw-slash-shell-bold:nth-child(8) {
+      color: rgb(255, 139, 44);}
+  & .fw-slash-shell:nth-child(9) {
+      color: rgb(40, 140, 227);} 
+  & .fw-slash-shell-bold:nth-child(10) {
+      color: rgb(40, 140, 227);}
+  & .fw-slash-shell:nth-child(11) {
+      color: rgb(183, 73, 211);} 
+  & .fw-slash-shell-bold:nth-child(12) {
+      color: rgb(183, 73, 211);}
+  & .fw-slash-shell:nth-child(13) {
+      color: rgb(103, 208, 175);} 
+  & .fw-slash-shell-bold:nth-child(14) {
+      color: rgb(103, 208, 175);}
+  & .fw-slash-shell:nth-child(15) {
+      color: rgb(255, 255, 255);} 
+  & .fw-slash-shell-bold:nth-child(16) {
+      color: rgb(255, 255, 255);}
+}
+
+.shell-colors-div:nth-child(7) {
+  background-color: rgb(103, 208, 175);
+
+  & .fw-slash-shell:nth-child(1) {
+    color: rgb(0, 0, 0);}
+  & .fw-slash-shell-bold:nth-child(2) {
+      color: rgb(0, 0, 0); }
+  & .fw-slash-shell:nth-child(3) {
+      color: rgb(255, 52, 38);}
+  & .fw-slash-shell-bold:nth-child(4) {
+      color: rgb(255, 52, 38);}
+  & .fw-slash-shell:nth-child(5) {
+      color: rgb(83, 255, 44);}
+  & .fw-slash-shell-bold:nth-child(6) {
+      color: rgb(83, 255, 44);}
+  & .fw-slash-shell:nth-child(7) {
+      color: rgb(255, 139, 44);} 
+  & .fw-slash-shell-bold:nth-child(8) {
+      color: rgb(255, 139, 44);}
+  & .fw-slash-shell:nth-child(9) {
+      color: rgb(40, 140, 227);} 
+  & .fw-slash-shell-bold:nth-child(10) {
+      color: rgb(40, 140, 227);}
+  & .fw-slash-shell:nth-child(11) {
+      color: rgb(183, 73, 211);} 
+  & .fw-slash-shell-bold:nth-child(12) {
+      color: rgb(183, 73, 211);}
+  & .fw-slash-shell:nth-child(13) {
+      color: rgb(103, 208, 175);} 
+  & .fw-slash-shell-bold:nth-child(14) {
+      color: rgb(103, 208, 175);}
+  & .fw-slash-shell:nth-child(15) {
+      color: rgb(255, 255, 255);} 
+  & .fw-slash-shell-bold:nth-child(16) {
+      color: rgb(255, 255, 255);}
+}
+
+.shell-colors-div:nth-child(8) {
+  background-color: rgb(255, 255, 255);
+
+  & .fw-slash-shell:nth-child(1) {
+    color: rgb(0, 0, 0);}
+  & .fw-slash-shell-bold:nth-child(2) {
+      color: rgb(0, 0, 0); }
+  & .fw-slash-shell:nth-child(3) {
+      color: rgb(255, 52, 38);}
+  & .fw-slash-shell-bold:nth-child(4) {
+      color: rgb(255, 52, 38);}
+  & .fw-slash-shell:nth-child(5) {
+      color: rgb(83, 255, 44);}
+  & .fw-slash-shell-bold:nth-child(6) {
+      color: rgb(83, 255, 44);}
+  & .fw-slash-shell:nth-child(7) {
+      color: rgb(255, 139, 44);} 
+  & .fw-slash-shell-bold:nth-child(8) {
+      color: rgb(255, 139, 44);}
+  & .fw-slash-shell:nth-child(9) {
+      color: rgb(40, 140, 227);} 
+  & .fw-slash-shell-bold:nth-child(10) {
+      color: rgb(40, 140, 227);}
+  & .fw-slash-shell:nth-child(11) {
+      color: rgb(183, 73, 211);} 
+  & .fw-slash-shell-bold:nth-child(12) {
+      color: rgb(183, 73, 211);}
+  & .fw-slash-shell:nth-child(13) {
+      color: rgb(103, 208, 175);} 
+  & .fw-slash-shell-bold:nth-child(14) {
+      color: rgb(103, 208, 175);}
+  & .fw-slash-shell:nth-child(15) {
+      color: rgb(255, 255, 255);} 
+  & .fw-slash-shell-bold:nth-child(16) {
+      color: rgb(255, 255, 255);}
+} */
+
+/* im leaving the code above as a reminder to me to search the internet for an easier way to do something before committing 40 minutes to writing hundreds of repetitive lines of code. i could possibly be the stupidest person ever and i even thought it was a good idea in the beginning... */
+
+.fw-slash-shell-bold {
+  font-weight: bold;
+}
+
+
+.shell-colors-div {
+  --accent-0: rgb(0, 0, 0);
+  --accent-1: rgb(255, 52, 38);
+  --accent-2: rgb(83, 255, 44);
+  --accent-3: rgb(255, 139, 44);
+  --accent-4: rgb(40, 140, 227);
+  --accent-5: rgb(183, 73, 211);
+  --accent-6: rgb(103, 208, 175);
+  --accent-7: rgb(255, 255, 255);
+  --text-color: rgb(0, 0, 0);
+}
+
+.shell-colors-div:nth-child(1) {
+  background-color: var(--accent-0);
+}
+
+.shell-colors-div:nth-child(2) {
+  background-color: var(--accent-1);
+}
+
+.shell-colors-div:nth-child(3) {
+  background-color: var(--accent-2);
+}
+
+.shell-colors-div:nth-child(4) {
+  background-color: var(--accent-3);
+}
+
+.shell-colors-div:nth-child(5) {
+  background-color: var(--accent-4);
+}
+
+.shell-colors-div:nth-child(6) {
+  background-color: var(--accent-5);
+}
+
+.shell-colors-div:nth-child(7) {
+  background-color: var(--accent-6);
+}
+
+.shell-colors-div:nth-child(8) {
+  background-color: var(--accent-7);
+}
+
+.shell-colors-div .fw-slash-shell:nth-child(1),
+.shell-colors-div .fw-slash-shell-bold:nth-child(2) {
+  color: var(--text-color);
+}
+
+.shell-colors-div .fw-slash-shell:nth-child(3),
+.shell-colors-div .fw-slash-shell-bold:nth-child(4) {
+  color: var(--accent-1);
+}
+
+.shell-colors-div .fw-slash-shell:nth-child(5),
+.shell-colors-div .fw-slash-shell-bold:nth-child(6) {
+  color: var(--accent-2);
+}
+
+.shell-colors-div .fw-slash-shell:nth-child(7),
+.shell-colors-div .fw-slash-shell-bold:nth-child(8) {
+  color: var(--accent-3);
+}
+
+.shell-colors-div .fw-slash-shell:nth-child(9),
+.shell-colors-div .fw-slash-shell-bold:nth-child(10) {
+  color: var(--accent-4);
+}
+
+.shell-colors-div .fw-slash-shell:nth-child(11),
+.shell-colors-div .fw-slash-shell-bold:nth-child(12) {
+  color: var(--accent-5);
+}
+
+.shell-colors-div .fw-slash-shell:nth-child(13),
+.shell-colors-div .fw-slash-shell-bold:nth-child(14) {
+  color: var(--accent-6);
+}
+
+.shell-colors-div .fw-slash-shell:nth-child(15),
+.shell-colors-div .fw-slash-shell-bold:nth-child(16) {
+  color: var(--accent-7);
+}

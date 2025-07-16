@@ -19,14 +19,13 @@ DOMPurify.sanitize()
 
 // storing the css and js shells texts into constants
 const badWordWarning = document.querySelector('.js-badwords-div');
-const cssShell = document.querySelector('.css-shell');
-const jsTermShell = document.querySelector('.js-terminal-shell');
+const termMainBody = document.querySelector('.terminal-main-body');
 const termClose = document.querySelector('.term-close');
 const closeShellWindow = document.querySelector('.js-closing-shell-check');
 const closeShellText = document.getElementById('js-close-shell-text');
 const originalText = closeShellText.innerHTML;
 
-const jsShellHTML = `JavaScript detected. Initialize console ...`;
+const jsShellHTML = `JavaScript detected. Initialize JavaScript console...`;
 const shellName = `<span class="username">name</span>@<span class="sitename"
                 >neocities</span
               >&#58;&#126;&#36;&nbsp;`;
@@ -70,11 +69,11 @@ function clearShell() {
           //typewriter effect function
           function typeWriter() {
             if (index < jsShellHTML.length) {
-              jsTermShell.innerHTML += `${jsShellHTML.charAt(index)}`;
+              termMainBody.innerHTML += `${jsShellHTML.charAt(index)}`;
               index++;
-              setTimeout(typeWriter, 32);
+              setTimeout(typeWriter, 50);
             } else {
-              resolve(jsTermShell.innerHTML); // takes jsTermShell and adds to resolve function for use to use with .then
+              resolve(termMainBody.innerHTML); // takes termMainBody and adds to resolve function for use to use with .then
             }
           }
           typeWriter();
@@ -82,8 +81,8 @@ function clearShell() {
       });
     }
     setTimeout(() => {
-      cssShell.remove();
-    }, 3000)
+      document.getElementById('css-shell').remove();
+    }, 2000)
 
     return runTypeWriterPromise(); //returns the promise
   }
@@ -95,18 +94,21 @@ function clearShell() {
 clearShell().then((jsDetectionText) => {
   savedJsShellText = jsDetectionText
     // setting up the scrolling observer in a constant for future potential cleanup
-  const scrollObserver = shellScrollObserver(jsTermShell);
+  const scrollObserver = shellScrollObserver(termMainBody);
     // clean up when needed
     // observer.disconnect();
-  jsTermShell.innerHTML = `
-    ${savedJsShellText}
-    ${shellColors()}
-    <div id="pre-test"></div>
-    <div id="shell-input-container">
-      ${shellName}
-        <span id="writable-box" role="textbox" tabindex="0" class="writable-textarea" maxlength="60" contenteditable>
-        </span>${shellBlinkingBlock}
-    </div>`
+
+    //set timeout for the real js shell to appear
+    setTimeout(() => {
+      termMainBody.innerHTML = `
+      ${savedJsShellText}
+      ${shellColors()}
+      <div id="pre-test"></div>
+      <div id="shell-input-container">
+        ${shellName}
+          <span id="writable-box" role="textbox" tabindex="0" class="writable-textarea" maxlength="60" contenteditable>
+          </span>${shellBlinkingBlock}
+      </div>`
     
     let preTest = document.getElementById('pre-test');
     const writableBox = document.getElementById('writable-box');
@@ -114,15 +116,16 @@ clearShell().then((jsDetectionText) => {
 
     focusTextBoxOnClick(writableBox);
     maxCharacterInput(writableBox);
-    displayCmndInShell(writableBox, preTest, textArea, jsTermShell);
+    displayCmndInShell(writableBox, preTest, textArea, termMainBody);
+    }, 800);
 });
 
-function shellScrollObserver(jsTermShell) {
+function shellScrollObserver(termMainBody) {
     const observer = new MutationObserver(() => {
-        jsTermShell.scrollTop = jsTermShell.scrollHeight;
+      termMainBody.scrollTop = termMainBody.scrollHeight;
     });
     
-    observer.observe(jsTermShell, {
+    observer.observe(termMainBody, {
         childList: true,
         subtree: true
     });
@@ -131,7 +134,7 @@ function shellScrollObserver(jsTermShell) {
 }
 
 function focusTextBoxOnClick(writableBox) {
-  jsTermShell.addEventListener('click', () => {
+  termMainBody.addEventListener('click', () => {
       writableBox.focus();
     });
 }
