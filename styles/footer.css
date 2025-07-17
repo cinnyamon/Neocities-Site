@@ -1,0 +1,16 @@
+.footer {
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  gap: 10px;
+}
+
+.footer p,
+.footer a {
+  font-size: 12px;
+  opacity: 0.3;
+}
+
+.footer a {
+  text-wrap: nowrap;
+}
