@@ -12,15 +12,15 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="./styles/rotatingelement.css" />
+    <link rel="stylesheet" href="./styles/rotating-element.css" />
     <link rel="stylesheet" href="./styles/body.css" />
-    <link rel="stylesheet" href="./styles/header.css" />
-    <link rel="stylesheet" href="./styles/terminalwindow.css" />
+    <link rel="stylesheet" href="./styles/nav-bar.css" />
+    <link rel="stylesheet" href="./styles/terminal-window.css" />
     <link rel="stylesheet" href="./styles/js-shell.css" />
-    <link rel="stylesheet" href="./styles/headertexts.css" />
+    <link rel="stylesheet" href="./styles/page-titles.css" />
     <link rel="stylesheet" href="./styles/term-checks.css" />
-    <link rel="stylesheet" href="./styles/catstyles.css" />
-    <link rel="stylesheet" href="./styles/underdevelopment.css" />
+    <link rel="stylesheet" href="./styles/cat-styles.css" />
+    <link rel="stylesheet" href="./styles/under-development.css" />
     <link rel="stylesheet" href="./styles/terminal-colors-noscript.css" />
   </head>
   <body>
@@ -94,7 +94,7 @@
           </div> -->
         </div>
       </div>
-      <div class="header-text">
+      <div class="title-text">
         <p>
           Make the Internet, an <span>HTML</span> and <span>CSS</span> <br />
           safe place.
@@ -103,8 +103,8 @@
       <div class="terminal-window-body">
         <div class="terminal-window">
           <div class="terminal-titlebar">
+            <img class="term-icon" src="./icons/utilities-terminal.svg" />
             <div class="titlebar-left">
-              <img class="term-icon" src="./icons/utilities-terminal.svg" />
               <p class="term-title">
                 &#126;&#58;<a href="https://ohmyz.sh/"
                   ><span class="zshtext">zsh</span></a
@@ -342,12 +342,12 @@
           </div>
         </div>
       </div>
-      
+
       <div class="outer_wrapper">
         <div class="cat-header">
           <p>Careful with the kitten, he <span id="bites">bites</span></p>
           <p class="headpat-number">
-            Headpat Counter: [0]<img src="./icons/pixel-heart.svg" />
+            Headpat Counter: [0]<img id="heart-icon" src="./icons/pixel-heart.svg" />
           </p>
         </div>
         <div class="wrapper">
@@ -372,7 +372,7 @@
                   />
                 </svg>
                 <div class="heart-div">
-                  <img src="./icons/pixel-heart.svg" /> +1
+                  <img id="heart-icon" src="./icons/pixel-heart.svg" /> +1
                 </div>
               </div>
               <div class="body">

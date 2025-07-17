@@ -27,6 +27,7 @@
   background-color: transparent;
 }
 
+
 /* body */
 
 .body {
@@ -363,12 +364,17 @@ a:hover {
   align-items: center;
   pointer-events: none;
   visibility: visible;
-  height: 20px;
-  width: 20px;
   z-index: 10000;
+  width: fit-content;
+  height: fit-content;
   top: -30px;
   pointer-events: none;
   animation: bounceup 1s ease forwards;
+}
+
+#heart-icon-plusone {
+  width: 20px;
+  height: 20px;
 }
 
 @keyframes bounceup {

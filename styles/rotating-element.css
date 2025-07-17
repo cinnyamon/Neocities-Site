@@ -121,3 +121,43 @@
   font-size: 45px;
 }
 
+/* if the screen size is 992px or wider then do this and if its not then just default to the one above which is 210px */
+@media screen and (min-width: 992px) {
+  .panel {
+    transform: translate(-50%, -50%) rotateY(var(--angle)) translateZ(260px);
+  }
+}
+
+/* if the screen size is 600px wide or smaller do this vv */
+@media screen and (max-width: 600px) {
+  .panel {
+    transform: translate(-50%, -50%) rotateY(var(--angle)) translateZ(150px);
+  }
+
+  .rotatingelementdiv {
+    height: 300px;
+    margin-bottom: 30px;
+  }
+}
+
+/* if the screen size is 400px wide or smaller do this one instead vv */
+@media screen and (max-width: 450px) {
+  .panel {
+    transform: translate(-50%, -50%) rotateY(var(--angle)) translateZ(120px);
+  }
+
+  .rotatingelementdiv {
+    height: 250px;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .panel {
+    transform: translate(-50%, -50%) rotateY(var(--angle)) translateZ(90px);
+  }
+
+  .rotatingelementdiv {
+    height: 180px;
+    margin-bottom: 15px;
+  }
+}

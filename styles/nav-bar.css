@@ -90,3 +90,10 @@ p {
     background-position: 100% 50%;
   }
 }
+
+@media screen and (max-width: 300px) {
+  .header {
+    flex-direction: column;
+    font-size: 14px;
+  }
+}

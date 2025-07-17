@@ -4,12 +4,16 @@ let headpatsCounter = 0;
 const outerWrapper = document.querySelector('.outer_wrapper');
 
 function init() {
+  let cancelJump = false;
 
+
+  
       const catWrapper = document.querySelector(".cat_wrapper");
       const wrapper = document.querySelector(".wrapper");
       const cat = document.querySelector(".cat");
       const head = document.querySelector(".cat_head");
       const legs = document.querySelectorAll(".leg");
+      const connectedLegs = document.querySelectorAll('.front_legs, .back_legs');
       const pos = {
         x: null,
         y: null,
@@ -23,9 +27,13 @@ function init() {
       let isWalking = true; 
 
       const handleMouseMotion = (e) => {
+        if (cancelJump) cancelJump = false; //  re-enable jump when mouse moves inside
+
+        if (!isMouseInWrapper(e)) return;
+
         if (isWalking) {
-          pos.x = e.clientX
-          pos.y = e.clientY
+          pos.x = e.clientX;
+          pos.y = e.clientY;
           walk();
         }
       };
@@ -80,11 +88,11 @@ function init() {
           : (head.style.top = "-30px");
       };
 
-      head.addEventListener("mouseenter", (event) => {
+      cat.addEventListener("mouseenter", (event) => {
         headpatsCounter++
         const span = document.createElement("span");
         span.className = "heart-div-visible";
-        span.innerHTML = `<img src="./icons/pixel-heart.svg"> +1`;
+        span.innerHTML = `<img id="heart-icon-plusone" src="./icons/pixel-heart.svg"> +1`;
 
         head.appendChild(span);
         setTimeout(() => span.remove(), 1000);
@@ -92,32 +100,49 @@ function init() {
         //Update the headpat counter on the page.
         switch (true) {
           case (headpatsCounter % 10 === 0):
-            headpatNum.innerHTML = `Headpat Counter: [<span>${headpatsCounter}</span>]<img src="./icons/pixel-heart.svg">`;
+            headpatNum.innerHTML = `Headpat Counter: [<span>${headpatsCounter}</span>]<img id="heart-icon" src="./icons/pixel-heart.svg">`;
             break;
           case (headpatsCounter % 100 === 0):
-            headpatNum.innerHTML = `Headpat Counter: [<span>${headpatsCounter}</span>]<img src="./icons/pixel-heart.svg">`;
+            headpatNum.innerHTML = `Headpat Counter: [<span>${headpatsCounter}</span>]<img id="heart-icon" src="./icons/pixel-heart.svg">`;
             break;
           default:
-            headpatNum.innerHTML = `Headpat Counter: [${headpatsCounter}]<img src="./icons/pixel-heart.svg">`;
+            headpatNum.innerHTML = `Headpat Counter: [${headpatsCounter}]<img id="heart-icon" src="./icons/pixel-heart.svg">`;
             break;
         }
 
       });
 
+      // change here how far the mouse has to be to make the cat jump
       const jump = () => {
+        if (cancelJump) return; // do nothing if jumping is disabled
+
         catWrapper.classList.remove("jump");
-        if (pos.y < wrapper.clientHeight - 150) {
+        if (pos.y < wrapper.clientHeight - 300) {
           setTimeout(() => {
-            catWrapper.classList.add("jump");
+            if (!cancelJump) {
+              catWrapper.classList.add("jump");
+            }
           }, 100);
         }
       };
 
+      const isMouseInWrapper = (e) => {
+        const rect = outerWrapper.getBoundingClientRect();
+        return (
+          e.clientX >= rect.left &&
+          e.clientX <= rect.right &&
+          e.clientY >= rect.top &&
+          e.clientY <= rect.bottom
+        );
+      };
+
       const decideStop = () => {
+        const approxEqual = (a, b, threshold = 2) => Math.abs(a - b) < threshold;
         if (
           (cat.classList.contains("face_right") &&
-            pos.x - 90 === cat.offsetLeft) ||
-          (cat.classList.contains("face_left") && pos.x + 10 === cat.offsetLeft)
+            approxEqual(pos.x - 90, cat.offsetLeft)) ||
+          (cat.classList.contains("face_left") &&
+            approxEqual(pos.x + 10, cat.offsetLeft))
         ) {
           legs.forEach((leg) => leg.classList.remove("walk"));
         }
@@ -139,11 +164,18 @@ function init() {
       outerWrapper.addEventListener("mousemove", handleMouseMotion);
       outerWrapper.addEventListener("mousemove", handleTouchMotion);
       outerWrapper.addEventListener('mouseleave', () => {
-        pos.x = null;
-        pos.y = null;
-        catWrapper.classList.remove("jump");
-        cat.classList.add("first_pose");
-        legs.forEach((leg) => leg.classList.remove("walk"));
+          const catBottom = parseFloat(getComputedStyle(catWrapper).bottom);
+          
+          cancelJump = true;
+          decideStop()
+          walk()
+          if (catWrapper.classList.contains('jump') && catBottom > 0) {
+            catWrapper.style.bottom = '0px'; // Triggers CSS transition
+            setTimeout(() => {
+              catWrapper.classList.remove('jump');
+            }, 550); // DO NOT FUCKING CHANGE THIS ITS ALMOST PERFECT NOT NOTICEABLE AT ALL 
+          }
+          
       })
 }
 

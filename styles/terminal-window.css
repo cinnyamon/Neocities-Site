@@ -24,11 +24,14 @@
 .titlebar-left {
   display: flex;
   align-items: center;
+  text-wrap: nowrap;
+  overflow: hidden;
 }
 
 .term-icon {
   height: 18px;
   margin: 0 10px;
+  overflow: visible;
 }
 
 .term-title {
@@ -65,8 +68,8 @@
 /* right side titlebar styles */
 
 .titlebar-right {
-  align-items: center;
-  gap: 10px;
+  min-width: 95px;
+  height: 15px;
   position: relative;
 }
 
@@ -79,7 +82,6 @@
 }
 
 .term-close {
-  top: -8px;
   right: 8px;
 }
 .term-close:hover {
@@ -92,7 +94,6 @@
 
 
 .term-maximize {
-  top: -8px;
   right: 38px;
 }
 .term-maximize:hover {
@@ -104,7 +105,6 @@
 
 
 .term-minimize {
-  top: -8px;
   right: 68px;
 }
 .term-minimize:hover {
@@ -153,6 +153,7 @@
   display: flex;
   flex-direction: column;
   padding: 0 0 5px 10px;
+  text-wrap: nowrap;
 }
 
 
@@ -210,5 +211,18 @@
   100% {
     display: block;
     opacity: 1;
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+  
+}
+
+@media screen and (max-width: 500px) {
+  .terminal-toolbar {
+    flex-wrap: nowrap;
+    overflow: auto;
+    scrollbar-width: none;
   }
 }

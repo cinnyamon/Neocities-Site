@@ -1,4 +1,4 @@
-.header-text {
+.title-text {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -6,11 +6,11 @@
   text-align: center;
 }
 
-.header-text p {
+.title-text p {
   font-size: 25px;
 }
 
-.header-text span:nth-child(1) {
+.title-text span:nth-child(1) {
   background: linear-gradient(to right,
       #e6348d 20%,
       #6f00ff 30%,
@@ -24,7 +24,7 @@
   animation: textgradient 5s ease-in-out infinite alternate;
 }
 
-.header-text span:nth-child(2) {
+.title-text span:nth-child(2) {
   background: linear-gradient(to right,
       #00affa 20%,
       #234bea 30%,
@@ -66,12 +66,65 @@
   text-decoration: underline dotted;
 }
 .headpat-number {
+  display: flex;
+  align-items: center;
   font-size: 20px;
 }
 .headpat-number span {
   color: rgb(255, 215, 0)
 }
-.headpat-number img {
+#heart-icon {
   height: 20px;
   width: 20px;
+}
+
+@media screen and (max-width: 600px) {
+  .title-text p {
+    font-size: 18px;
+    margin: 0 30px;
+  }
+  .cat-header {
+    font-size: 18px;
+    margin: 0 30px; 
+  }
+  .headpat-number {
+    font-size: 15px;
+  }
+  #heart-icon {
+    height: 16px;
+    width: 16px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .title-text p {
+    font-size: 15px;
+  }
+  .cat-header {
+    font-size: 15px;
+  }
+  .headpat-number {
+    font-size: 12px;
+    text-wrap: nowrap;
+  }
+  #heart-icon {
+    height: 12px;
+    width: 12px;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .title-text p {
+    font-size: 12px;
+  }
+  .cat-header {
+    font-size: 12px;
+  }
+  .headpat-number {
+    font-size: 10px;
+  }
+  #heart-icon {
+    height: 10px;
+    width: 10px;
+  }
 }
