@@ -117,7 +117,7 @@ function init() {
         if (cancelJump) return; // do nothing if jumping is disabled
 
         catWrapper.classList.remove("jump");
-        if (pos.y < wrapper.clientHeight - 300) {
+        if (pos.y < wrapper.clientHeight - 350) {
           setTimeout(() => {
             if (!cancelJump) {
               catWrapper.classList.add("jump");
