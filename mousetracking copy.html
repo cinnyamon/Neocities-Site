@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cat Follow Mouse</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: #f0f0f0;
+    }
+    #gameArea {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      background: #dff;
+    }
+    #cat {
+      position: absolute;
+      top: 50%;
+      left: 100px;
+      width: 50px;
+      height: 50px;
+      background: orange;
+      border-radius: 50%;
+      transform: translateY(-50%);
+    }
+  </style>
+</head>
+<body>
+  <div id="gameArea">
+    <div id="cat"></div>
+  </div>
+
+  <script>
+    const gameArea = document.getElementById('gameArea');
+    const cat = document.getElementById('cat');
+
+    let pos = { x: 0 }; // mouse position
+
+    // Update mouse position relative to the viewport
+    gameArea.addEventListener('mousemove', (e) => {
+      pos.x = e.clientX;
+    });
+
+    const moveCat = () => {
+      const catRect = cat.getBoundingClientRect();
+      const catCenterX = catRect.x + catRect.width / 2;
+      const distance = pos.x - catCenterX;
+
+      if (Math.abs(distance) > 1) {
+        // Move a bit toward the mouse
+        const step = Math.min(Math.abs(distance), 8); // speed limit
+        const direction = distance > 0 ? 1 : -1;
+        cat.style.left = `${cat.offsetLeft + step * direction}px`;
+      }
+
+      requestAnimationFrame(moveCat); // keep animating
+    };
+
+    moveCat(); // start animation loop
+  </script>
+</body>
+</html>
