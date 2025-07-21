@@ -131,7 +131,7 @@ function init() {
     // Always update bodyPos so the cat's body can turn towards the mouse
     bodyPos.x = touch.clientX;
     bodyPos.y = touch.clientY;
-     console.log(bodyPos)
+    //  console.log(bodyPos)
     if (isWalking) {
       pos.x = touch.clientX;
       pos.y = touch.clientY;
@@ -146,7 +146,7 @@ function init() {
   // handle touchscreen events
   pettingZone.addEventListener('touchmove', () => {
     isWalking = false;
-    console.log('posx:', pos.x)
+    // console.log('posx:', pos.x)
   });
   pettingZone.addEventListener('touchend', () => {
     isWalking = true;
@@ -207,7 +207,6 @@ function init() {
   // has to be to make the cat jump
   const jump = () => {
     const catY = catWrapper.getBoundingClientRect().top;
-    console.log(catY)
     if (isJumping) return; // do nothing if jumping is disabled
     
     catWrapper.classList.remove("jump");

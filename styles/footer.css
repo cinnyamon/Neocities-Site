@@ -3,6 +3,7 @@
   justify-content: end;
   align-items: end;
   gap: 10px;
+  background-color: rgb(15 15 15);
 }
 
 .footer p,

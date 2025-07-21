@@ -1,7 +1,6 @@
 #underdevelopment {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     gap: 10px;
     position: fixed;
@@ -10,7 +9,16 @@
     left: 0;
     height: 150px;
     z-index: 999;
-    background-image: linear-gradient(to top, rgb(241, 45, 78), transparent);
+    box-shadow: 
+        inset 0 0 100px rgba(0, 0, 0, 0.7),
+        inset 0 0 300px rgba(0, 0, 0, 0.9),
+        inset 0 0 500px rgba(0, 0, 0, 1);
+    border: 1px solid rgb(78, 47, 236);
+    border-radius: 6px;
+    margin: 20px 40px;
+    padding: 10px 5px;
+    overflow: auto;
+    scrollbar-width: none;
 }
 
 .hidden-by-default {
@@ -21,18 +29,92 @@
 #underdevelopment p {
     font-size: 20px;
     color: rgb(255, 255, 255);
-    text-decoration: underline;
+    text-decoration: underline dotted;
+    text-align: center;
+}
+
+#underdevelopment img {
+    height: 25px;
+    width: 25px;
+    animation: updown 2s infinite;
+}
+
+@keyframes updown {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(10px);
+    }
+}
+
+.buttonsdiv {
+    opacity: 0;
+    margin-top: 10px;
+    transition: opacity 0.7s ease;
 }
 
 #underdevelopment button {
     padding: 10px 15px;
-    border: 0.5px solid rgb(241, 45, 78);
+    border: 0.5px solid rgb(78, 47, 236);
     font-family: Space Mono;
     color: white;
     border-radius: 6px;
     background-color: black;
+    margin: 0 5px;
+    transition: background 0.2s ease;
 }
 
 #underdevelopment button:hover {
-    background-color: rgb(70, 12, 22);
+    background-color: rgb(23, 14, 71);
+    transition: background 0.2s ease;
+}
+
+@media screen and (max-width: 650px) {
+    .buttonsdiv {
+        display: flex;
+        gap: 10px;
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #underdevelopment p {
+        font-size: 15px;
+    }
+    #underdevelopment button {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+    #underdevelopment {
+        height: 110px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    #underdevelopment p {
+        font-size: 12px;
+    }
+    #underdevelopment button {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+    #underdevelopment {
+        height: 120px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    #underdevelopment p {
+        font-size: 10px;
+    }
+
+    #underdevelopment button {
+        font-size: 10px;
+        padding: 5px 8px;
+    }
+
+    #underdevelopment {
+        height: 130px;
+    }
 }

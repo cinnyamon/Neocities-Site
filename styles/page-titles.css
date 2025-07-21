@@ -62,9 +62,7 @@
 .cat-header {
   font-size: 25px;
 }
-#bites {
-  text-decoration: underline dotted;
-}
+
 .headpat-number {
   display: flex;
   align-items: center;

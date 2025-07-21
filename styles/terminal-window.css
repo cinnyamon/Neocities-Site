@@ -1,8 +1,7 @@
 .terminal-window-body {
   display: flex;
   justify-content: center;
-  border-bottom: 40px solid transparent;
-  border-top: 40px solid transparent;
+  margin: 40px 0;
 }
 
 .terminal-window {
@@ -10,7 +9,8 @@
   max-width: 1000px;
   background-color: rgb(32, 32, 32);
   border-radius: 8px;
-  position: relative
+  position: relative;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 1);
 }
 
 .terminal-titlebar {

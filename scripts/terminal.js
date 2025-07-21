@@ -25,7 +25,7 @@ const closeShellWindow = document.querySelector('.js-closing-shell-check');
 const closeShellText = document.getElementById('js-close-shell-text');
 const originalText = closeShellText.innerHTML;
 
-const jsShellHTML = `JavaScript detected. Initialize JavaScript console...`;
+const jsShellHTML = `JavaScript detected. Initialize interactive console...`;
 const shellName = `<span class="username">name</span>@<span class="sitename"
                 >neocities</span
               >&#58;&#126;&#36;&nbsp;`;
@@ -176,7 +176,6 @@ function displayCmndInShell(writableBox, preTest, textArea) {
     if (event.key === 'Enter') {
       // push the text content from the input box into the array
       userInputArray.push(writableBox.textContent);
-      console.log(userInputArray)
       
       // only take the last item to be put into the shell
       const enteredText = userInputArray[userInputArray.length - 1];
@@ -271,16 +270,16 @@ function displayCmndInShell(writableBox, preTest, textArea) {
     }
     let maxArrowUpCounter = userInputArray.length;
 
-    console.log(maxArrowUpCounter)
+    // console.log(maxArrowUpCounter)
     if (arrow.key === 'ArrowUp') {
       const reversed = userInputArray.toReversed();
       for (const [index, value] of reversed.entries()) {
         if (index === arrowUpCounter) {
 
 
-          console.log('Found:', value);
+          // console.log('Found:', value);
           writableBox.textContent = value
-          console.log(arrowUpCounter)
+          // console.log(arrowUpCounter)
         }
       }
       if (arrowUpCounter < maxArrowUpCounter) {
@@ -293,10 +292,10 @@ function displayCmndInShell(writableBox, preTest, textArea) {
       for (const [index, value] of reversed.entries()) {
         if (index === arrowUpCounter) {
 
-          console.log('Found:', value);
+          // console.log('Found:', value);
           writableBox.textContent = value
-          console.log(arrowUpCounter)
-          console.log(reversed.length)
+          // console.log(arrowUpCounter)
+          // console.log(reversed.length)
         }
       }
       if (arrowUpCounter - 1 === maxArrowUpCounter) {
@@ -363,7 +362,6 @@ function showClosePopupOnClick() {
         }, 2000);
         break;
     }
-    console.log(closeBtnAttempts)
   };
   closePopup();
 }
