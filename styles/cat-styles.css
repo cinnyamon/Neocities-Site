@@ -373,7 +373,7 @@ a:hover {
   align-items: center;
   pointer-events: none;
   visibility: visible;
-  z-index: 10000;
+  z-index: 1000;
   width: fit-content;
   height: fit-content;
   top: -30px;

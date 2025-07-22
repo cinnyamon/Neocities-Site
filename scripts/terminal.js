@@ -167,7 +167,7 @@ function maxCharacterInput(writableBox) {
 function displayCmndInShell(writableBox, preTest, textArea) {
   // create array to store the user's input
   const userInputArray = [];
-  let arrowUpCounter = 0;
+  let arrowUpCounter = -1;
   
   // set previous timer object to store the id of the setInterval and clear it later on
   let previousTimerId = {};
@@ -255,6 +255,7 @@ function displayCmndInShell(writableBox, preTest, textArea) {
       textArea.textContent = '';
     };
   });
+
   // add event listener for arrow keys to show the caret
   writableBox.addEventListener('keydown', (arrow) => {
     if (arrow.key === 'ArrowLeft' || arrow.key === 'ArrowRight' || arrow.key === 'Control') {
@@ -268,43 +269,73 @@ function displayCmndInShell(writableBox, preTest, textArea) {
             previousTimerIdCaret = {}
           }, 2000) 
     }
-    let maxArrowUpCounter = userInputArray.length;
 
-    // console.log(maxArrowUpCounter)
+
+    let maxArrowUpCounter = userInputArray.length - 1;
+    // console.log('max arrow up counter', maxArrowUpCounter)
+    // console.log('the arrow up counter', arrowUpCounter)
     if (arrow.key === 'ArrowUp') {
-      const reversed = userInputArray.toReversed();
-      for (const [index, value] of reversed.entries()) {
-        if (index === arrowUpCounter) {
 
-
-          // console.log('Found:', value);
-          writableBox.textContent = value
-          // console.log(arrowUpCounter)
-        }
-      }
       if (arrowUpCounter < maxArrowUpCounter) {
         arrowUpCounter++;
-      }
-    }
+      };
 
-    if (arrow.key === 'ArrowDown') {
       const reversed = userInputArray.toReversed();
       for (const [index, value] of reversed.entries()) {
         if (index === arrowUpCounter) {
 
+          // console.log(arrowUpCounter);
           // console.log('Found:', value);
-          writableBox.textContent = value
-          // console.log(arrowUpCounter)
-          // console.log(reversed.length)
-        }
-      }
-      if (arrowUpCounter - 1 === maxArrowUpCounter) {
+          writableBox.textContent = value;
         
-      }
+          // add a set timeout for the caret placement so that the dom can update in peace before this shit runs and places the caret at the end.
+          setTimeout(() => {
+            moveCaretAtTheEnd(writableBox);
+          }, 0);
+        };
+      };
+    };
+
+    if (arrow.key === 'ArrowDown') {
+
+      if (arrowUpCounter > 0) {
         arrowUpCounter--;
-    }
+      };
+
+      const reversed = userInputArray.toReversed();
+      for (const [index, value] of reversed.entries()) {
+        if (index === arrowUpCounter) {
+
+          // console.log(arrowUpCounter);
+          // console.log(reversed.length);
+          // console.log('Found:', value);
+          writableBox.textContent = value;
+
+          setTimeout(() => {
+            moveCaretAtTheEnd(writableBox)
+          }, 0);
+        };
+      };
+    };
   });
 };
+
+function moveCaretAtTheEnd(writableBox) {
+   
+  writableBox.focus(); // focus on the writable span box
+
+  const range = document.createRange(); // create a range (a range is a like the selection but invisible)
+  
+  range.selectNodeContents(writableBox); // select the entire contents of the element with the range
+  
+  range.collapse(false); // collapse the range to the end point. false means collapse to end rather than the start
+
+  const selection = window.getSelection(); // get the selection object (allows you to change selection)
+
+  selection.removeAllRanges(); // remove any selections already made
+
+  selection.addRange(range); // make the range you have just created the visible selection
+}
 
 termClose.addEventListener('click', () => {
   showClosePopupOnClick();
@@ -365,6 +396,7 @@ function showClosePopupOnClick() {
   };
   closePopup();
 }
+
 /* 
 new ideas:
 1. add a box with something fun that appears when the x button on the console gets pressed
