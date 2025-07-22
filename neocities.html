@@ -14,11 +14,25 @@
     />
 
     <!-- favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="./icons/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./icons/favicon/favicon-16x16.png">
-    <link rel="manifest" href="./icons/favicon/site.webmanifest">
-    
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./icons/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./icons/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./icons/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="./icons/favicon/site.webmanifest" />
+
     <title>A modern, Linux inspired, personal Website.</title>
 
     <link rel="stylesheet" href="./styles/rotating-element.css" />
@@ -31,7 +45,7 @@
     <link rel="stylesheet" href="./styles/cat-styles.css" />
     <link rel="stylesheet" href="./styles/under-development.css" />
     <link rel="stylesheet" href="./styles/terminal-colors-noscript.css" />
-    <link rel="stylesheet" href="./styles/footer.css">
+    <link rel="stylesheet" href="./styles/footer.css" />
   </head>
   <body>
     <div id="gsapcursor">
@@ -47,13 +61,17 @@
         </div>
         <div id="underdevelopment" class="hidden-by-default">
           <p>This website is under active development!</p>
-          <p>Any features currently implemented may not be final nor finished.</p>
-          <img class="arrowbtn" src="./icons/go-down.svg">
+          <p>
+            Any features currently implemented may not be final nor finished.
+          </p>
+          <img class="arrowbtn" src="./icons/go-down.svg" />
           <div class="buttonsdiv">
             <button id="underdevbutton">
               Okay, I understand and want to proceed.
             </button>
-            <button id="underdevbutton" class="exitbtn">I want to leave.</button>
+            <button id="underdevbutton" class="exitbtn">
+              I want to leave.
+            </button>
           </div>
         </div>
         <div class="pseudo-header-border">
@@ -360,7 +378,10 @@
             <div class="cat-header">
               <p>Careful with the kitten, he bites</p>
               <p class="headpat-number">
-                Headpat Counter: [0]<img id="heart-icon" src="./icons/pixel-heart.svg" />
+                Headpat Counter: [0]<img
+                  id="heart-icon"
+                  src="./icons/pixel-heart.svg"
+                />
               </p>
             </div>
             <div class="wrapper">
@@ -403,7 +424,7 @@
                         d="M91.7,40.8H0V10.2h5.1V5.1h5.1V0h66.2v5.1h10.2v5.1h5.1L91.7,40.8z"
                       />
                     </svg>
-    
+
                     <div class="tail">
                       <svg
                         x="0px"
@@ -421,7 +442,7 @@
                       </svg>
                     </div>
                   </div>
-    
+
                   <div class="front_legs">
                     <div class="leg one">
                       <svg
@@ -450,7 +471,7 @@
                       </svg>
                     </div>
                   </div>
-    
+
                   <div class="back_legs">
                     <div class="leg three">
                       <svg
@@ -483,8 +504,13 @@
               </div>
             </div>
             <div class="ground footer">
-              <p>Interactive Kitten courtesy of Masahito Leo Takeuchi.</p>
-              <a rel="no-referrer" href="https://codepen.io/Ma5a">&lt; codepen.io/Ma5a &gt;</a>
+              <div class="user-captcha">
+                <p>Please solve the equation below to get my email.</p>
+                <p class="math-equation"></p>
+                <input id="captcha-response" type="number" />
+              </div>
+              <!-- <p>Interactive Kitten courtesy of Masahito Leo Takeuchi.</p>
+              <a rel="no-referrer" href="https://codepen.io/Ma5a">&lt; codepen.io/Ma5a &gt;</a> -->
             </div>
           </div>
         </div>
@@ -523,5 +549,6 @@
     <script defer src="./scripts/shellColors.js"></script>
     <script defer src="./scripts/terminal.js"></script>
     <script defer src="./scripts/catTracker.js"></script>
+    <script defer src="./scripts/footer.js"></script>
   </body>
 </html>
