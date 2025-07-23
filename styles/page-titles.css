@@ -7,7 +7,7 @@
 }
 
 .title-text p {
-  font-size: 25px;
+  font-size: 30px;
 }
 
 .title-text span:nth-child(1) {
@@ -60,13 +60,17 @@
 }
 
 .cat-header {
-  font-size: 25px;
+  font-size: 30px;
 }
 
 .headpat-number {
   display: flex;
   align-items: center;
   font-size: 20px;
+  background-color: rgb(88, 58, 237);
+  border-radius: 5px;
+  border: 1px white solid;
+  padding: 0px 5px;
 }
 .headpat-number span {
   color: rgb(255, 215, 0)
