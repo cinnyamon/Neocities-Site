@@ -4,6 +4,7 @@
   background-color: rgb(15 15 15);
   font-family: Pixelify Sans;
   border-top: 1px rgb(65, 65, 65) dashed;
+  overflow: auto;
 }
 
 /* left side style */
@@ -20,12 +21,27 @@
 
 .link1 {
   z-index: 260;
+  display: flex;
+  align-items: center;
+  gap: 15px;
   word-break: break-all;
   position: relative;
 }
+.link2 {
+  z-index: 260;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.link3 {
+  z-index: 260;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
 
 .link-icon {
-  display: none;
+  display: block;
   background-color: rgb(66, 59, 77);
   border-radius: 4px;
 }
@@ -53,24 +69,26 @@
 
 .email-title {
   font-size: 24px;
+  text-wrap: nowrap;
 }
 
 .instructions {
   display: flex;
+  align-items: center;
   gap: 5px;
   background-color: rgb(66, 59, 77);
   width: fit-content;
   z-index: 260;
   position: relative;
-  padding: 0 6px;
+  padding: 2px 6px;
   border-radius: 4px;
   font-size: 14px;
 }
 
 .info-icon {
   filter: invert();
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
 }
 
 .info-icon:hover {
@@ -87,8 +105,8 @@
 }
 
 .info-icon-div {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
 }
 .tooltiptext {
   z-index: 1000;
@@ -158,6 +176,7 @@
 
 .math-equation {
   font-size: 18px;
+  text-wrap: nowrap;
   font-family: monospace, 'Courier New',
     Courier;
 }
@@ -168,11 +187,12 @@
   border-radius: 4px;
   caret-color: white;
   color: white;
+  width: 100px;
 }
 .user-input::placeholder {
   color: rgba(255, 255, 255, 0.484);
   font-family: 'Courier New', Courier, monospace;
-  text-indent: 5px;
+  text-indent: 25px;
 }
 /* chrome, safari, edge, opera */
 .user-input::-webkit-inner-spin-button {
@@ -235,6 +255,11 @@
   width: 100%;
 }
 
+.credit {
+  opacity: 0.4;
+  font-size: 14px;
+}
+
 
 
 
@@ -248,9 +273,19 @@
   .math-equation {
     font-size: 16px;
   }
+  .link-icon {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 500px) {
+  .footer-links {
+    width: 15%;
+    margin-right: 10px;
+  }
+  .right-side {
+    margin-left: 10px;
+  }
   .link1 p,
   .link2 p,
   .link3 p {
@@ -296,5 +331,23 @@
         display: block;
         pointer-events: none;
         animation: tooltip 1s forwards cubic-bezier(0, 0.99, 0, 1);   
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .right-side {
+      gap: 10px;
+    }
+  .footer {
+    gap: 10px;
+  }
+  .footer-links {
+    margin-right: 5px;
+  }
+  .right-side {
+    margin-left: 5px;
+  }
+  .credit {
+    font-size: 12px;
   }
 }
