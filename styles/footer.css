@@ -15,10 +15,23 @@
   justify-content: center;
   gap: 30px;
   width: 35%;
+  margin: 0 20px;
 }
 
-.footer-links p, a {
-  z-index: 200;
+.link1 {
+  z-index: 260;
+  word-break: break-all;
+  position: relative;
+}
+
+.link-icon {
+  display: none;
+  background-color: rgb(66, 59, 77);
+  border-radius: 4px;
+}
+
+.link1 a>.tooltiptext {
+  display: none;
 }
 
 /* right side styles */
@@ -29,6 +42,7 @@
   height: 100%;
   justify-content: center;
   gap: 20px;
+  margin: 0 20px;
 }
 
 .user-captcha {
@@ -48,9 +62,8 @@
   width: fit-content;
   z-index: 260;
   position: relative;
-}
-
-.captcha-title {
+  padding: 0 6px;
+  border-radius: 4px;
   font-size: 14px;
 }
 
@@ -59,10 +72,6 @@
   width: 16px;
   height: 16px;
 }
-
-
-
-
 
 .info-icon:hover {
   animation: spinicon 1s ease;
@@ -149,12 +158,14 @@
 
 .math-equation {
   font-size: 18px;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: monospace, 'Courier New',
+    Courier;
 }
 
 .user-input {
   background-color: rgb(66, 59, 77);
   border: none;
+  border-radius: 4px;
   caret-color: white;
   color: white;
 }
@@ -186,7 +197,7 @@
 }
 
 .eq-input .tooltiptext {
-  /* display: none; */
+  display: none;
   background-color: rgb(27, 27, 27);
   color: #fff;
   opacity: 0;
@@ -194,7 +205,6 @@
   border-radius: 6px;
   padding: 5px 5px;
   box-shadow: 5px 5px 20px rgb(0, 0, 0);
-  transition: opacity 0.15s ease-in-out;
 
   /* Position the tooltip */
   position: absolute;
@@ -204,7 +214,7 @@
 }
 
 .eq-input .tooltiptextvis {
-  transition: opacity 0.15s ease-in-out;
+  display: block;
   opacity: 1;
 }
 
@@ -228,3 +238,63 @@
 
 
 
+@media screen and (max-width: 700px) {
+  .footer {
+    font-size: 14px;
+  }
+  .instructions {
+    font-size: 10px;
+  }
+  .math-equation {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .link1 p,
+  .link2 p,
+  .link3 p {
+    display: none;
+  }
+  .link-icon {
+    display: block;
+  }
+
+  .link1 {
+    word-break: normal;
+  }
+
+  /* tooltip styles */
+  .link1 a > .tooltiptext {
+    display: none;
+    background-color: rgb(27, 27, 27);
+    color: #fff;
+    opacity: 0;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 5px;
+    box-shadow: 5px 5px 20px rgb(0, 0, 0);
+  
+    /* Position the tooltip */
+    position: absolute;
+    bottom: 30px;
+    left: -65%;
+    pointer-events: none;
+  }
+  /* tooltip arrow */
+  .link1 a > .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 6px;
+    border-style: solid;
+    border-color: rgb(63, 63, 63) transparent transparent transparent; 
+  }
+  .link1 a:hover > .tooltiptext {
+        display: block;
+        pointer-events: none;
+        animation: tooltip 1s forwards cubic-bezier(0, 0.99, 0, 1);   
+  }
+}
