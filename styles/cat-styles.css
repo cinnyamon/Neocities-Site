@@ -18,10 +18,8 @@
 
 .wrapper {
   position: absolute;
-  height: 100%;
   width: 100%;
-  top: 0;
-  bottom: 0;
+  bottom: 100px;
 }
 
 .cat {
@@ -401,7 +399,7 @@ a:hover {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 150px;
+  height: 250px;
 }
 
 
@@ -417,6 +415,24 @@ a:hover {
   height: 230px;
   z-index: 100;
 }
+
+.petting-zone:hover {
+  animation: showBg 5s ease;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes showBg {
+  0%, 50% {
+    opacity: 0;
+  }
+  100% {
+    box-shadow: inset 0 0 50px rgba(88, 58, 237, 0.2);
+    z-index: -100;
+    opacity: 1;
+  }
+}
+
 
 .headpat-zone {
   border-radius: 50%;

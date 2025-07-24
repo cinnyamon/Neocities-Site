@@ -502,7 +502,7 @@
             </div>
             <div class="ground footer">
               <div class="footer-links">
-                <p>&lt; github.com/cinnyamon &gt;</p>
+                <p>&lt; <a rel="no-referrer" href="https://github.com/cinnyamon">github.com/cinnyamon</a> &gt;</p>
                 <p>&lt; coming soon &gt;</p>
                 <p>&lt; coming soon &gt;</p>
               </div>
@@ -511,16 +511,20 @@
                   <p class="email-title">Write me an email:</p>
                   <div class="instructions">
                     <p class="captcha-title">Please solve the equation below to get my email:</p>
-                    <img class="info-icon" src="./icons/info-16.svg">
+                    <div class="info-icon-div">
+                      <img class="info-icon" src="./icons/info-16.svg">
+                      <span class="tooltiptext">Why? Because I don't want my email easily scraped by simple bots. Even though this is the simplest form of captcha, it still prevents a majority of scrapers.</span>
+                    </div>
                   </div>
                   <div class="eq-input">
                     <p class="math-equation"></p>
-                    <input id="captcha-response" type="number" />
+                    <input id="captcha-response" class="user-input" type="number" placeholder="result" />
+                    <span class="tooltiptext">Copied!</span>
                   </div>
                 </div>
                 <hr class="divider">
                 <div class="credit">
-                  <p>Interactive Kitten courtesy of Masahito Leo Takeuchi.</p>
+                  <p>Kitten courtesy of Masahito Leo Takeuchi. Heavily modified by me.</p>
                   <a rel="no-referrer" href="https://codepen.io/Ma5a">&lt; codepen.io/Ma5a &gt;</a>
                 </div>
               </div>

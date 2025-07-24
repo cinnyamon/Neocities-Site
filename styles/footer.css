@@ -12,8 +12,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 30px;
   width: 35%;
+}
+
+.footer-links p, a {
+  z-index: 200;
 }
 
 /* right side styles */
@@ -22,7 +27,8 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 20px;
 }
 
 .user-captcha {
@@ -40,6 +46,8 @@
   gap: 5px;
   background-color: rgb(66, 59, 77);
   width: fit-content;
+  z-index: 260;
+  position: relative;
 }
 
 .captcha-title {
@@ -48,24 +56,175 @@
 
 .info-icon {
   filter: invert();
+  width: 16px;
+  height: 16px;
 }
 
+
+
+
+
 .info-icon:hover {
-  transform: translateY(-5px);
+  animation: spinicon 1s ease;
 }
+
+@keyframes spinicon {
+  0% {
+    transform: spinicon(0deg);
+  }
+  100% {
+    transform: spinicon(360deg);
+  }
+}
+
+.info-icon-div {
+  width: 16px;
+  height: 16px;
+}
+.tooltiptext {
+  z-index: 1000;
+}
+.info-icon-div .tooltiptext {
+  display: none;
+  background-color: rgb(27, 27, 27);
+  color: #fff;
+  opacity: 0;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 5px;
+  box-shadow: 5px 5px 20px rgb(0, 0, 0);
+
+  /* Position the tooltip */
+  position: absolute;
+  bottom: -96px;
+  left: 20px;
+  pointer-events: none;
+}
+/* arrow of the tooltip, modify where it points by moving the color to the other transparent positions of the border */
+.info-icon-div .tooltiptext::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 97%;
+  margin-left: -5px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent transparent rgb(63, 63, 63) transparent;
+}
+
+.info-icon-div:hover .tooltiptext {
+  display: block;
+  pointer-events: none;
+  animation: tooltip 1s forwards cubic-bezier(0, 0.99, 0, 1);
+}
+
+@keyframes tooltip {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+
+  50% {
+    display: block;
+    opacity: 0;
+  }
+
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
+
+
+
+
 
 .eq-input {
   display: flex;
+  gap: 15px;
+  z-index: 200;
+  margin-top: 15px;
+  position: relative;
 }
 
 .math-equation {
   font-size: 18px;
+  font-family: 'Courier New', Courier, monospace;
 }
 
-#captcha-response {
+.user-input {
+  background-color: rgb(66, 59, 77);
+  border: none;
+  caret-color: white;
+  color: white;
+}
+.user-input::placeholder {
+  color: rgba(255, 255, 255, 0.484);
+  font-family: 'Courier New', Courier, monospace;
+  text-indent: 5px;
+}
+/* chrome, safari, edge, opera */
+.user-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+.user-input[type=number] {
+  appearance: inherit;
+  -moz-appearance: textfield;
+}
 
+
+
+.email-rendered {
+  display: flex;
+  gap: 10px;
+}
+
+.copy-btn:hover {
+  filter: brightness(0) saturate(100%) invert(20%) sepia(7%) saturate(5%) hue-rotate(314deg) brightness(98%) contrast(89%);  color: #a1a1a1;
+}
+
+.eq-input .tooltiptext {
+  /* display: none; */
+  background-color: rgb(27, 27, 27);
+  color: #fff;
+  opacity: 0;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 5px;
+  box-shadow: 5px 5px 20px rgb(0, 0, 0);
+  transition: opacity 0.15s ease-in-out;
+
+  /* Position the tooltip */
+  position: absolute;
+  bottom: -5px;
+  left: 220px;
+  pointer-events: none;
+}
+
+.eq-input .tooltiptextvis {
+  transition: opacity 0.15s ease-in-out;
+  opacity: 1;
+}
+
+/* arrow of the tooltip, modify where it points by moving the color to the other transparent positions of the border */
+.eq-input .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 30%;
+  right: 100%;
+  /* To the left of the tooltip */
+  margin-left: -5px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent rgb(63, 63, 63) transparent transparent;
 }
 
 .divider {
   width: 100%;
 }
+
+
+
+

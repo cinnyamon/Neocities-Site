@@ -3,6 +3,8 @@ const userCaptcha = document.querySelector('.user-captcha');
 const mathEquationP = document.querySelector('.math-equation');
 const userInput = document.getElementById('captcha-response');
 const emailRendered = document.getElementById('email-rendered');
+const eqInput = document.querySelector('.eq-input');
+const copiedTooltip = document.querySelector('.eq-input > .tooltiptext');
 
 
 // set object containing arrays of addends and operators
@@ -51,14 +53,42 @@ userInput.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') {
     if (Number(userInput.value) === equationResult) {
 
+      // remove the div containing the user input and math equation
+      mathEquationP.remove();
       userInput.remove();
 
       const emailRendered = document.createElement('p');
+      const copyBtn = document.createElement('img')
       emailRendered.classList.add('email-rendered');
-      emailRendered.textContent = 'cinnyamoon@gmail.com';
+      emailRendered.textContent = `cinnyamoon@gmail.com`;
+      copyBtn.src = "./icons/copy.svg"
+      copyBtn.classList.add('copy-btn')
 
       // append
-      userCaptcha.appendChild(emailRendered);
+      eqInput.appendChild(emailRendered);
+      eqInput.appendChild(copyBtn);
+
+      let timerId = null;
+      setTimeout(() => {
+        copyBtn.addEventListener('click', () => {
+          const text = emailRendered.textContent
+          navigator.clipboard.writeText(text).then(() => {
+            copiedTooltip.classList.add('tooltiptextvis');
+
+            if (timerId) {
+              clearTimeout(timerId);
+            }
+
+            timerId = setTimeout(() => {
+              copiedTooltip.classList.remove('tooltiptextvis')
+              timerId = null;
+            }, 1500);
+          }).catch(() => {
+            console.error('failed to copy the teto')
+          })
+        });
+      }, 0);
+
     }
   }
 })

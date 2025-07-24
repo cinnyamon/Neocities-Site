@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   margin: 40px 0;
-  font-family: Space Mono;
+  font-family: Space Mono, Courier, monospace;
 }
 
 .terminal-window {
