@@ -129,7 +129,7 @@
 }
 
 .text {
-  font-family: Space Mono, 'Courier New', Courier;
+  font-family: Press Start 2P ,Space Mono, 'Courier New', Courier;
   font-size: 45px;
   background: linear-gradient(to bottom, rgb(88, 58, 237), rgb(18, 11, 56));
   background-clip: text;
