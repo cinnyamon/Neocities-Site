@@ -203,7 +203,7 @@
 /* Firefox */
 .user-input[type=number] {
   appearance: inherit;
-  -moz-appearance: textfield;
+  -moz-appearance: inherit;
 }
 
 
