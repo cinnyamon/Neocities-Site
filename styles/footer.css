@@ -176,7 +176,7 @@
 .math-equation {
   font-size: 16px;
   text-wrap: nowrap;
-  font-family: monospace, 'Courier New',
+  font-family: 'Sometype Mono',monospace, 'Courier New',
     Courier;
 }
 
@@ -187,11 +187,12 @@
   caret-color: white;
   color: white;
   width: 100px;
-  font-family: Pixelify Sans, Courier, monospace;
+  font-family: 'Pixelify Sans', Courier, monospace;
 }
 .user-input::placeholder {
   color: rgba(255, 255, 255, 0.484);
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Sometype Mono',monospace, 'Courier New',
+    Courier;
   text-indent: 25px;
 }
 /* chrome, safari, edge, opera */
