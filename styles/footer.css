@@ -175,7 +175,7 @@
 }
 
 .math-equation {
-  font-size: 18px;
+  font-size: 16px;
   text-wrap: nowrap;
   font-family: monospace, 'Courier New',
     Courier;
@@ -188,6 +188,7 @@
   caret-color: white;
   color: white;
   width: 100px;
+  font-family: Pixelify Sans, Courier, monospace;
 }
 .user-input::placeholder {
   color: rgba(255, 255, 255, 0.484);
@@ -270,9 +271,6 @@
   .instructions {
     font-size: 10px;
   }
-  .math-equation {
-    font-size: 16px;
-  }
   .link-icon {
     display: none;
   }
@@ -331,6 +329,14 @@
         display: block;
         pointer-events: none;
         animation: tooltip 1s forwards cubic-bezier(0, 0.99, 0, 1);   
+  }
+
+  .user-input::placeholder {
+    font-size: 10px;
+    text-indent: 32px;
+  }
+  .math-equation {
+    font-size: 14px;
   }
 }
 

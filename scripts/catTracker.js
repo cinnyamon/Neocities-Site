@@ -1,7 +1,11 @@
 const catHeaderDiv = document.querySelector('.cat-header');
 const headpatNum = document.querySelector('.headpat-number');
-let headpatsCounter = 0;
+let headpatsCounter = localStorage.getItem('counter') || 0;
 const outerWrapper = document.querySelector('.outer_wrapper');
+
+
+headpatNum.innerHTML = `Headpat Counter: [${headpatsCounter}]<img id="heart-icon" src="./icons/pixel-heart.svg">`;
+
 
 function init() {
 
@@ -90,6 +94,7 @@ function init() {
   // this is a function that adds a +1 heart above the kitten when the mouse enters is
   headpatZone.addEventListener("mouseenter", () => {
     headpatsCounter++
+
     const span = document.createElement("span");
     span.className = "heart-div-visible";
     span.innerHTML = `<img id="heart-icon-plusone" src="./icons/pixel-heart.svg"> +1`;
@@ -110,6 +115,8 @@ function init() {
         headpatNum.innerHTML = `Headpat Counter: [${headpatsCounter}]<img id="heart-icon" src="./icons/pixel-heart.svg">`;
         break;
     }
+
+    localStorage.setItem('counter', headpatsCounter);
   });
 
 
