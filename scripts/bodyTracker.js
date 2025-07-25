@@ -28,7 +28,7 @@ const imagesLoaded = () => {
 };
 
 imagesLoaded().then(() => {
-    mainEl.addEventListener("mousemove", (event) => {
+    document.addEventListener("mousemove", (event) => {
       const x = event.clientX + 15,
       y = event.clientY - 6;
 
@@ -48,7 +48,7 @@ imagesLoaded().then(() => {
       });
     });
     
-    mainEl.addEventListener("mouseenter", () => {
+    document.addEventListener("mouseenter", () => {
       
       // gsap.killTweensOf(mainEl);
       gsap.to("#cursor-follow > span", {
@@ -58,7 +58,7 @@ imagesLoaded().then(() => {
         });
     });
     
-    mainEl.addEventListener('mouseout', (event) => {
+    document.addEventListener('mouseleave', (event) => {
       if (!event.relatedTarget) {
         // gsap.killTweensOf(mainEl);
         gsap.to("#cursor-follow > span", {
@@ -67,13 +67,15 @@ imagesLoaded().then(() => {
             ease: "power2.out"
           });
       }
+
+      console.log('mouse left the main el')
     })
     
 
     
     isContextMenuOpen = 0
     
-    mainEl.addEventListener('contextmenu', (e) => {
+    document.addEventListener('contextmenu', (e) => {
       isContextMenuOpen++
       // e.preventDefault();
       gsap.to("#cursor-follow > span", {
@@ -83,7 +85,7 @@ imagesLoaded().then(() => {
       });
     })
     
-    mainEl.addEventListener('click', () => {
+    document.addEventListener('click', () => {
       if (isContextMenuOpen > 0) {
         isContextMenuOpen = 0;
       }
