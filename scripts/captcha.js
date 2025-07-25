@@ -60,7 +60,7 @@ userInput.addEventListener('keydown', (e) => {
       const emailRendered = document.createElement('p');
       const copyBtn = document.createElement('img')
       emailRendered.classList.add('email-rendered');
-      emailRendered.textContent = `cinnyamoon@gmail.com`;
+      emailRendered.textContent = `cinnyamon@disroot.org`;
       copyBtn.src = "./icons/copy.svg"
       copyBtn.classList.add('copy-btn')
 
