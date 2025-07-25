@@ -67,8 +67,6 @@ imagesLoaded().then(() => {
             ease: "power2.out"
           });
       }
-
-      console.log('mouse left the main el')
     })
     
 
