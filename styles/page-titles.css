@@ -4,6 +4,8 @@
   justify-content: center;
   margin: 40px 0;
   text-align: center;
+  z-index: 100;
+  position: relative;
 }
 
 .title-text p {

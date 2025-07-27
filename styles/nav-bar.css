@@ -20,11 +20,9 @@
   box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.8);
 }
 
-p {
-  margin: 0 0;
-  color: white;
+.homelink {
+  z-index: 100;
 }
-
 .homelink a {
   background: linear-gradient(to right, 
   #00affa 20%,
@@ -55,6 +53,9 @@ p {
     /* Set the desired color */
 }
 
+.gitlink {
+  z-index: 100;
+}
 .gitlink a {
   background: linear-gradient(to right,
       #00affa 20%,
