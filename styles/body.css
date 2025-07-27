@@ -12,16 +12,23 @@ body {
   color: white;
 }
 
+
+#bg {
+  height: 100%;
+  width: 100%;
+}
+
 p {
   margin: 0 0;
   color: white;
 }
 
+
+/* this doesnt cover the entire body element. */
 .dot-mask {
   position: absolute;
   inset: 0;
   height: 100%;
-  width: 100%;
   background-image: radial-gradient(#3e2be7 1px, transparent 1px);
   background-size: 20px 20px;
   /* -webkit-mask-image: radial-gradient(

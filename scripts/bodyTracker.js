@@ -120,8 +120,10 @@ document.addEventListener('DOMContentLoaded', () => {
       let currentX = 0, currentY = 0;
 
       document.addEventListener('mousemove', (e) => {
-        targetX = e.clientX;
-        targetY = e.clientY;
+        /* targetX = e.clientX;
+        targetY = e.clientY; */
+        targetX = e.pageX;
+        targetY = e.pageY;
       });
 
       document.addEventListener('mouseout', (e) => {
@@ -138,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentX += (targetX - currentX) * 0.1;
         currentY += (targetY - currentY) * 0.1;
 
-        dotMask.style = `mask-image: radial-gradient(ellipse 200px 200px at ${currentX}px ${currentY}px, rgba(0, 0, 0, 1) 10%, transparent 100%)`;
+        dotMask.style = `mask-image: radial-gradient(ellipse 300px 300px at ${currentX}px ${currentY}px, rgba(0, 0, 0, 1) 10%, transparent 100%)`;
 
         requestAnimationFrame(animate);
       }
