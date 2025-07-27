@@ -18,7 +18,7 @@
       inset: 0;
       height: 100%;
       width: 100%;
-      background-image: radial-gradient(#8946e0 1px, transparent 1px);
+      background-image: radial-gradient(#8946e0 3px, transparent 3px);
       background-size: 16px 16px;
       /* -webkit-mask-image: radial-gradient(
         ellipse 50% 50% at 50% 50%,
@@ -79,7 +79,7 @@
         currentX += (targetX - currentX) * 0.1;
         currentY += (targetY - currentY) * 0.1;
 
-        dotMask.style = `mask-image: radial-gradient(ellipse 200px 200px at ${currentX}px ${currentY}px, rgba(0, 0, 0, 1) 10%, transparent 100%)`;
+        dotMask.style = `mask-image: radial-gradient(ellipse 300px 300px at ${currentX}px ${currentY}px, rgba(0, 0, 0, 1) 10%, transparent 100%)`;
 
         requestAnimationFrame(animate);
       }
