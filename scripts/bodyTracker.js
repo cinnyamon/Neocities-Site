@@ -32,52 +32,82 @@ const imagesLoaded = () => {
 imagesLoaded().then(() => {
     let userMove;
 
+    /* mainEl.addEventListener("pointerdown", event => {
+      mainEl.setPointerCapture(event.pointerId);
+      userMove = true;
+      handleTrail(event, userMove);
+      console.log('pointer down, capturing pointer');
+    });
+
     mainEl.addEventListener("pointermove", event => {
       userMove = true;
       handleTrail(event, userMove);
     });
-    mainEl.addEventListener("pointerenter", event => {
-      userMove = true;
-      handleTrail(event, userMove);
-      console.log('holding touch')
-    });
-    // problem child here this thing makes the cursor disappear instantly
-    mainEl.addEventListener('pointerleave', event => {
+
+    mainEl.addEventListener("pointerup", event => {
+      mainEl.releasePointerCapture(event.pointerId);
       userMove = false;
       handleTrail(event, userMove);
-      console.log('stopped holding')
+      console.log('pointer up, released pointer capture');
+    });
+
+    mainEl.addEventListener("pointerleave", event => {
+      userMove = false;
+      handleTrail(event, userMove);
+      console.log('pointer left element');
+    }); */
+
+
+    //i could make the pointer events the default but also have a fallback to mousemove or something ill have to figure it out tomorrow.
+
+    mainEl.addEventListener('mousemove', event => {
+      userMove = true;
+      handleTrail(event, userMove);
+      
+      console.log(event.type)
+      console.log('pointer down, capturing pointer');
+    });
+    mainEl.addEventListener('mouseenter', event => {
+      userMove = true;
+      handleTrail(event, userMove);
+      
+      console.log('pointer down, capturing pointer');
+    });
+    mainEl.addEventListener('mouseleave', event => {
+      userMove = false;
+      handleTrail(event, userMove);
+      
+      console.log('pointer left element');
     });
 
 
-
-
-    /* mainEl.addEventListener('touchend', event => {
-      userMove = false;
-      handleTrail(event, userMove);
-      console.log('mouseleft')
-    }) */
-
-    
-
-    /* mainEl.addEventListener('touchmove', event => {
+    //handle touch input
+    mainEl.addEventListener('touchmove', event => {
       userMove = true;
       handleTrail(event, userMove);
+      
+      
+      console.log('pointer down, capturing pointer');
     });
     mainEl.addEventListener('touchstart', event => {
       userMove = true;
       handleTrail(event, userMove);
-      console.log('holding touch')
+      
+      console.log('pointer down, capturing pointer');
     });
     mainEl.addEventListener('touchend', event => {
       userMove = false;
       handleTrail(event, userMove);
-    }) */
-   
+      
+      console.log('pointer left element');
+    });
+
     
+
     isContextMenuOpen = 0;
     document.addEventListener('contextmenu', (e) => {
       isContextMenuOpen++
-      e.preventDefault(); // change this when done
+      // e.preventDefault(); // change this when done
       gsap.to("#cursor-follow > span", {
         duration: 0.6,
         rotation: 90,
@@ -93,28 +123,40 @@ imagesLoaded().then(() => {
 });
 
 const handleTrail = (event, userMove) => {
-  if (event.pointerType === 'mouse') {
+  if (event.type === 'mousemove' || event.type === 'mousestart') {
     const x = event.clientX + 15,
     y = event.clientY - 6;
 
     moveXTrail(x, y, userMove);
     backgroundTrail(event, userMove)
 
-  } else if (event.pointerType === 'touch') {
+  } else if (event.type === 'touchmove' || event.type === 'touchstart') {
     const x = event.clientX + 15,
     y = event.clientY - 6;
 
     console.log(userMove)
     moveXTrail(x, y, userMove);
     backgroundTrail(event, userMove)
+  } else if (event.type === 'mouseleave' || event.type === 'touchend') {
+    // opacity 0 on all viewport leave events
+    gsap.to("#cursor-follow > span", {
+      duration: (i) => 0.1 + i/10,
+      scale: (i) => 3 - i / 10,
+      x,
+      y
+    });
+    gsap.to("#cursor-follow > span", {
+      rotation: 0,
+      duration: 0.8
+    });
+    gsap.to("#cursor-follow > span", {
+      duration: 0.3,
+      opacity: 0
+    })
   }
 }
 
-// TESTED BY REMOVING THE IF AND ELSE IF STATEMNET ITS DEFINITELY THE USERMOVE SETTING ITSELF TO FALSE ON TOUCHMOVE OR SOMETHING SIMILAR, NEED NEW FLAG I THINK. NEED A FLAG LIKE ISHOLDING AND CREATE NEW FUNCTIONS WITH IT IN THE POINTERTYPE TOUCH STATEMENT.!!!!!!!!
-
-
 const moveXTrail = (x, y, userMove) => {
-  if (userMove) {
     // opacity 1 on all viewport leave events
     // lag cursor behind mouse
     gsap.to("#cursor-follow > span", {
@@ -131,23 +173,6 @@ const moveXTrail = (x, y, userMove) => {
       duration: 0.3,
       opacity: 1
     })
-  } else {
-    // opacity 0 on all viewport leave events
-    gsap.to("#cursor-follow > span", {
-      duration: (i) => 0.1 + i/10,
-      scale: (i) => 3 - i / 10,
-      x,
-      y
-    });
-    gsap.to("#cursor-follow > span", {
-      rotation: 0,
-      duration: 0.8
-    });
-    gsap.to("#cursor-follow > span", {
-      duration: 0.3,
-      opacity: 1 //cursor remains visible because of this
-    })
-  }
 }
 
 const backgroundTrail = (event, userMove) => {
@@ -268,3 +293,10 @@ const backgroundTrail = (event, userMove) => {
 document.addEventListener("pointermove", (event) => {
 /*   console.log(event.pointerType)
  */});
+
+
+
+
+
+
+
