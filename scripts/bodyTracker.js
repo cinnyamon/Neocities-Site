@@ -75,9 +75,9 @@ imagesLoaded().then(() => {
    
     
     isContextMenuOpen = 0;
-    document.addEventListener('contextmenu', () => {
+    document.addEventListener('contextmenu', (e) => {
       isContextMenuOpen++
-      // e.preventDefault();
+      e.preventDefault(); // change this when done
       gsap.to("#cursor-follow > span", {
         duration: 0.6,
         rotation: 90,
@@ -109,6 +109,9 @@ const handleTrail = (event, userMove) => {
     backgroundTrail(event, userMove)
   }
 }
+
+// TESTED BY REMOVING THE IF AND ELSE IF STATEMNET ITS DEFINITELY THE USERMOVE SETTING ITSELF TO FALSE ON TOUCHMOVE OR SOMETHING SIMILAR, NEED NEW FLAG I THINK. NEED A FLAG LIKE ISHOLDING AND CREATE NEW FUNCTIONS WITH IT IN THE POINTERTYPE TOUCH STATEMENT.!!!!!!!!
+
 
 const moveXTrail = (x, y, userMove) => {
   if (userMove) {
@@ -142,7 +145,7 @@ const moveXTrail = (x, y, userMove) => {
     });
     gsap.to("#cursor-follow > span", {
       duration: 0.3,
-      opacity: 0
+      opacity: 1 //cursor remains visible because of this
     })
   }
 }
