@@ -10,7 +10,7 @@ const copiedTooltip = document.querySelector('.eq-input > .tooltiptext');
 // set object containing arrays of addends and operators
 const addends = {
   firstAddends: [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 20, 18, 16, 14, 12, 10, 8, 6, 4, 2],
-  secondAddends: [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 20, 18, 16, 14, 12, 10, 8, 6, 4, 2],
+  secondAddends: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 19, 17, 15, 13, 11, 9, 7, 5, 3, 1],
   operators: ['+', '-',],
 }
 
@@ -20,8 +20,6 @@ const mathEquation = {
   secondAddend: null,
   operator: undefined,
 }
-
-
 // first addend
 const randomFirstAddend = ~~(Math.random() * addends.firstAddends.length);
 mathEquation.firstAddend = addends.firstAddends[randomFirstAddend];
@@ -53,6 +51,9 @@ userInput.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') {
     if (Number(userInput.value) === equationResult) {
 
+      // clear the userinput text
+      userInput.value = '';
+      
       // remove the div containing the user input and math equation
       mathEquationP.remove();
       userInput.remove();

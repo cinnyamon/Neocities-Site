@@ -57,6 +57,10 @@ imagesLoaded().then(() => {
   document.addEventListener('click', () => {
     if (isContextMenuOpen > 0) {
       isContextMenuOpen = 0;
+
+      gsap.to("#cursor-follow > span", {
+        opacity: 0
+      });
     }
   })  
 });
@@ -159,6 +163,13 @@ const touchTrail = (event, isHolding) => {
       duration: 0.3,
       opacity: 1
     })
+    
+    setTimeout(() => {
+      gsap.to("#cursor-follow > span", {
+        duration: 0.3,
+        opacity: 0
+      })
+    }, 100);
   } else {
     // opacity 0 on all viewport leave events
     gsap.to("#cursor-follow > span", {
