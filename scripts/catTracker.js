@@ -142,6 +142,7 @@ function init() {
     if (isWalking) {
       pos.x = touch.clientX;
       pos.y = touch.clientY;
+      walk()
     } else {
       pos.x = null;
       pos.y = null;
@@ -151,7 +152,7 @@ function init() {
   };
 
   // handle touchscreen events
-  pettingZone.addEventListener('touchmove', () => {
+  pettingZone.addEventListener('touchstart', () => {
     isWalking = false;
     // console.log('posx:', pos.x)
   });
@@ -160,7 +161,7 @@ function init() {
   });
 
 
-  headpatZone.addEventListener('touchmove', () => {
+  headpatZone.addEventListener('touchstart', () => {
     isWalking = false
   });
   headpatZone.addEventListener('touchend', () => {

@@ -159,17 +159,12 @@ const touchTrail = (event, isHolding) => {
       duration: 0.3,
       opacity: 1
     })
-
-    console.log(isHolding)
   } else {
     // opacity 0 on all viewport leave events
     gsap.to("#cursor-follow > span", {
       duration: 0.3,
       opacity: 0
     })
-
-    console.log(isHolding)
-
   }
 }
 
