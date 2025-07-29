@@ -26,7 +26,7 @@ const closeShellText = document.getElementById('js-close-shell-text');
 const originalText = closeShellText.innerHTML;
 
 const jsShellHTML = `JavaScript detected. Initialize interactive console...`;
-const shellName = `<span class="username">name</span>@<span class="sitename"
+const shellName = `<span class="username">cinny</span>@<span class="sitename"
                 >neocities</span
               >&#58;&#126;&#36;&nbsp;`;
 let shellBlinkingBlock = `<span class="blinking-block">&#9608;</span>`;
