@@ -16,7 +16,7 @@ openBtnDiv.addEventListener('click', () => {
     gsap.to(openBtnDiv, {
       left: 110
     })
-  } else if (sideNavOpen = false) {
-    
   }
+
+ // add a class with transition instead of using gsap, but maybe search for more options.
 })
