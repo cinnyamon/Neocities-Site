@@ -33,6 +33,11 @@ const imagesLoaded = () => {
 
 imagesLoaded().then(() => {
 
+  // bring the loop here and then add a flag called buttonPressed set the default value to false then do in each event listener the logic: 
+  // if (!buttonPressed) {mouseMove = true} else {mouseMove = false}
+
+  // same for the touch listeners but reusing the buttonPressed flag or maybe making a new flag for the bgtrail button dunno yet. this is the only option i currently see that would make this work.
+
   mainEl.addEventListener('mousemove', (event) => handleMouseEvents(event, true));
   mainEl.addEventListener('mouseenter', (event) => handleMouseEvents(event, true));
   mainEl.addEventListener('mouseleave', (event) => handleMouseEvents(event, false));
