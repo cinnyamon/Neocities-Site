@@ -31,16 +31,34 @@ const imagesLoaded = () => {
   });
 };
 
-let mouseTrailBtnPressed = false;
-let bgTrailBtnPressed = false;
+console.log(JSON.parse(localStorage.getItem('mousetrail')))
+
+let mouseTrailBtnPressed = JSON.parse(localStorage.getItem('mousetrail')) || false;
+let bgTrailBtnPressed = JSON.parse(localStorage.getItem('bgtrail')) || false;
 imagesLoaded().then(() => {
 
   navButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-      const trailId = button.dataset.trailId;
+    const trailId = button.dataset.trailId;
+    
+    if (trailId === 'mouse-trail') {
+      if (JSON.parse(localStorage.getItem('mousetrail')) === true) {
+        button.textContent = 'OFF'
+      } else {
+        button.textContent = 'ON'
+      }
+    } else if (trailId === 'bg-trail') {
+      if (JSON.parse(localStorage.getItem('bgtrail')) === true) {
+        button.textContent = 'OFF'
+      } else {
+        button.textContent = 'ON'
+      }
+    }
 
+    button.addEventListener('click', () => {
+      
       if (trailId === 'mouse-trail') {
         mouseTrailBtnPressed = !mouseTrailBtnPressed;
+        localStorage.setItem('mousetrail', mouseTrailBtnPressed);
         
         if (mouseTrailBtnPressed) {
           button.textContent = 'OFF'
@@ -51,6 +69,7 @@ imagesLoaded().then(() => {
 
       } else if (trailId === 'bg-trail') {
         bgTrailBtnPressed = !bgTrailBtnPressed;
+        localStorage.setItem('bgtrail', mouseTrailBtnPressed);
 
         if (bgTrailBtnPressed) {
           button.textContent = 'OFF'
@@ -516,3 +535,8 @@ const touchBackgroundTrail = (event, isHolding, bgTrailBtnPressed) => {
 //   }); */
 // }
 
+
+
+
+let now = new Date().getTime();
+console.log(now)
