@@ -172,7 +172,7 @@
   align-items: flex-start;
   gap: 30px;
   font-size: 18px;
-  margin: 0 20px;
+  margin: 0 20px 20px 20px;
   text-wrap: nowrap;
 }
 
@@ -194,15 +194,18 @@
 
 
 
-
-@media screen and (max-width: 400px) {
-  .menu-btn {
-    left: 20px; 
+@media screen and (max-width: 450px) {
+  .open-btn {
+    left: 25px;
   }
 }
+
 @media screen and (max-width: 330px) {
   .inner-header {
     flex-direction: column;
     font-size: 14px;
+  }
+  .open-btn {
+    left: 18px; 
   }
 }

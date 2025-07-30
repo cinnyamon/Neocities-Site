@@ -31,22 +31,47 @@ const imagesLoaded = () => {
   });
 };
 
+let mouseTrailBtnPressed = false;
+let bgTrailBtnPressed = false;
 imagesLoaded().then(() => {
 
-  // bring the loop here and then add a flag called buttonPressed set the default value to false then do in each event listener the logic: 
-  // if (!buttonPressed) {mouseMove = true} else {mouseMove = false}
+  navButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const trailId = button.dataset.trailId;
 
-  // same for the touch listeners but reusing the buttonPressed flag or maybe making a new flag for the bgtrail button dunno yet. this is the only option i currently see that would make this work.
+      if (trailId === 'mouse-trail') {
+        mouseTrailBtnPressed = !mouseTrailBtnPressed;
+        
+        if (mouseTrailBtnPressed) {
+          button.textContent = 'OFF'
+        } else {
+          button.textContent = 'ON'
+        }
+        return mouseTrailBtnPressed;
 
-  mainEl.addEventListener('mousemove', (event) => handleMouseEvents(event, true));
-  mainEl.addEventListener('mouseenter', (event) => handleMouseEvents(event, true));
-  mainEl.addEventListener('mouseleave', (event) => handleMouseEvents(event, false));
+      } else if (trailId === 'bg-trail') {
+        bgTrailBtnPressed = !bgTrailBtnPressed;
+
+        if (bgTrailBtnPressed) {
+          button.textContent = 'OFF'
+        } else {
+          button.textContent = 'ON'
+        }
+        return bgTrailBtnPressed;
+      };
+    });
+  });
+  
+  // handle mouse input
+  mainEl.addEventListener('mousemove', (event) => handleMouseEvents(event, true, mouseTrailBtnPressed, bgTrailBtnPressed));
+  mainEl.addEventListener('mouseenter', (event) => handleMouseEvents(event, true, mouseTrailBtnPressed,bgTrailBtnPressed));
+  mainEl.addEventListener('mouseleave', (event) => handleMouseEvents(event, false, mouseTrailBtnPressed, bgTrailBtnPressed));
 
 
   // handle touch input
-  mainEl.addEventListener('touchmove', (event) => handleTouchEvents(event, true));
-  mainEl.addEventListener('touchstart', (event) => handleTouchEvents(event, true));
-  mainEl.addEventListener('touchend', (event) => handleTouchEvents(event, false));
+  mainEl.addEventListener('touchmove', (event) => handleTouchEvents(event, true, mouseTrailBtnPressed, bgTrailBtnPressed));
+  mainEl.addEventListener('touchstart', (event) => handleTouchEvents(event, true, mouseTrailBtnPressed, bgTrailBtnPressed));
+  mainEl.addEventListener('touchend', (event) => handleTouchEvents(event, false, mouseTrailBtnPressed, bgTrailBtnPressed));
   
 
   // right click events
@@ -72,22 +97,16 @@ imagesLoaded().then(() => {
   })  
 });
 
-// const handleAllEvents = (event, mouseMove, isHolding) => {
-//   if (event.type === 'mousemove') {
-//     handleMouseEvents(event, mouseMove);
-//   } else if (event.type === 'touchmove') {
-//     handleTouchEvents(event, isHolding);
-//   }
-// }
 
+const handleMouseEvents = (event, mouseMove, mouseTrailBtnPressed, bgTrailBtnPressed) => {
+  mouseTrail(event, mouseMove, mouseTrailBtnPressed);
+  mouseBackgroundTrail(event,mouseMove, bgTrailBtnPressed);
 
-const handleMouseEvents = (event, mouseMove) => {
-  mouseTrail(event, mouseMove);
-  mouseBackgroundTrail(event,mouseMove);
+  // console.log('mousetrail:',mouseTrailBtnPressed, 'bgtrail:', bgTrailBtnPressed)
 }
 
-const mouseTrail = (event, mouseMove) => {
-  if (mouseMove) {
+const mouseTrail = (event, mouseMove, mouseTrailBtnPressed) => {
+  if (mouseMove && !mouseTrailBtnPressed) {
     const x = event.clientX + 15,
         y = event.clientY -6;
     // opacity 1 on all viewport leave events
@@ -106,18 +125,23 @@ const mouseTrail = (event, mouseMove) => {
       duration: 0.3,
       opacity: 1
     })
-  } else {
+  } else if (!mouseMove) {
     // opacity 0 on all viewport leave events
     gsap.to("#cursor-follow > span", {
       duration: 0.3,
       opacity: 0
     })
+  } else if (mouseTrailBtnPressed) {
+    gsap.to("#cursor-follow > span", {
+      duration: 0,
+      opacity: 0,
+    })
   }
   
 }
 
-const mouseBackgroundTrail = (event, mouseMove) => {
-  if (mouseMove) {
+const mouseBackgroundTrail = (event, mouseMove, bgTrailBtnPressed) => {
+  if (mouseMove === true && bgTrailBtnPressed === false) {
     const x = event.pageX -10,
         y = event.pageY -10;
 
@@ -135,9 +159,14 @@ const mouseBackgroundTrail = (event, mouseMove) => {
       duration: 0.6,
       opacity: 1
     })
-  } else {
+  } else if (mouseMove === false) {
     gsap.to(dotMask, {
       duration: 0.6,
+      opacity: 0
+    })
+  } else if (bgTrailBtnPressed === true) {
+    gsap.to(dotMask, {
+      duration: 0,
       opacity: 0
     })
   }
@@ -145,13 +174,13 @@ const mouseBackgroundTrail = (event, mouseMove) => {
 
 
 
-const handleTouchEvents = (event, isHolding) => {
-  touchTrail(event, isHolding);
-  touchBackgroundTrail(event, isHolding);
+const handleTouchEvents = (event, isHolding, mouseTrailBtnPressed, bgTrailBtnPressed) => {
+  touchTrail(event, isHolding, mouseTrailBtnPressed);
+  touchBackgroundTrail(event, isHolding, bgTrailBtnPressed);
 }
 
-const touchTrail = (event, isHolding) => {
-  if (isHolding) {
+const touchTrail = (event, isHolding, mouseTrailBtnPressed) => {
+  if (isHolding && !mouseTrailBtnPressed) {
     const x = event.targetTouches[0].clientX + 15,
         y = event.targetTouches[0].clientY -6;
     // opacity 1 on all viewport leave events
@@ -177,17 +206,23 @@ const touchTrail = (event, isHolding) => {
         opacity: 0
       })
     }, 100);
-  } else {
+  } else if (!isHolding) {
     // opacity 0 on all viewport leave events
     gsap.to("#cursor-follow > span", {
       duration: 0.3,
       opacity: 0
     })
+  } else if (mouseTrailBtnPressed) {
+    // opacity 0 on all viewport leave events
+    gsap.to("#cursor-follow > span", {
+      duration: 0,
+      opacity: 0
+    })
   }
 }
 
-const touchBackgroundTrail = (event, isHolding) => {
-  if (isHolding) {
+const touchBackgroundTrail = (event, isHolding, bgTrailBtnPressed) => {
+  if (isHolding && !bgTrailBtnPressed) {
     const x = event.targetTouches[0].pageX -10,
         y = event.targetTouches[0].pageY -10;
 
@@ -205,9 +240,14 @@ const touchBackgroundTrail = (event, isHolding) => {
       duration: 0.6,
       opacity: 1
     })
-  } else {
+  } else if (!isHolding) {
     gsap.to(dotMask, {
       duration: 0.6,
+      opacity: 0
+    })
+  } else if (bgTrailBtnPressed) {
+    gsap.to(dotMask, {
+      duration: 0,
       opacity: 0
     })
   }
@@ -215,29 +255,30 @@ const touchBackgroundTrail = (event, isHolding) => {
 
 
 
-navButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    const trailId = button.dataset.trailId;
-
-    trailId === 'mouse-trail' ? disableMouseTrail() : disableBackgroundTrail()
-  })
-})
-
-const disableMouseTrail = () => {
-  console.log('mouse trail function disabled')
-  // would like to make this a bit better by sending false to the mouseTrail function above but i can also just do it easy by removing and adding a class hmm
-}
-
-const disableBackgroundTrail = () => {
-  console.log('background trail function disabled')
-}
-
-
 
 
 
 // dumbass code ive written, leaving here for future references
 
+
+// spaghetti code for the buttonpressed flags
+
+// if (trailId === 'mouse-trail') {
+//   if (!mouseTrailBtnPressed) {
+//     return mouseTrailBtnPressed = true;
+//   } else if (mouseTrailBtnPressed) {
+//     return mouseTrailBtnPressed = false;
+//   }
+//   return mouseTrailBtnPressed = false;
+
+// } else if (trailId === 'bg-trail') {
+//   if (!bgTrailBtnPressed) {
+//     return bgTrailBtnPressed = true
+//   } else if (bgTrailBtnPressed) {
+//     return bgTrailBtnPressed = false;
+//   }
+//   return bgTrailBtnPressed = false;
+// }
 
 
 // imagesLoaded().then(() => {
