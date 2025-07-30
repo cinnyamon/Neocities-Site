@@ -1,5 +1,6 @@
 html {
   min-height: 100%;
+  scrollbar-color: rgb(33, 33, 33) rgb(13, 16, 18);
 }
 
 body {
@@ -8,16 +9,18 @@ body {
   background-color: rgb(0, 0, 0);
   height: 100%;
   width: 100%;
-  font-family: 'Pixelify Sans', Courier, monospace;;
+  font-family: 'Pixelify Sans', Courier, monospace;
   color: white;
   position: relative;
+  font-size: 16px;
+  
 }
 
 
 #bg {
   height: 100%;
   width: 100%;
-
+  filter: blur(0px);
 }
 
 p {
@@ -25,13 +28,33 @@ p {
   color: white;
 }
 
+.link:hover {
+  color: #4a28d1;
+  text-decoration: none;
+  overflow: auto;
+}
 
-/* this doesnt cover the entire body element. */
-
+button {
+  border: solid 1px #4a28d1;
+  border-radius: 4px;
+  font-size: 16px;
+  padding: 2px;
+  background-color: transparent;
+  color: white;
+  font-family: 'Pixelify Sans',
+    Courier,
+    monospace;
+  transition: background-color ease-in-out 0.2s;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #4a28d1;
+  transition: background-color ease-in-out 0.2s;
+}
 
 .dot-bg {
   position: absolute;
-  inset: 0 20px;
+  inset: -40px 20px 0 20px;
   background-image:
     radial-gradient(#242424 1px, transparent 1px),
     radial-gradient(#242424 1px, transparent 1px);

@@ -9,6 +9,8 @@
   height: 50px;
   background-image: linear-gradient(to bottom, rgb(0, 0, 0), transparent);
   box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.8);
+  z-index: 100;
+  position: relative;
 }
 
 .homelink {
@@ -127,9 +129,10 @@
 
 .sidenav {
   position: fixed;
-  height: 100%;
-  top: 1px;
+  height: 60vh;
+  top: 0;
   z-index: 999;
+  max-height: 430px;
 }
 
 .sidenav-mainbody {
@@ -139,14 +142,21 @@
   z-index: 1;
   top: 0;
   left: 0;
-  background: linear-gradient(to bottom,
-    rgb(15, 15, 15) 20%,
-    rgb(15, 15, 15) 40%, 
-    rgb(15, 15, 15) 70%,
-    transparent 90%);
-  padding-top: 60px;
+  background: rgb(15, 15, 15);
+  padding-top: 50px;
   opacity: 0;
+  border-top: #4d23e4 solid 1px;
+  border-right: #4d23e4 solid 1px;
+  border-bottom: #4d23e4 solid 1px;
+  border-bottom-right-radius: 10px;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
+
+.sidenav-mainbody hr {
+  width: 100%;
+}
+
 
 .close-btn {
   text-indent: 2px;
@@ -164,12 +174,22 @@
   font-size: 18px;
   margin: 0 20px;
   text-wrap: nowrap;
-  overflow-x: hidden;
 }
 
-.sidenav-links a:hover {
-  color: #4a28d1;
-  text-decoration: none;
+
+/* sidenav buttons */
+
+.sidenav-btn {
+  display: flex;
+  width: 140px;
+  flex-direction: column;
+  text-wrap: wrap;
+  gap: 5px;
+}
+
+.nav-button {
+  text-wrap: wrap;
+  width: 140px;
 }
 
 

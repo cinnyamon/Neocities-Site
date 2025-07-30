@@ -3,6 +3,8 @@ const mainEl = document.getElementById('gsapcursor');
 const images = document.querySelectorAll('.crsr');
 const dotMask = document.querySelector('.dot-mask');
 
+// dom for sidenav button functionality
+const navButtons = document.querySelectorAll('.nav-button');
 
 // running a promise in order to let the dom load all the images for the cursor trail and then run the trail gsap code.
 const imagesLoaded = () => {
@@ -207,6 +209,23 @@ const touchBackgroundTrail = (event, isHolding) => {
 }
 
 
+
+navButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    const trailId = button.dataset.trailId;
+
+    trailId === 'mouse-trail' ? disableMouseTrail() : disableBackgroundTrail()
+  })
+})
+
+const disableMouseTrail = () => {
+  console.log('mouse trail function disabled')
+  // would like to make this a bit better by sending false to the mouseTrail function above but i can also just do it easy by removing and adding a class hmm
+}
+
+const disableBackgroundTrail = () => {
+  console.log('background trail function disabled')
+}
 
 
 
