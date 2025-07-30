@@ -28,7 +28,11 @@ p {
   color: white;
 }
 
+.link {
+  transition: color 0.2s ease-in-out;
+}
 .link:hover {
+  transition: color 0.2s ease-in-out;
   color: #4a28d1;
   text-decoration: none;
   overflow: auto;

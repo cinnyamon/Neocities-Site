@@ -18,7 +18,7 @@ timeline.to(sideNav, {
 }, '<');
 
 timeline.to(openBtnDiv, {
-  x: 90
+  left: 135
 }, '<');
 
 timeline.to(header, {
