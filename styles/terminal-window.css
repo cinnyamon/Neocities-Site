@@ -167,7 +167,19 @@
 }
 
 .blinking-block {
-  animation: blink 1.5s steps(1, start) infinite;
+  animation: blinkingBlock 1.5s step-start infinite;
+}
+
+@keyframes blinkingBlock {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 /* shell text body styles ^^^ */

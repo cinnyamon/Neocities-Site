@@ -103,7 +103,7 @@ imagesLoaded().then(() => {
       rotation: 90,
       ease: "power2.out"
     });
-  })
+  });
   
   document.addEventListener('click', () => {
     if (isContextMenuOpen > 0) {
@@ -113,7 +113,13 @@ imagesLoaded().then(() => {
         opacity: 0
       });
     }
-  })  
+
+    gsap.to("#cursor-follow > span", {
+        rotation: '10deg',
+      });
+  });
+
+  // random click animation
 });
 
 
