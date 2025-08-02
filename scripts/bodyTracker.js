@@ -31,8 +31,6 @@ const imagesLoaded = () => {
   });
 };
 
-console.log(JSON.parse(localStorage.getItem('mousetrail')))
-
 let mouseTrailBtnPressed = JSON.parse(localStorage.getItem('mousetrail')) || false;
 let bgTrailBtnPressed = JSON.parse(localStorage.getItem('bgtrail')) || false;
 imagesLoaded().then(() => {

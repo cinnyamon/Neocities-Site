@@ -120,7 +120,7 @@
   text-indent: 2px;
   width: 24px;
   position: fixed;
-  left: 30px;
+  right: 30px;
   top: 17px;
   z-index: 1000;
 }
@@ -131,23 +131,25 @@
   position: fixed;
   height: 60vh;
   top: 0;
+  right: 0;
   z-index: 999;
   max-height: 430px;
 }
 
 .sidenav-mainbody {
   width: 0px;
+  height: 100%; /* make it scrollable */
   position: relative;
   z-index: 1;
   top: 0;
-  left: 0;
+  right: 0;
   background: rgb(15, 15, 15);
   padding-top: 50px;
   opacity: 0;
   border-top: #4d23e4 solid 1px;
-  border-right: #4d23e4 solid 1px;
+  border-left: #4d23e4 solid 1px;
   border-bottom: #4d23e4 solid 1px;
-  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -159,7 +161,7 @@
 .sidenav-links {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-end;
   gap: 30px;
   font-size: 18px;
   margin: 0 20px 20px 20px;
@@ -169,33 +171,47 @@
 
 /* sidenav buttons */
 
+.trails-title {
+  position: relative;
+  top: -15px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .sidenav-btn {
   display: flex;
-  width: 140px;
-  flex-direction: column;
-  text-wrap: wrap;
+  width: 100%;
+  height: 40px;
+  justify-content: space-between;
   gap: 5px;
 }
 
+.sidenav-btn div {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .nav-button {
-  text-wrap: wrap;
-  width: 140px;
+  width: 50%;
 }
 
 
-
+/* these media queries are now tied to the sidenav.js file using gsap. any change done here must be duplicated in the js file too. */
 @media screen and (max-width: 450px) {
   .open-btn {
-    left: 25px;
+    right: 25px;
   }
 }
 
-@media screen and (max-width: 330px) {
-  .inner-header {
+@media screen and (max-width: 300px) {
+  .header {
     flex-direction: column;
     font-size: 14px;
   }
   .open-btn {
-    left: 18px; 
+    right: 20px; 
   }
 }
