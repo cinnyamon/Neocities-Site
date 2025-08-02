@@ -188,7 +188,7 @@
 
 @media screen and (max-width: 300px) {
   .panel {
-    transform: translate(-50%, -50%) rotateY(var(--angle)) translateZ(90px);
+    transform: translate(-50%, -50%) rotateY(var(--angle)) translateZ(105px);
   }
   .rotatingelementdiv {
     height: 180px;

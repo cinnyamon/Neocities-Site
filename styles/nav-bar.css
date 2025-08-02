@@ -89,7 +89,6 @@
 /* sidenav menu button styles */
 
 .open-btn-gradient {
-  font-size: 16px;
   background: linear-gradient(to right,
       #00affa 20%,
       #234bea 30%,
@@ -117,7 +116,7 @@
 }
 
 .open-btn {
-  text-indent: 2px;
+  text-indent: 3px;
   width: 24px;
   position: fixed;
   right: 30px;
@@ -200,18 +199,13 @@
 
 
 /* these media queries are now tied to the sidenav.js file using gsap. any change done here must be duplicated in the js file too. */
-@media screen and (max-width: 450px) {
-  .open-btn {
-    right: 25px;
-  }
+@media screen and (max-width: 600px) {
+
 }
 
-@media screen and (max-width: 300px) {
+@media screen and (max-width: 350px) {
   .header {
     flex-direction: column;
     font-size: 14px;
-  }
-  .open-btn {
-    right: 20px; 
   }
 }
