@@ -130,13 +130,13 @@
   position: fixed;
   height: 60vh;
   top: 0;
-  right: 0;
+  right: -200px;
   z-index: 999;
   max-height: 430px;
 }
 
 .sidenav-mainbody {
-  width: 0px;
+  width: 180px;
   height: 100%; /* make it scrollable */
   position: relative;
   z-index: 1;
@@ -144,7 +144,7 @@
   right: 0;
   background: rgb(15, 15, 15);
   padding-top: 50px;
-  opacity: 0;
+  opacity: 1;
   border-top: #4d23e4 solid 1px;
   border-left: #4d23e4 solid 1px;
   border-bottom: #4d23e4 solid 1px;
@@ -200,7 +200,13 @@
 
 /* these media queries are now tied to the sidenav.js file using gsap. any change done here must be duplicated in the js file too. */
 @media screen and (max-width: 600px) {
-
+  .sidenav-mainbody {
+    width: 150px;
+    opacity: 1;
+  }
+  .sidenav-links {
+    font-size: 16px;
+  }
 }
 
 @media screen and (max-width: 350px) {

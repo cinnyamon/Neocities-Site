@@ -18,12 +18,12 @@ let tl = gsap.timeline({
 });
 
 tl.to(sideNav, {
-    width: 200,
+    x: -200,
     opacity: 1
   }, "<");
 
 tl.to(openBtnDiv, {
-    x: -130
+    x: -90
   }, "<");
 
 tl.to([header, background], {
@@ -49,6 +49,7 @@ bgHeaderArray.forEach((dom) => {
   dom.addEventListener('click', () => {
     sideNavOpen = false;
     tl.reverse();
+    
+    console.log(window.getComputedStyle(sideNav).getPropertyValue('width'))
   });
 });
-
