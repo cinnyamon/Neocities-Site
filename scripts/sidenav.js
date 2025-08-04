@@ -9,6 +9,9 @@ const bgHeaderArray = [background, header];
 // flag
 let sideNavOpen = false;
 
+// media query
+let wMM = window.matchMedia('(max-width: 600px)');
+
 // gsap registering
 let tl = gsap.timeline({
   paused: true,
@@ -17,13 +20,20 @@ let tl = gsap.timeline({
   }
 });
 
+// set timeline animations
 tl.to(sideNav, {
     x: -200,
     opacity: 1
   }, "<");
 
 tl.to(openBtnDiv, {
-    x: -90
+    x: () => {
+      if (wMM.matches) {
+        return -80
+      } else {
+        return -110
+      }
+    },
   }, "<");
 
 tl.to([header, background], {
@@ -36,7 +46,7 @@ openBtnDiv.addEventListener('click', () => {
 
 const openSideNav = () => {
   sideNavOpen = true;
-  tl.play();
+  tl.invalidate().restart();
 }
 
 const closeSideNav = () => {
@@ -49,7 +59,8 @@ bgHeaderArray.forEach((dom) => {
   dom.addEventListener('click', () => {
     sideNavOpen = false;
     tl.reverse();
-    
-    console.log(window.getComputedStyle(sideNav).getPropertyValue('width'))
   });
 });
+
+
+// this has got to be the worst javascript code ive ever written in my entire chud life. i dont know why i struggled so much with this i am going to kill myself.
