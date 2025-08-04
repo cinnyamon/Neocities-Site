@@ -279,8 +279,6 @@ const touchBackgroundTrail = (event, isHolding, bgTrailBtnPressed) => {
 
 
 
-
-
 // dumbass code ive written, leaving here for future references
 
 
@@ -538,9 +536,3 @@ const touchBackgroundTrail = (event, isHolding, bgTrailBtnPressed) => {
 //     duration: 0.8
 //   }); */
 // }
-
-
-
-
-let now = new Date().getTime();
-console.log(now)

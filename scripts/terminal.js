@@ -111,6 +111,35 @@ clearShell().then((jsDetectionText) => {
       </div>`
     
     let preTest = document.getElementById('pre-test');
+
+    // change this thing to append to the pre-test div a <p id= generatedp style = display: flex> which appends inside of it a <span class="username"> + the text cinny and another <span class="sitename"> + the text neocities, and then append using insertAdjacentHTML('beforeend',:~$ + safeuserInput )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     const writableBox = document.getElementById('writable-box');
     const textArea = document.querySelector('.writable-textarea');
 
@@ -216,11 +245,10 @@ function displayCmndInShell(writableBox, preTest, textArea) {
         })
       } */
 
-
       // create array of bad words
       const badWords = ['fag', 'faggot', 'idiot', 'idot', 'retard', 'dumbass', 'dumb', 'nig', 'nigger', 'dummy', 'cunt', 'stupid', 'stoopi', 'sucker', 'jew', 'kike', ];
       badWords.forEach(badword => {
-        if (enteredText.includes(badword)) {
+        if (safeUserInput.includes(badword)) {
           badWordWarning.classList.add('js-badwords-div-visible');
           
           // check if previous interval id exists and clear it
@@ -237,24 +265,177 @@ function displayCmndInShell(writableBox, preTest, textArea) {
       });
 
       const safeInputTrimmed = safeUserInput.trim();
-      const bannedLettersRGX = /^[etisghlbm]$/i
+      const bannedLettersRGX = /^[etisghlbm]$/i;
 
-      try {
-        if (bannedLettersRGX.test(safeInputTrimmed) === true) {
-          preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}</p>`;
-        } else {
-          const result = math.evaluate(safeInputTrimmed);
-          preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}&nbsp;<span style="color: grey">= ${result}</span></p>`;
-        }
-      } 
-      catch {
-        preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}</p>`;
+      const catchTimeWords = ['date', 'time', 'date short', 'short date', 'time short', 'short time',];
+
+      const date = new Date();
+      const currentTime = {
+        currentDateLong: date.toLocaleString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: "numeric"}),
+        currentDateShort: date.toLocaleString('en-US', { dateStyle: 'short' }),
+
+        currentTimeLong: date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true, timeZoneName: 'short' }),
+        currentTimeShort: date.toLocaleString('en-US', { timeStyle: 'short' }),
       }
 
-      // hopefully this runs last
-      textArea.textContent = '';
+
+      // add more functional commands to the terminal by updating the catch inside the 2nd if statement. for example if the safeinputtrimmed contains cat console.log a cat
+
+
+      // early return
+      if (bannedLettersRGX.test(safeInputTrimmed)) {
+        preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}</p>`;
+
+        // wait until the term updates then clear user input
+        setTimeout(() => {
+          textArea.textContent = '';
+        }, 0);
+        return;
+      }
+
+      console.log(math.parse(safeInputTrimmed))
+
+      // if rgx fails evaluate 
+      // if (!bannedLettersRGX.test(safeInputTrimmed)) {
+      //   try {
+      //     const result = math.evaluate(safeInputTrimmed);
+      //     preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}&nbsp;<span style="color: grey">= ${result}</span></p>`;
+      //   } catch (err) {
+      //     console.log(err)
+      //     if (safeInputTrimmed.includes('time')) {
+      //       preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}&nbsp;<span style="color: grey">= ${currentTime.currentTimeLong}</span></p>`;
+
+
+      //     } else if (safeInputTrimmed.includes('cat')){
+      //       console.log('kitten')
+
+
+      //     } else {
+      //     preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}</p>`;
+      //     }
+      //   }
+      //   setTimeout(() => {
+      //     textArea.textContent = '';
+      //   }, 0);
+      //   return
+      // }
+      
+      let textInside = 'dumbass iujuvyt';
+
+      preTest.innerHTML += textInside
+
+      if (!bannedLettersRGX.test(safeInputTrimmed)) {
+        try {
+
+          const result = math.evaluate(safeInputTrimmed);
+          textInside = `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}&nbsp;<span style="color: grey">= ${result}</span></p>`;
+          setTimeout(() => {
+            textArea.textContent = '';
+          }, 0);
+        } catch {
+
+          if (safeInputTrimmed.includes('time') && safeInputTrimmed.includes('short')) {
+            preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}&nbsp;<span style="color: grey">> ${currentTime.currentTimeShort}</span></p>`;
+            setTimeout(() => {
+              textArea.textContent = '';
+            }, 0);
+            return;
+          }
+
+          if (safeInputTrimmed.includes('date') && safeInputTrimmed.includes('short')) {
+            preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}&nbsp;<span style="color: grey">> ${currentTime.currentDateShort}</span></p>`;
+            setTimeout(() => {
+              textArea.textContent = '';
+            }, 0);
+            return;
+          }
+
+          if (safeInputTrimmed.includes('time')) {
+            preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}&nbsp;<span style="color: grey">> ${currentTime.currentTimeLong}</span></p>`;
+            setTimeout(() => {
+              textArea.textContent = '';
+            }, 0);
+            return;
+          }
+          if (safeInputTrimmed.includes('date')) {
+            preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}&nbsp;<span style="color: grey">> ${currentTime.currentDateLong}</span></p>`;
+            setTimeout(() => {
+              textArea.textContent = '';
+            }, 0);
+            return;
+          }
+
+          if (safeInputTrimmed.includes('cat')) {
+            console.log('kitten')
+            preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}</p>`;
+            setTimeout(() => {
+              textArea.textContent = '';
+            }, 0);
+            return;
+          }
+
+            preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput} this adds another</p>`
+            setTimeout(() => {
+              textArea.textContent = '';
+            }, 0);
+        }
+      }
+
+      
+        
+      
+      // try {
+      //   if (bannedLettersRGX.test(safeInputTrimmed) === true) {
+      //     preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}</p>`;
+      //   } else {
+      //     const result = math.evaluate(safeInputTrimmed);
+      //     preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}&nbsp;<span style="color: grey">= ${result}</span></p>`;
+      //   }
+      // } 
+      // catch {
+      //   preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}</p>`;
+      // }
+      
+
+      // if user input contains anything from regex, send the user input into the preTest innerHTML and dont send anything to math.evaluate, 
+
+      // else if the user input doesnt contain anything from regex then send the input to math.evaluate and show the result
+
+
+
+
+
+      // switch (true) {
+      //   case bannedLettersRGX.test(safeInputTrimmed):
+      //     preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}</p>`
+      //     break
+
+      //   case !bannedLettersRGX.test(safeInputTrimmed):
+      //     const result = math.evaluate(safeInputTrimmed);
+      //     preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}&nbsp;<span style="color: grey">= ${result}</span></p>`;
+      //     break
+
+      //   case safeUserInput:
+      //     preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}</p>`
+
+      //   default: 
+      //     preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}</p>`
+      // }
+
+      // (() => {
+      //   try {
+      //     result = math.evaluate(safeInputTrimmed);
+      //     return true;
+      //   } catch {
+      //     return false;
+      //   }
+      // })():
+      // const result = math.evaluate(safeInputTrimmed);
+      // preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}&nbsp;<span style="color: grey">= ${result}</span></p>`;
     };
   });
+
+ 
 
   // add event listener for arrow keys to show the caret
   writableBox.addEventListener('keydown', (arrow) => {
