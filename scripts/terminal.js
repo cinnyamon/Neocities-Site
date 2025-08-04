@@ -29,6 +29,17 @@ const jsShellHTML = `JavaScript detected. Initialize interactive console...`;
 const shellName = `<span class="username">cinny</span>@<span class="sitename"
                 >neocities</span
               >&#58;&#126;&#36;&nbsp;`;
+
+const shellUsername = document.createElement('span');
+shellUsername.classList.add('username');
+shellUsername.textContent = 'cinny';
+
+const shellSitename = document.createElement('span');
+shellSitename.classList.add('sitename');
+shellSitename.textContent = 'neocities';
+
+
+
 let shellBlinkingBlock = `<span class="blinking-block">&#9608;</span>`;
 
 
@@ -110,9 +121,11 @@ clearShell().then((jsDetectionText) => {
           </span>${shellBlinkingBlock}
       </div>`
     
-    let preTest = document.getElementById('pre-test');
+    const preTest = document.getElementById('pre-test');
 
-    // change this thing to append to the pre-test div a <p id= generatedp style = display: flex> which appends inside of it a <span class="username"> + the text cinny and another <span class="sitename"> + the text neocities, and then append using insertAdjacentHTML('beforeend',:~$ + safeuserInput )
+    // change this thing to append to the pre-test div a <p id= generatedp style = display: flex> which 
+    // appends inside of it a <span class="username"> + the text cinny and another <span class="sitename"> + the
+    //  text neocities, and then append using insertAdjacentHTML('beforeend',:~$ + safeuserInput )
 
 
 
@@ -215,36 +228,6 @@ function displayCmndInShell(writableBox, preTest, textArea) {
         ALLOWED_ATTR: ['class', 'style']
       });
 
-      /* const result = math.evaluate(safeUserInput)
-      console.log('The result is:', result)
-      console.log(Boolean(result)) */
-
-
-      // const regex = /[+\-*/]/g;
-      // console.log(Function(`"use strict"; return ${safeUserInput}`)())
-      // // this is eval() and takes a string and does the calculation on it.
-
-
-      // const isCalculation = regex.test(safeUserInput)
-      // console.log({isCalculation})
-      // // this checks if the calculation has a regex symbol from the ones listed in there like: + - * and /
-
-
-      // if (isCalculation) {
-      //   return console.log(eval(safeUserInput))
-      // }
-      // // if calculation is true then do the eval()
-      
-
-      /* if (!isNaN(safeUserInput)) {
-
-        console.log('number detected');
-        console.log(typeof Number(safeUserInput));
-        
-        operators.forEach((operator) => {
-        })
-      } */
-
       // create array of bad words
       const badWords = ['fag', 'faggot', 'idiot', 'idot', 'retard', 'dumbass', 'dumb', 'nig', 'nigger', 'dummy', 'cunt', 'stupid', 'stoopi', 'sucker', 'jew', 'kike', ];
       badWords.forEach(badword => {
@@ -264,11 +247,14 @@ function displayCmndInShell(writableBox, preTest, textArea) {
         }
       });
 
+
+      // create the paragraph element which will contain all the user input text
+      
+      
+
       const safeInputTrimmed = safeUserInput.trim();
       const bannedLettersRGX = /^[etisghlbm]$/i;
-
       const catchTimeWords = ['date', 'time', 'date short', 'short date', 'time short', 'short time',];
-
       const date = new Date();
       const currentTime = {
         currentDateLong: date.toLocaleString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: "numeric"}),
@@ -284,16 +270,25 @@ function displayCmndInShell(writableBox, preTest, textArea) {
 
       // early return
       if (bannedLettersRGX.test(safeInputTrimmed)) {
-        preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}</p>`;
+        
+        console.log(safeUserInput)
+        const generatedP = document.createElement('p');
+        generatedP.setAttribute('id', 'generatedp');
+        generatedP.style = 'display: flex';
+        generatedP.append(shellUsername)
+        generatedP.append('@')
+        generatedP.append(shellSitename)
+        generatedP.append('&#58;&#126;&#36;&nbsp;')
+        generatedP.append(safeUserInput);
+        preTest.append(generatedP)
 
+        console.log(shellUsername)
         // wait until the term updates then clear user input
         setTimeout(() => {
           textArea.textContent = '';
         }, 0);
         return;
       }
-
-      console.log(math.parse(safeInputTrimmed))
 
       // if rgx fails evaluate 
       // if (!bannedLettersRGX.test(safeInputTrimmed)) {
@@ -322,7 +317,7 @@ function displayCmndInShell(writableBox, preTest, textArea) {
       
       let textInside = 'dumbass iujuvyt';
 
-      preTest.innerHTML += textInside
+
 
       if (!bannedLettersRGX.test(safeInputTrimmed)) {
         try {
@@ -374,7 +369,7 @@ function displayCmndInShell(writableBox, preTest, textArea) {
             return;
           }
 
-            preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput} this adds another</p>`
+            preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}</p>`
             setTimeout(() => {
               textArea.textContent = '';
             }, 0);
