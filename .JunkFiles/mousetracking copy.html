@@ -48,6 +48,7 @@
       border-radius: 50%;
       background-color: rgb(224, 91, 91);
       filter: blur(3px);
+      pointer-events: none;
     }
   </style>
 </head>
@@ -107,37 +108,45 @@
     const container = document.querySelector('.container');
     const pointer = document.querySelector('.pointer');
     let counter = 0
-    const throttle = (func, delay) => {
-      // previously called time of the function
-      let prev = 0;
-      return (...args) => {
-        // current called time of the function 
-        let now = new Date().getTime();
+    
+    // throttle functions that i could use with imports
+    // const throttle = (func, delay) => {
+    //   // previously called time of the function
+    //   let prev = 0;
+    //   return (...args) => {
+    //     // current called time of the function 
+    //     let now = new Date().getTime();
 
-        // logging the difference between previously called and current called timings
+    //     // logging the difference between previously called and current called timings
 
-        // if difference is greater than delay call the function again
-        if (now - prev > delay) {
-          prev = now;
+    //     // if difference is greater than delay call the function again
+    //     if (now - prev > delay) {
+    //       prev = now;
 
-          // '...' is the spread operator here returning the function with the array of arguments
-          return func(...args);
-        }
+    //       // '...' is the spread operator here returning the function with the array of arguments
+    //       return func(...args);
+    //     }
+    //   }
+    // }
+    // const throttledMouseMove = throttle(onMouseMove, 30)
+
+    const timesPerSec = 24;
+    let waitUntil = 0;
+    console.log(Date.now())
+    container.addEventListener('mousemove', (e) => {
+      if (Date.now() >= waitUntil) {
+        onMouseMove(e);
+        waitUntil = Date.now() + 1000 / timesPerSec;
       }
-    }
-
-
-    const throttledMouseMove = throttle(onMouseMove, 30)
-
-    container.addEventListener('mousemove', throttledMouseMove)
+    })
 
 
     function onMouseMove(e) {
 
       counter++
       const { offsetX, offsetY } = e;
-      const x = offsetX - 20;
-      const y = offsetY + 20;
+      const x = offsetX - 10;
+      const y = offsetY - 10;
       pointer.style.transform = `translate(${x}px, ${y}px)`
       console.log(counter)
     }

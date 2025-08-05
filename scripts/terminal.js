@@ -320,36 +320,36 @@ function displayCmndInShell(writableBox, userGenContent) {
   });
 };
 
-const userCommand = (safeUILowerCaseTrim, currentTime, userCommandSpan, generatedP, userGenContent, writableBox) => {
+const userCommand = (safeUILowerCaseTrim, ...args) => {
   if (safeUILowerCaseTrim.includes('short')) {
 
     if (safeUILowerCaseTrim.includes('time')) {
-      appendTermCommand(currentTime.currentTimeShort, userCommandSpan, generatedP, userGenContent, writableBox);
+      appendTermCommand(currentTime.currentTimeShort, ...args);
       return;
     }
     if (safeUILowerCaseTrim.includes('date')) {
-      appendTermCommand(currentTime.currentDateShort, userCommandSpan, generatedP, userGenContent, writableBox);
+      appendTermCommand(currentTime.currentDateShort, ...args);
       return;
     }
     return;
   }
 
   if (safeUILowerCaseTrim.includes('time')) {
-    appendTermCommand(currentTime.currentTimeLong, userCommandSpan, generatedP, userGenContent, writableBox);
+    appendTermCommand(currentTime.currentTimeLong, ...args);
     return;
   }
 
   if (safeUILowerCaseTrim.includes('date')) {
-    appendTermCommand(currentTime.currentDateLong, userCommandSpan, generatedP, userGenContent, writableBox);
+    appendTermCommand(currentTime.currentDateLong, ...args);
     return;
   }
 
   if (safeUILowerCaseTrim.includes('cat')) {
-    appendTermCommand('KITTENS YAAAYYYYYYY', userCommandSpan, generatedP, userGenContent, writableBox)
+    appendTermCommand('KITTENS YAAAYYYYYYY', ...args)
   }
 }
 
-const appendTermCommand = (command, userCommandSpan, generatedP, userGenContent, writableBox) => {
+const appendTermCommand = (command, {userCommandSpan, generatedP, userGenContent, writableBox}) => {
   // append the result to the span
   userCommandSpan.append(command);
   // append the span to the generated paragraph that duplicates each time you press enter
