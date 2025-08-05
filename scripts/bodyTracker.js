@@ -277,6 +277,46 @@ const touchBackgroundTrail = (event, isHolding, bgTrailBtnPressed) => {
 }
 
 
+gsap.registerPlugin(ScrambleTextPlugin);
+
+// element.innerHTML = ''
+// element.append('Make the Internet, an');
+// const HTMLSpan = document.createElement('span');
+// HTMLSpan.append(' HTML ')
+// const CSSSpan = document.createElement('span');
+// CSSSpan.append(' CSS ')
+// element.append(HTMLSpan.cloneNode(true),
+//   'and',
+//   CSSSpan.cloneNode(true),
+//   'safe place!');
+
+const headerText = document.querySelectorAll('.header > p > a');
+console.log(headerText)
+
+for (let i = 0; i < headerText.length; i++) {
+  const navLinks = headerText[i];
+  gsap.to(navLinks, {
+    duration: 5,
+    scrambleText: {
+      text: headerText[i].textContent,
+      revealDelay: 1.5,
+      chars: '0x'
+    }
+  })
+}
+
+const titleText = document.querySelectorAll('.title-text > p > span')
+titleText.forEach((span) => {
+  gsap.to(span, {
+    duration: 5, 
+    scrambleText: {
+      text: span.textContent,
+      revealDelay: 1.5, 
+      chars: '0x',
+    }
+  });
+})
+
 
 
 // dumbass code ive written, leaving here for future references

@@ -94,35 +94,15 @@ function init() {
   // this is a function that adds a +1 heart above the kitten when the mouse enters is
   headpatZone.addEventListener("mouseenter", () => {
     headpatsCounter++
-
-    const span = document.createElement("span");
-    span.className = "heart-div-visible";
-    span.innerHTML = `<img id="heart-icon-plusone" src="./icons/pixel-heart.svg"> +1`;
-
-    head.appendChild(span);
-    setTimeout(() => span.remove(), 1000);
-
-    // change the counter number to a different color depending on if its a factor
-    // of 10 or 100
-    switch (true) {
-      case (headpatsCounter % 10 === 0):
-        headpatNum.innerHTML = `Headpat Counter: [<span>${headpatsCounter}</span>]<img id="heart-icon" src="./icons/pixel-heart.svg">`;
-        break;
-      case (headpatsCounter % 100 === 0):
-        headpatNum.innerHTML = `Headpat Counter: [<span>${headpatsCounter}</span>]<img id="heart-icon" src="./icons/pixel-heart.svg">`;
-        break;
-      default:
-        headpatNum.innerHTML = `Headpat Counter: [${headpatsCounter}]<img id="heart-icon" src="./icons/pixel-heart.svg">`;
-        break;
-    }
-
-    localStorage.setItem('counter', headpatsCounter);
+    headpats(headpatsCounter, head, headpatNum);
   });
 
 
 
 
   const handleTouchMotion = (e) => {
+
+
     /* if (!e.targetTouches) return;
     if (isWalking) {
       pos.x = e.targetTouches[0].offsetX;
@@ -154,11 +134,21 @@ function init() {
   // handle touchscreen events
   pettingZone.addEventListener('touchstart', () => {
     isWalking = false;
+    console.log('touch started', isWalking)
+
+    pettingZone.addEventListener('touchmove', () => {
+      console.log('heoo')
+      headpatsCounter++
+      headpats(headpatsCounter, head, headpatNum)
+    })
+  
     // console.log('posx:', pos.x)
   });
   pettingZone.addEventListener('touchend', () => {
     isWalking = true;
+    console.log('touch ended', isWalking)
   });
+
 
 
   headpatZone.addEventListener('touchstart', () => {
@@ -314,6 +304,31 @@ function init() {
     decideStop();
   }
 
+  const headpats = (headpatsCounter, head, headpatNum) => {
+
+    const span = document.createElement("span");
+    span.className = "heart-div-visible";
+    span.innerHTML = `<img id="heart-icon-plusone" src="./icons/pixel-heart.svg"> +1`;
+
+    head.appendChild(span);
+    setTimeout(() => span.remove(), 1000);
+
+    // change the counter number to a different color depending on if its a factor
+    // of 10 or 100
+    switch (true) {
+      case (headpatsCounter % 10 === 0):
+        headpatNum.innerHTML = `Headpat Counter: [<span>${headpatsCounter}</span>]<img id="heart-icon" src="./icons/pixel-heart.svg">`;
+        break;
+      case (headpatsCounter % 100 === 0):
+        headpatNum.innerHTML = `Headpat Counter: [<span>${headpatsCounter}</span>]<img id="heart-icon" src="./icons/pixel-heart.svg">`;
+        break;
+      default:
+        headpatNum.innerHTML = `Headpat Counter: [${headpatsCounter}]<img id="heart-icon" src="./icons/pixel-heart.svg">`;
+        break;
+    }
+
+    localStorage.setItem('counter', headpatsCounter);
+  }
   // wanted to do media query fuckery but thought its way too indian 
   // const mq = window.matchMedia("(max-width: 300px)");
 

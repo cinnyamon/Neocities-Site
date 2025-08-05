@@ -149,6 +149,7 @@
   background-color: rgb(13, 16, 18);
   overflow: auto;
   scrollbar-color: rgb(33, 33, 33) rgb(13, 16, 18);
+  scrollbar-width: thin;
   font-family: "Space Mono";
   color: white;
   display: flex;
@@ -229,7 +230,12 @@
 
 
 @media screen and (max-width: 600px) {
-  
+  .term-title {
+    font-size: 14px; 
+  }
+  #toolbar {
+    font-size: 12px;
+  }
 }
 
 @media screen and (max-width: 500px) {
@@ -237,5 +243,11 @@
     flex-wrap: nowrap;
     overflow: auto;
     scrollbar-width: none;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .terminal-main-body {
+    height: 300px;
   }
 }
