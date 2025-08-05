@@ -1,6 +1,6 @@
 /* styling for the writable input inside the shell */
 
-.writable-textarea {
+#writable-box {
   height: 24px;
   align-items: center;
   background-color: transparent;
@@ -15,7 +15,7 @@
 }
 
 .writable-textarea-caret {
-  caret-color: rgb(255, 255, 255);
+  caret-color: rgb(255, 255, 255) !important;
 }
 
 #shell-input-container {

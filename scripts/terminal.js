@@ -1,8 +1,6 @@
 //my plan is to load the website and replace the html with javascript if it is enabled. if it is not then simply fall back to a simpler shell with no interactivity.
 
 
-//if the user has js enabled then the shell will clear itself and initialize a delay of 1-5 seconds once the user has started scrolling (non dependant on scroll position) and display the shell colors script.
-
 /* 1. clear console
 2. wait for user scroll
 3. when scroll detected
@@ -11,9 +9,7 @@
 6. let user enter any text inside shell
 7. ideally make the shell scrollable when new text is added by user but probably quite difficult to implement. */
 
-
-
-DOMPurify.sanitize()
+// for reference '\u00A0' is a non breaking space (&nbsp;), i use it for spaces that the flex container collapses
 
 
 
@@ -23,12 +19,8 @@ const termMainBody = document.querySelector('.terminal-main-body');
 const termClose = document.querySelector('.term-close');
 const closeShellWindow = document.querySelector('.js-closing-shell-check');
 const closeShellText = document.getElementById('js-close-shell-text');
-const originalText = closeShellText.innerHTML;
 
 const jsShellHTML = `JavaScript detected. Initialize interactive console...`;
-const shellName = `<span class="username">cinny</span>@<span class="sitename"
-                >neocities</span
-              >&#58;&#126;&#36;&nbsp;`;
 
 const shellUsername = document.createElement('span');
 shellUsername.classList.add('username');
@@ -38,33 +30,9 @@ const shellSitename = document.createElement('span');
 shellSitename.classList.add('sitename');
 shellSitename.textContent = 'neocities';
 
-
-
-let shellBlinkingBlock = `<span class="blinking-block">&#9608;</span>`;
-
-
-//on scroll detection for running the clearShell function
-//and displaying shellColors
-/* let hasScrolled = false
-window.addEventListener('scrollend', (event) => {
-
-  if (hasScrolled === false) {
-    clearShell();
-    hasScrolled = true;
-
-
-    // setTimeout(() => { // reenable if shit hits the fan
-    //   hasScrolled = true //never runs again
-    //   if (hasScrolled) {
-    //     shellColors();
-    //     setTimeout(() => {
-    //       jsShell.innerHTML = '';
-    //     }, 3000);
-    //   } 
-    // }, 6000)
-  };
-})
- */
+const shellBlinkingBlock = document.createElement('span');
+shellBlinkingBlock.classList.add('blinking-block');
+shellBlinkingBlock.innerHTML = '&#9608;'
 
 // this function runs when the site loads and clears the entire
 // shell vvvv
@@ -82,18 +50,18 @@ function clearShell() {
             if (index < jsShellHTML.length) {
               termMainBody.innerHTML += `${jsShellHTML.charAt(index)}`;
               index++;
-              setTimeout(typeWriter, 50);
+              setTimeout(typeWriter, 50); // 50
             } else {
               resolve(termMainBody.innerHTML); // takes termMainBody and adds to resolve function for use to use with .then
             }
           }
           typeWriter();
-        }, 2000);
+        }, 2000); // 2000
       });
     }
     setTimeout(() => {
       document.getElementById('css-shell').remove();
-    }, 2000)
+    }, 2000) // 2000
 
     return runTypeWriterPromise(); //returns the promise
   }
@@ -111,55 +79,45 @@ clearShell().then((jsDetectionText) => {
 
     //set timeout for the real js shell to appear
     setTimeout(() => {
+
+      const userGenContent = document.createElement('div');
+      userGenContent.setAttribute('id', 'user-generated-content');
+
+      const shellInputContainer = document.createElement('div');
+      shellInputContainer.setAttribute('id', 'shell-input-container');
+      
+        // create shit inside the shell input container
+        const writableBox = document.createElement('span');
+        writableBox.setAttribute('id', 'writable-box');
+        writableBox.setAttribute('role', 'textbox');
+        writableBox.setAttribute('tabindex', '0');
+        writableBox.setAttribute('maxlength', '60');
+        writableBox.contentEditable = true;
+
+        // append the created shit inside the shell input container
+        shellInputContainer.append(
+          shellUsername,
+          '@',
+          shellSitename,
+          ':~$\u00A0',
+          writableBox,
+          shellBlinkingBlock,
+        )
+
+      // append everything to the terminal main body
       termMainBody.innerHTML = `
-      ${savedJsShellText}
-      ${shellColors()}
-      <div id="pre-test"></div>
-      <div id="shell-input-container">
-        ${shellName}
-          <span id="writable-box" role="textbox" tabindex="0" class="writable-textarea" maxlength="60" contenteditable>
-          </span>${shellBlinkingBlock}
-      </div>`
-    
-    const preTest = document.getElementById('pre-test');
+        ${savedJsShellText}
+        ${shellColors()}
+        `
+      termMainBody.append(
+        userGenContent,
+        shellInputContainer,
+      )
 
-    // change this thing to append to the pre-test div a <p id= generatedp style = display: flex> which 
-    // appends inside of it a <span class="username"> + the text cinny and another <span class="sitename"> + the
-    //  text neocities, and then append using insertAdjacentHTML('beforeend',:~$ + safeuserInput )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    const writableBox = document.getElementById('writable-box');
-    const textArea = document.querySelector('.writable-textarea');
-
-    focusTextBoxOnClick(writableBox);
-    maxCharacterInput(writableBox);
-    displayCmndInShell(writableBox, preTest, textArea, termMainBody);
-    }, 800);
+      focusTextBoxOnClick(writableBox);
+      maxCharacterInput(writableBox);
+      displayCmndInShell(writableBox, userGenContent, termMainBody);
+    }, 800); // 800
 });
 
 function shellScrollObserver(termMainBody) {
@@ -206,7 +164,7 @@ function maxCharacterInput(writableBox) {
     });
 }
 
-function displayCmndInShell(writableBox, preTest, textArea) {
+function displayCmndInShell(writableBox, userGenContent) {
   // create array to store the user's input
   const userInputArray = [];
   let arrowUpCounter = -1;
@@ -250,13 +208,25 @@ function displayCmndInShell(writableBox, preTest, textArea) {
 
       // create the paragraph element which will contain all the user input text
       
-      
+      const generatedP = document.createElement('p');
+      generatedP.setAttribute('id', 'generatedp');
+      generatedP.style = 'display: flex';
+      generatedP.append(
+        shellUsername.cloneNode(true),
+        '@',
+        shellSitename.cloneNode(true),
+        ':~$ ',
+        safeUserInput);
+
+      // create the span to show the result in to display in the terminal
+      const userCommandSpan = document.createElement('span');
+      userCommandSpan.style = 'color: grey';
 
       const safeInputTrimmed = safeUserInput.trim();
       const bannedLettersRGX = /^[etisghlbm]$/i;
-      const catchTimeWords = ['date', 'time', 'date short', 'short date', 'time short', 'short time',];
       const date = new Date();
       const currentTime = {
+
         currentDateLong: date.toLocaleString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: "numeric"}),
         currentDateShort: date.toLocaleString('en-US', { dateStyle: 'short' }),
 
@@ -264,29 +234,15 @@ function displayCmndInShell(writableBox, preTest, textArea) {
         currentTimeShort: date.toLocaleString('en-US', { timeStyle: 'short' }),
       }
 
-
-      // add more functional commands to the terminal by updating the catch inside the 2nd if statement. for example if the safeinputtrimmed contains cat console.log a cat
-
-
       // early return
       if (bannedLettersRGX.test(safeInputTrimmed)) {
-        
-        console.log(safeUserInput)
-        const generatedP = document.createElement('p');
-        generatedP.setAttribute('id', 'generatedp');
-        generatedP.style = 'display: flex';
-        generatedP.append(shellUsername)
-        generatedP.append('@')
-        generatedP.append(shellSitename)
-        generatedP.append('&#58;&#126;&#36;&nbsp;')
-        generatedP.append(safeUserInput);
-        preTest.append(generatedP)
 
-        console.log(shellUsername)
+        userGenContent.append(generatedP)
         // wait until the term updates then clear user input
         setTimeout(() => {
-          textArea.textContent = '';
+          writableBox.textContent = '';
         }, 0);
+
         return;
       }
 
@@ -294,11 +250,11 @@ function displayCmndInShell(writableBox, preTest, textArea) {
       // if (!bannedLettersRGX.test(safeInputTrimmed)) {
       //   try {
       //     const result = math.evaluate(safeInputTrimmed);
-      //     preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}&nbsp;<span style="color: grey">= ${result}</span></p>`;
+      //     userGenContent.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}&nbsp;<span style="color: grey">= ${result}</span></p>`;
       //   } catch (err) {
       //     console.log(err)
       //     if (safeInputTrimmed.includes('time')) {
-      //       preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}&nbsp;<span style="color: grey">= ${currentTime.currentTimeLong}</span></p>`;
+      //       userGenContent.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}&nbsp;<span style="color: grey">= ${currentTime.currentTimeLong}</span></p>`;
 
 
       //     } else if (safeInputTrimmed.includes('cat')){
@@ -306,74 +262,102 @@ function displayCmndInShell(writableBox, preTest, textArea) {
 
 
       //     } else {
-      //     preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}</p>`;
+      //     userGenContent.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}</p>`;
       //     }
       //   }
       //   setTimeout(() => {
-      //     textArea.textContent = '';
+      //     writableBox.textContent = '';
       //   }, 0);
       //   return
       // }
-      
-      let textInside = 'dumbass iujuvyt';
-
 
 
       if (!bannedLettersRGX.test(safeInputTrimmed)) {
         try {
-
           const result = math.evaluate(safeInputTrimmed);
-          textInside = `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}&nbsp;<span style="color: grey">= ${result}</span></p>`;
+
+          userCommandSpan.insertAdjacentHTML('beforeend', '\u00A0=\u00A0');
+          // append the result to the span
+          userCommandSpan.append(result);
+          // append the span to the generated paragraph that duplicates each time you press enter
+          generatedP.append(userCommandSpan.cloneNode(true))
+          // and append the paragraph to the userGenContent div
+          userGenContent.append(generatedP)
+
           setTimeout(() => {
-            textArea.textContent = '';
+            writableBox.textContent = '';
           }, 0);
+
         } catch {
 
           if (safeInputTrimmed.includes('time') && safeInputTrimmed.includes('short')) {
-            preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}&nbsp;<span style="color: grey">> ${currentTime.currentTimeShort}</span></p>`;
+            
+            userCommandSpan.insertAdjacentHTML('beforeend', '\u00A0>\u00A0');
+            userCommandSpan.append(currentTime.currentTimeShort);
+            generatedP.append(userCommandSpan.cloneNode(true));
+            userGenContent.append(generatedP);
+
             setTimeout(() => {
-              textArea.textContent = '';
+              writableBox.textContent = '';
             }, 0);
             return;
           }
 
           if (safeInputTrimmed.includes('date') && safeInputTrimmed.includes('short')) {
-            preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}&nbsp;<span style="color: grey">> ${currentTime.currentDateShort}</span></p>`;
+            userCommandSpan.insertAdjacentHTML('beforeend', '\u00A0>\u00A0');
+            userCommandSpan.append(currentTime.currentDateShort);
+            generatedP.append(userCommandSpan.cloneNode(true));
+            userGenContent.append(generatedP);
+
             setTimeout(() => {
-              textArea.textContent = '';
+              writableBox.textContent = '';
             }, 0);
             return;
           }
 
           if (safeInputTrimmed.includes('time')) {
-            preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}&nbsp;<span style="color: grey">> ${currentTime.currentTimeLong}</span></p>`;
+            userCommandSpan.insertAdjacentHTML('beforeend', '\u00A0>\u00A0');
+            userCommandSpan.append(currentTime.currentTimeLong);
+            generatedP.append(userCommandSpan.cloneNode(true));
+            userGenContent.append(generatedP);
+
             setTimeout(() => {
-              textArea.textContent = '';
+              writableBox.textContent = '';
             }, 0);
             return;
           }
           if (safeInputTrimmed.includes('date')) {
-            preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}&nbsp;<span style="color: grey">> ${currentTime.currentDateLong}</span></p>`;
+            userCommandSpan.insertAdjacentHTML('beforeend', '\u00A0>\u00A0');
+            userCommandSpan.append(currentTime.currentDateLong);
+            generatedP.append(userCommandSpan.cloneNode(true));
+            userGenContent.append(generatedP);
+
             setTimeout(() => {
-              textArea.textContent = '';
+              writableBox.textContent = '';
             }, 0);
             return;
           }
 
           if (safeInputTrimmed.includes('cat')) {
-            console.log('kitten')
-            preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}</p>`;
+            userCommandSpan.insertAdjacentHTML('beforeend', '\u00A0>\u00A0');
+            userCommandSpan.append('KITTENS YAAAYYYYYYY');
+            generatedP.append(userCommandSpan.cloneNode(true));
+            userGenContent.append(generatedP);
+
             setTimeout(() => {
-              textArea.textContent = '';
+              writableBox.textContent = '';
             }, 0);
             return;
           }
 
-            preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}</p>`
-            setTimeout(() => {
-              textArea.textContent = '';
-            }, 0);
-        }
+          userGenContent.append(generatedP)
+
+          setTimeout(() => {
+            writableBox.textContent = '';
+          }, 0);
+  
+          return;
+        } 
       }
 
       
@@ -381,18 +365,18 @@ function displayCmndInShell(writableBox, preTest, textArea) {
       
       // try {
       //   if (bannedLettersRGX.test(safeInputTrimmed) === true) {
-      //     preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}</p>`;
+      //     userGenContent.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}</p>`;
       //   } else {
       //     const result = math.evaluate(safeInputTrimmed);
-      //     preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}&nbsp;<span style="color: grey">= ${result}</span></p>`;
+      //     userGenContent.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}&nbsp;<span style="color: grey">= ${result}</span></p>`;
       //   }
       // } 
       // catch {
-      //   preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}</p>`;
+      //   userGenContent.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}</p>`;
       // }
       
 
-      // if user input contains anything from regex, send the user input into the preTest innerHTML and dont send anything to math.evaluate, 
+      // if user input contains anything from regex, send the user input into the userGenContent innerHTML and dont send anything to math.evaluate, 
 
       // else if the user input doesnt contain anything from regex then send the input to math.evaluate and show the result
 
@@ -402,19 +386,19 @@ function displayCmndInShell(writableBox, preTest, textArea) {
 
       // switch (true) {
       //   case bannedLettersRGX.test(safeInputTrimmed):
-      //     preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}</p>`
+      //     userGenContent.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}</p>`
       //     break
 
       //   case !bannedLettersRGX.test(safeInputTrimmed):
       //     const result = math.evaluate(safeInputTrimmed);
-      //     preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}&nbsp;<span style="color: grey">= ${result}</span></p>`;
+      //     userGenContent.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}&nbsp;<span style="color: grey">= ${result}</span></p>`;
       //     break
 
       //   case safeUserInput:
-      //     preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}</p>`
+      //     userGenContent.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}</p>`
 
       //   default: 
-      //     preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}</p>`
+      //     userGenContent.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}</p>`
       // }
 
       // (() => {
@@ -426,7 +410,7 @@ function displayCmndInShell(writableBox, preTest, textArea) {
       //   }
       // })():
       // const result = math.evaluate(safeInputTrimmed);
-      // preTest.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}&nbsp;<span style="color: grey">= ${result}</span></p>`;
+      // userGenContent.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}&nbsp;<span style="color: grey">= ${result}</span></p>`;
     };
   });
 
@@ -522,6 +506,7 @@ let timerId = {};
 let closeBtnAttempts = 0;
 function showClosePopupOnClick() {
   function closePopup() {
+    const originalText = closeShellText.innerHTML;
     closeBtnAttempts++
     closeShellWindow.classList.add('js-closing-shell-check-visible');
     if (timerId) {clearTimeout(timerId)}
