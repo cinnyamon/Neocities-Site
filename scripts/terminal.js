@@ -149,18 +149,8 @@ function maxCharacterInput(writableBox) {
         writableBox.textContent = text.slice(0, maxChars);
   
         // Move caret to the end
-        placeCaretAtEnd(writableBox);
+        moveCaretAtTheEnd(writableBox);
       }
-
-      function placeCaretAtEnd(el) {
-        const range = document.createRange();
-        const sel = window.getSelection();
-        range.selectNodeContents(el);
-        range.collapse(false);
-        sel.removeAllRanges();
-        sel.addRange(range);
-      }
-
     });
 }
 
@@ -222,7 +212,7 @@ function displayCmndInShell(writableBox, userGenContent) {
       const userCommandSpan = document.createElement('span');
       userCommandSpan.style = 'color: grey';
 
-      const safeInputTrimmed = safeUserInput.trim();
+      const safeUILowerCaseTrim = safeUserInput.toLowerCase().trim();
       const bannedLettersRGX = /^[etisghlbm]$/i;
       const date = new Date();
       const currentTime = {
@@ -235,8 +225,7 @@ function displayCmndInShell(writableBox, userGenContent) {
       }
 
       // early return
-      if (bannedLettersRGX.test(safeInputTrimmed)) {
-
+      if (bannedLettersRGX.test(safeUILowerCaseTrim)) {
         userGenContent.append(generatedP)
         // wait until the term updates then clear user input
         setTimeout(() => {
@@ -245,113 +234,24 @@ function displayCmndInShell(writableBox, userGenContent) {
 
         return;
       }
-
-      // if rgx fails evaluate 
-      // if (!bannedLettersRGX.test(safeInputTrimmed)) {
-      //   try {
-      //     const result = math.evaluate(safeInputTrimmed);
-      //     userGenContent.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}&nbsp;<span style="color: grey">= ${result}</span></p>`;
-      //   } catch (err) {
-      //     console.log(err)
-      //     if (safeInputTrimmed.includes('time')) {
-      //       userGenContent.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}&nbsp;<span style="color: grey">= ${currentTime.currentTimeLong}</span></p>`;
-
-
-      //     } else if (safeInputTrimmed.includes('cat')){
-      //       console.log('kitten')
-
-
-      //     } else {
-      //     userGenContent.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}</p>`;
-      //     }
-      //   }
-      //   setTimeout(() => {
-      //     writableBox.textContent = '';
-      //   }, 0);
-      //   return
-      // }
-
-
-      if (!bannedLettersRGX.test(safeInputTrimmed)) {
+      // main logik
+      if (!bannedLettersRGX.test(safeUILowerCaseTrim)) {
         try {
-          const result = math.evaluate(safeInputTrimmed);
-
+          const result = math.evaluate(safeUILowerCaseTrim);
+          // change to =
           userCommandSpan.insertAdjacentHTML('beforeend', '\u00A0=\u00A0');
-          // append the result to the span
-          userCommandSpan.append(result);
-          // append the span to the generated paragraph that duplicates each time you press enter
-          generatedP.append(userCommandSpan.cloneNode(true))
-          // and append the paragraph to the userGenContent div
-          userGenContent.append(generatedP)
-
-          setTimeout(() => {
-            writableBox.textContent = '';
-          }, 0);
+          
+          appendTermCommand(result, userCommandSpan, generatedP, userGenContent, writableBox)
 
         } catch {
+          // change from = to >
+          userCommandSpan.insertAdjacentHTML('beforeend', '\u00A0>\u00A0');
 
-          if (safeInputTrimmed.includes('time') && safeInputTrimmed.includes('short')) {
-            
-            userCommandSpan.insertAdjacentHTML('beforeend', '\u00A0>\u00A0');
-            userCommandSpan.append(currentTime.currentTimeShort);
-            generatedP.append(userCommandSpan.cloneNode(true));
-            userGenContent.append(generatedP);
-
-            setTimeout(() => {
-              writableBox.textContent = '';
-            }, 0);
-            return;
-          }
-
-          if (safeInputTrimmed.includes('date') && safeInputTrimmed.includes('short')) {
-            userCommandSpan.insertAdjacentHTML('beforeend', '\u00A0>\u00A0');
-            userCommandSpan.append(currentTime.currentDateShort);
-            generatedP.append(userCommandSpan.cloneNode(true));
-            userGenContent.append(generatedP);
-
-            setTimeout(() => {
-              writableBox.textContent = '';
-            }, 0);
-            return;
-          }
-
-          if (safeInputTrimmed.includes('time')) {
-            userCommandSpan.insertAdjacentHTML('beforeend', '\u00A0>\u00A0');
-            userCommandSpan.append(currentTime.currentTimeLong);
-            generatedP.append(userCommandSpan.cloneNode(true));
-            userGenContent.append(generatedP);
-
-            setTimeout(() => {
-              writableBox.textContent = '';
-            }, 0);
-            return;
-          }
-          if (safeInputTrimmed.includes('date')) {
-            userCommandSpan.insertAdjacentHTML('beforeend', '\u00A0>\u00A0');
-            userCommandSpan.append(currentTime.currentDateLong);
-            generatedP.append(userCommandSpan.cloneNode(true));
-            userGenContent.append(generatedP);
-
-            setTimeout(() => {
-              writableBox.textContent = '';
-            }, 0);
-            return;
-          }
-
-          if (safeInputTrimmed.includes('cat')) {
-            userCommandSpan.insertAdjacentHTML('beforeend', '\u00A0>\u00A0');
-            userCommandSpan.append('KITTENS YAAAYYYYYYY');
-            generatedP.append(userCommandSpan.cloneNode(true));
-            userGenContent.append(generatedP);
-
-            setTimeout(() => {
-              writableBox.textContent = '';
-            }, 0);
-            return;
-          }
-
+          // handle ALL user commands
+          userCommand(safeUILowerCaseTrim, currentTime, userCommandSpan, generatedP, userGenContent, writableBox);
+          
+          // if the above function returns with no cases matching the code below runs
           userGenContent.append(generatedP)
-
           setTimeout(() => {
             writableBox.textContent = '';
           }, 0);
@@ -359,63 +259,10 @@ function displayCmndInShell(writableBox, userGenContent) {
           return;
         } 
       }
-
-      
-        
-      
-      // try {
-      //   if (bannedLettersRGX.test(safeInputTrimmed) === true) {
-      //     userGenContent.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}</p>`;
-      //   } else {
-      //     const result = math.evaluate(safeInputTrimmed);
-      //     userGenContent.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}&nbsp;<span style="color: grey">= ${result}</span></p>`;
-      //   }
-      // } 
-      // catch {
-      //   userGenContent.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}</p>`;
-      // }
-      
-
-      // if user input contains anything from regex, send the user input into the userGenContent innerHTML and dont send anything to math.evaluate, 
-
-      // else if the user input doesnt contain anything from regex then send the input to math.evaluate and show the result
-
-
-
-
-
-      // switch (true) {
-      //   case bannedLettersRGX.test(safeInputTrimmed):
-      //     userGenContent.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}</p>`
-      //     break
-
-      //   case !bannedLettersRGX.test(safeInputTrimmed):
-      //     const result = math.evaluate(safeInputTrimmed);
-      //     userGenContent.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}&nbsp;<span style="color: grey">= ${result}</span></p>`;
-      //     break
-
-      //   case safeUserInput:
-      //     userGenContent.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}</p>`
-
-      //   default: 
-      //     userGenContent.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}</p>`
-      // }
-
-      // (() => {
-      //   try {
-      //     result = math.evaluate(safeInputTrimmed);
-      //     return true;
-      //   } catch {
-      //     return false;
-      //   }
-      // })():
-      // const result = math.evaluate(safeInputTrimmed);
-      // userGenContent.innerHTML += `<p id="generatedp" style="display: flex">${shellName}${safeUserInput}&nbsp;<span style="color: grey">= ${result}</span></p>`;
     };
   });
 
  
-
   // add event listener for arrow keys to show the caret
   writableBox.addEventListener('keydown', (arrow) => {
     if (arrow.key === 'ArrowLeft' || arrow.key === 'ArrowRight' || arrow.key === 'Control') {
@@ -432,8 +279,6 @@ function displayCmndInShell(writableBox, userGenContent) {
 
 
     let maxArrowUpCounter = userInputArray.length - 1;
-    // console.log('max arrow up counter', maxArrowUpCounter)
-    // console.log('the arrow up counter', arrowUpCounter)
     if (arrow.key === 'ArrowUp') {
 
       if (arrowUpCounter < maxArrowUpCounter) {
@@ -444,8 +289,6 @@ function displayCmndInShell(writableBox, userGenContent) {
       for (const [index, value] of reversed.entries()) {
         if (index === arrowUpCounter) {
 
-          // console.log(arrowUpCounter);
-          // console.log('Found:', value);
           writableBox.textContent = value;
         
           // add a set timeout for the caret placement so that the dom can update in peace before this shit runs and places the caret at the end.
@@ -466,9 +309,6 @@ function displayCmndInShell(writableBox, userGenContent) {
       for (const [index, value] of reversed.entries()) {
         if (index === arrowUpCounter) {
 
-          // console.log(arrowUpCounter);
-          // console.log(reversed.length);
-          // console.log('Found:', value);
           writableBox.textContent = value;
 
           setTimeout(() => {
@@ -479,6 +319,48 @@ function displayCmndInShell(writableBox, userGenContent) {
     };
   });
 };
+
+const userCommand = (safeUILowerCaseTrim, currentTime, userCommandSpan, generatedP, userGenContent, writableBox) => {
+  if (safeUILowerCaseTrim.includes('short')) {
+
+    if (safeUILowerCaseTrim.includes('time')) {
+      appendTermCommand(currentTime.currentTimeShort, userCommandSpan, generatedP, userGenContent, writableBox);
+      return;
+    }
+    if (safeUILowerCaseTrim.includes('date')) {
+      appendTermCommand(currentTime.currentDateShort, userCommandSpan, generatedP, userGenContent, writableBox);
+      return;
+    }
+    return;
+  }
+
+  if (safeUILowerCaseTrim.includes('time')) {
+    appendTermCommand(currentTime.currentTimeLong, userCommandSpan, generatedP, userGenContent, writableBox);
+    return;
+  }
+
+  if (safeUILowerCaseTrim.includes('date')) {
+    appendTermCommand(currentTime.currentDateLong, userCommandSpan, generatedP, userGenContent, writableBox);
+    return;
+  }
+
+  if (safeUILowerCaseTrim.includes('cat')) {
+    appendTermCommand('KITTENS YAAAYYYYYYY', userCommandSpan, generatedP, userGenContent, writableBox)
+  }
+}
+
+const appendTermCommand = (command, userCommandSpan, generatedP, userGenContent, writableBox) => {
+  // append the result to the span
+  userCommandSpan.append(command);
+  // append the span to the generated paragraph that duplicates each time you press enter
+  generatedP.append(userCommandSpan.cloneNode(true));
+  // and append the paragraph to the userGenContent div
+  userGenContent.append(generatedP);
+
+  setTimeout(() => {
+    writableBox.textContent = '';
+  }, 0);
+}
 
 function moveCaretAtTheEnd(writableBox) {
    
