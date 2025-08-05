@@ -46,7 +46,7 @@ wrapper.addEventListener('mousemove', (e) => {
 })
 
 
-
+document.query
 
 
 
