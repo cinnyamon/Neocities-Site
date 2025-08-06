@@ -13,7 +13,7 @@ body {
   color: white;
   position: relative;
   font-size: 16px;
-  
+  overflow: auto;
 }
 
 
@@ -91,45 +91,6 @@ button:hover {
   mask-repeat: no-repeat;
   mask-size: 100% 100%;
   z-index: -1;
-}
-
-/* #bg {
-  height: 100%;
-  width: 100%;
-  animation: polka 15s infinite ease-in-out;
-} */
-
-@keyframes polka {
-  0%, 100% {
-    background-image: url(/img/10.png);
-  }
-  10% {
-    background-image: url(/img/1.png);
-  }
-  20% {
-    background-image: url(/img/2.png);
-  }
-  30% {
-    background-image: url(/img/3.png);
-  }
-  40% {
-    background-image: url(/img/4.png);
-  }
-  50% {
-    background-image: url(/img/5.png);
-  }
-  60% {
-    background-image: url(/img/6.png);
-  }
-  70% {
-    background-image: url(/img/7.png);
-  }
-  80% {
-    background-image: url(/img/8.png);
-  }
-  90% {
-    background-image: url(/img/9.png);
-  }
 }
 
 #gsapcursor {

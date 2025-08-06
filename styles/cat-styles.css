@@ -1,7 +1,6 @@
 .kitten {
   height: 100vh;
   position: relative;
-  overflow: hidden;
 }
 
 @media screen and (max-height: 700px) {

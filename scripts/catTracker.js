@@ -95,7 +95,7 @@ function init() {
           // since theres no promise to be made for scrollTo im resorting to using a settimeout, might change it in the future to be based on the scroll position.
           setTimeout(() => {
             document.body.style.overflow = '';
-          }, 700);
+          }, 600);
 
         }, 2000);
 
@@ -106,7 +106,7 @@ function init() {
       if (!entry.isIntersecting) {
         console.log('its not intersecting anymore')
         clearTimeout(timerId)
-        outerWrapper.style.overflow = 'hidden';
+        document.body.style.overflow = '';
         return;
       }
       console.log(entry.intersectionRatio)
@@ -124,8 +124,30 @@ function init() {
 
 
 
+  function moveButtonsOnScroll () {
+    const pawBtnsDiv = document.querySelector('.paw-buttons');
 
+    window.addEventListener('scroll', () => {
+      const pawBtnsRect = pawBtnsDiv.getBoundingClientRect(); // still fine here
+      const outerWrapperRect = outerWrapper.getBoundingClientRect(); // ✅ now updates every scroll
 
+      let viewportBottom = window.scrollY + window.innerHeight - pawBtnsRect.height;
+      let disappearTopCat = window.scrollY + outerWrapperRect.top;
+
+      if (viewportBottom >= disappearTopCat) {
+        pawBtnsDiv.style = 'border: 1px solid red';
+      } else {
+        pawBtnsDiv.style = 'border: 1px solid blue';
+      }
+
+      console.log(viewportBottom > disappearTopCat);
+      console.log('viewportbottom:', viewportBottom, 'disappeartopcatdiv:', disappearTopCat);
+
+      pawBtnsDiv.style.top = `${window.scrollY + window.innerHeight -200}px`;
+    });
+  }
+
+  moveButtonsOnScroll()
 
 
   
