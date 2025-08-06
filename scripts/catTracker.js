@@ -128,8 +128,8 @@ function init() {
     const pawBtnsDiv = document.querySelector('.paw-buttons');
 
     window.addEventListener('scroll', () => {
-      const pawBtnsRect = pawBtnsDiv.getBoundingClientRect(); // still fine here
-      const outerWrapperRect = outerWrapper.getBoundingClientRect(); // ✅ now updates every scroll
+      const pawBtnsRect = pawBtnsDiv.getBoundingClientRect(); 
+      const outerWrapperRect = outerWrapper.getBoundingClientRect(); 
 
       let viewportBottom = window.scrollY + window.innerHeight - pawBtnsRect.height;
       let disappearTopCat = window.scrollY + outerWrapperRect.top;
