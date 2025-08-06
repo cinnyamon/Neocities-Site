@@ -3,6 +3,8 @@ const mainEl = document.getElementById('gsapcursor');
 const images = document.querySelectorAll('.crsr');
 const dotMask = document.querySelector('.dot-mask');
 
+gsap.registerPlugin(ScrambleTextPlugin);
+
 // dom for sidenav button functionality
 const navButtons = document.querySelectorAll('.nav-button');
 
@@ -34,8 +36,9 @@ const imagesLoaded = () => {
 let mouseTrailBtnPressed = JSON.parse(localStorage.getItem('mousetrail')) || false;
 let bgTrailBtnPressed = JSON.parse(localStorage.getItem('bgtrail')) || false;
 
-
 imagesLoaded().then(() => {
+  const framesPerSec = 18;
+  let wait = 0;
 
   navButtons.forEach((button) => {
     const trailId = button.dataset.trailId;
@@ -61,7 +64,7 @@ imagesLoaded().then(() => {
         localStorage.setItem('mousetrail', mouseTrailBtnPressed);
         
         if (mouseTrailBtnPressed) {
-          button.textContent = 'OFF'
+          button.textContent = 'OFF';
         } else {
           button.textContent = 'ON'
         }
@@ -82,13 +85,25 @@ imagesLoaded().then(() => {
   });
   
   // handle mouse input
-  mainEl.addEventListener('mousemove', (event) => handleMouseEvents(event, true, mouseTrailBtnPressed, bgTrailBtnPressed));
+  mainEl.addEventListener('mousemove', (event) => {
+    if (Date.now() >= wait) {
+      handleMouseEvents(event, true, mouseTrailBtnPressed, bgTrailBtnPressed);
+
+      wait = Date.now() + 1000 / framesPerSec;
+    }
+  });
   mainEl.addEventListener('mouseenter', (event) => handleMouseEvents(event, true, mouseTrailBtnPressed,bgTrailBtnPressed));
   mainEl.addEventListener('mouseleave', (event) => handleMouseEvents(event, false, mouseTrailBtnPressed, bgTrailBtnPressed));
 
 
   // handle touch input
-  mainEl.addEventListener('touchmove', (event) => handleTouchEvents(event, true, mouseTrailBtnPressed, bgTrailBtnPressed));
+  mainEl.addEventListener('touchmove', (event) => {
+    if (Date.now() >= wait) {
+      handleTouchEvents(event, true, mouseTrailBtnPressed, bgTrailBtnPressed)
+
+      wait = Date.now() + 1000 / framesPerSec;
+    }
+  });
   mainEl.addEventListener('touchstart', (event) => handleTouchEvents(event, true, mouseTrailBtnPressed, bgTrailBtnPressed));
   mainEl.addEventListener('touchend', (event) => handleTouchEvents(event, false, mouseTrailBtnPressed, bgTrailBtnPressed));
   
@@ -122,7 +137,6 @@ imagesLoaded().then(() => {
   // random click animation
 
 
-gsap.registerPlugin(ScrambleTextPlugin);
 
 // element.innerHTML = ''
 // element.append('Make the Internet, an');
@@ -202,6 +216,10 @@ const mouseTrail = (event, mouseMove, mouseTrailBtnPressed) => {
       duration: 0,
       opacity: 0,
     })
+
+    
+
+    
   }
   
 }

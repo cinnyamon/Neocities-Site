@@ -1,59 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>background tile test</title>
-  <style>
-    body {
-      margin: 0;
-      background: #858585;
-      height: 100vh;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>background tile test</title>
+    <style>
+      body {
+        margin: 0;
+        background: #858585;
+        height: 100vh;
+      }
 
-    .dot-mask {
-      position: absolute;
-      inset: 0;
-      height: 100%;
-      width: 100%;
-      background-image: radial-gradient(#8946e0 3px, transparent 3px);
-      background-size: 16px 16px;
-      /* -webkit-mask-image: radial-gradient(
+      .dot-mask {
+        position: absolute;
+        inset: 0;
+        height: 100%;
+        width: 100%;
+        background-image: radial-gradient(#8946e0 3px, transparent 3px);
+        background-size: 16px 16px;
+        /* -webkit-mask-image: radial-gradient(
         ellipse 50% 50% at 50% 50%,
         #000 60%,
         transparent 100%
       ); */
-    }
+      }
 
-    .dot {
-      position: absolute;
-      inset: 0;
-      height: 100%;
-      width: 100%;
-      background-image: radial-gradient(#ffffff 1px, transparent 1px);
-      background-size: 16px 16px;
-      opacity: 0.15;
-    }
+      .dot {
+        position: absolute;
+        inset: 0;
+        height: 100%;
+        width: 100%;
+        background-image: radial-gradient(#ffffff 1px, transparent 1px);
+        background-size: 16px 16px;
+        opacity: 0.15;
+      }
 
-    .container {
-      height: 100vh;
-    }
+      .container {
+        height: 100vh;
+      }
 
-    .pointer {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background-color: rgb(224, 91, 91);
-      filter: blur(3px);
-      pointer-events: none;
-    }
-  </style>
-</head>
-<body>
-  <!-- <div class="dot-mask">
+      .pointer {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: rgb(224, 91, 91);
+        filter: blur(3px);
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <div class="dot-mask">
     <div class="dot"></div>
   </div>
   <div class="dot"></div>
@@ -65,93 +65,87 @@
     <div class="container"></div>
     <div class="pointer"></div>
 
+    <script>
+      //   document.addEventListener('DOMContentLoaded', () => {
+      //   const dotMask = document.querySelector('.dot-mask');
 
-  <script>
-  //   document.addEventListener('DOMContentLoaded', () => {
-  //   const dotMask = document.querySelector('.dot-mask');
+      //   if (dotMask) {
+      //     let targetX = 0, targetY = 0;
+      //     let currentX = 0, currentY = 0;
 
-  //   if (dotMask) {
-  //     let targetX = 0, targetY = 0;
-  //     let currentX = 0, currentY = 0;
+      //     document.addEventListener('mousemove', (e) => {
+      //       targetX = e.clientX;
+      //       targetY = e.clientY;
+      //     });
 
-  //     document.addEventListener('mousemove', (e) => {
-  //       targetX = e.clientX;
-  //       targetY = e.clientY;
-  //     });
+      //     document.addEventListener('mouseout', (e) => {
+      //       console.log('mouse left doc')
+      //       dotMask.style = `mask-image: radial-gradient(ellipse 200px 200px at ${currentX}px ${currentY}px, rgba(0, 0, 0, 0) 10%, transparent 100%)`;
+      //     })
 
-  //     document.addEventListener('mouseout', (e) => {
-  //       console.log('mouse left doc')
-  //       dotMask.style = `mask-image: radial-gradient(ellipse 200px 200px at ${currentX}px ${currentY}px, rgba(0, 0, 0, 0) 10%, transparent 100%)`;
-  //     })
+      //     document.addEventListener('touchmove', (e) => {
+      //       const touch = e.targetTouches[0];
+      //       targetX = touch.clientX;
+      //       targetY = touch.clientY;
+      //     })
 
-  //     document.addEventListener('touchmove', (e) => {
-  //       const touch = e.targetTouches[0];
-  //       targetX = touch.clientX;
-  //       targetY = touch.clientY;
-  //     })
+      //     function animate() {
+      //       currentX += (targetX - currentX) * 0.1;
+      //       currentY += (targetY - currentY) * 0.1;
 
-  //     function animate() {
-  //       currentX += (targetX - currentX) * 0.1;
-  //       currentY += (targetY - currentY) * 0.1;
+      //       dotMask.style = `mask-image: radial-gradient(ellipse 300px 300px at ${currentX}px ${currentY}px, rgba(0, 0, 0, 1) 10%, transparent 100%)`;
 
-  //       dotMask.style = `mask-image: radial-gradient(ellipse 300px 300px at ${currentX}px ${currentY}px, rgba(0, 0, 0, 1) 10%, transparent 100%)`;
+      //       requestAnimationFrame(animate);
+      //     }
 
-  //       requestAnimationFrame(animate);
-  //     }
+      //     animate();
 
-  //     animate();
+      //   }
+      // });
 
-      
-  //   }
-  // });
+      const container = document.querySelector(".container");
+      const pointer = document.querySelector(".pointer");
+      let counter = 0;
 
-    const container = document.querySelector('.container');
-    const pointer = document.querySelector('.pointer');
-    let counter = 0
-    
-    // throttle functions that i could use with imports
-    // const throttle = (func, delay) => {
-    //   // previously called time of the function
-    //   let prev = 0;
-    //   return (...args) => {
-    //     // current called time of the function 
-    //     let now = new Date().getTime();
+      // throttle functions that i could use with imports
+      // const throttle = (func, delay) => {
+      //   // previously called time of the function
+      //   let prev = 0;
+      //   return (...args) => {
+      //     // current called time of the function
+      //     let now = new Date().getTime();
 
-    //     // logging the difference between previously called and current called timings
+      //     // logging the difference between previously called and current called timings
 
-    //     // if difference is greater than delay call the function again
-    //     if (now - prev > delay) {
-    //       prev = now;
+      //     // if difference is greater than delay call the function again
+      //     if (now - prev > delay) {
+      //       prev = now;
 
-    //       // '...' is the spread operator here returning the function with the array of arguments
-    //       return func(...args);
-    //     }
-    //   }
-    // }
-    // const throttledMouseMove = throttle(onMouseMove, 30)
+      //       // '...' is the spread operator here returning the function with the array of arguments
+      //       return func(...args);
+      //     }
+      //   }
+      // }
+      // const throttledMouseMove = throttle(onMouseMove, 30)
 
-    const timesPerSec = 24;
-    let waitUntil = 0;
-    console.log(Date.now())
-    container.addEventListener('mousemove', (e) => {
-      if (Date.now() >= waitUntil) {
-        onMouseMove(e);
-        waitUntil = Date.now() + 1000 / timesPerSec;
+      const timesPerSec = 24; // about every 41ms (1000ms/24)
+      let waitUntil = 0;
+      console.log(Date.now());
+      container.addEventListener("mousemove", (e) => {
+        if (Date.now() >= waitUntil) {
+          onMouseMove(e);
+          waitUntil = Date.now() + 1000 / timesPerSec;
+        }
+      });
+
+      function onMouseMove(e) {
+        counter++;
+        const { offsetX, offsetY } = e;
+        const x = offsetX - 10;
+        const y = offsetY - 10;
+        pointer.style.transform = `translate(${x}px, ${y}px)`;
+        console.log(counter);
       }
-    })
-
-
-    function onMouseMove(e) {
-
-      counter++
-      const { offsetX, offsetY } = e;
-      const x = offsetX - 10;
-      const y = offsetY - 10;
-      pointer.style.transform = `translate(${x}px, ${y}px)`
-      console.log(counter)
-    }
-
-    
-  </script>
-</body>
+    </script>
+  </body>
 </html>

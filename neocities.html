@@ -41,23 +41,20 @@
     <link rel="stylesheet" href="./styles/cat-styles.css" />
     <link rel="stylesheet" href="./styles/under-development.css" />
     <link rel="stylesheet" href="./styles/terminal-colors-noscript.css" />
+    <link rel="stylesheet" href="./styles/paw-buttons.css" />
     <link rel="stylesheet" href="./styles/footer.css" />
   </head>
   <body>
     <div id="underdevelopment" class="hidden-by-default">
-          <p>This website is under active development!</p>
-          <p>
-            Any features currently implemented may not be final nor finished.
-          </p>
-          <img class="arrowbtn" src="./icons/go-down.svg" />
-          <div class="buttonsdiv">
-            <button id="underdevbutton">
-              Okay, I understand and want to proceed.
-            </button>
-            <button id="underdevbutton" class="exitbtn">
-              I want to leave.
-            </button>
-          </div>
+      <p>This website is under active development!</p>
+      <p>Any features currently implemented may not be final nor finished.</p>
+      <img class="arrowbtn" src="./icons/go-down.svg" />
+      <div class="buttonsdiv">
+        <button id="underdevbutton">
+          Okay, I understand and want to proceed.
+        </button>
+        <button id="underdevbutton" class="exitbtn">I want to leave.</button>
+      </div>
     </div>
     <div id="gsapcursor">
       <div id="cursor-follow">
@@ -71,12 +68,12 @@
       </div>
       <nav class="nav-bar">
         <div class="header">
-            <p class="homelink">
-              &lt; <a href="https://cinny.neocities.org">home</a> &gt;
-            </p>
-            <p class="gitlink">
-              &lt; <a href="https://github.com/cinnyamon">github</a> &gt;
-            </p>
+          <p class="homelink">
+            &lt; <a href="https://cinny.neocities.org">home</a> &gt;
+          </p>
+          <p class="gitlink">
+            &lt; <a href="https://github.com/cinnyamon">github</a> &gt;
+          </p>
         </div>
         <div class="open-btn">
           <p id="js-open-btn" class="open-btn-gradient">&lt;&gt;</p>
@@ -86,20 +83,32 @@
             <div class="sidenav-links">
               <a class="link" href="#"># About me</a>
               <a class="link" href="#"># Links</a>
-              <a class="link" href="https://www.tumblr.com/wtfremex"># Fav artist</a>
+              <a class="link" href="https://www.tumblr.com/wtfremex"
+                ># Fav artist</a
+              >
               <a class="link" href="#"># meow</a>
-              <hr>
+              <hr />
               <div class="trails-title">
                 <p>Trails</p>
               </div>
               <div class="sidenav-btn">
-                <button class="nav-button sidenav-btn-status" data-trail-id="mouse-trail">ON</button>
+                <button
+                  class="nav-button sidenav-btn-status"
+                  data-trail-id="mouse-trail"
+                >
+                  ON
+                </button>
                 <div>
                   <p>Mouse</p>
                 </div>
               </div>
               <div class="sidenav-btn">
-                <button class="nav-button sidenav-btn-status" data-trail-id="bg-trail">ON</button>
+                <button
+                  class="nav-button sidenav-btn-status"
+                  data-trail-id="bg-trail"
+                >
+                  ON
+                </button>
                 <div>
                   <p>Page</p>
                 </div>
@@ -402,7 +411,7 @@
           </div>
         </div>
         <div class="kitten">
-          <div class="outer_wrapper">
+          <div class="outer-wrapper">
             <div class="cat-header">
               <p>Careful with the kitten, he bites</p>
               <p class="headpat-number">
@@ -543,7 +552,10 @@
                   </a>
                   <p>
                     &lt;
-                    <a class="link" rel="no-referrer" href="https://github.com/cinnyamon"
+                    <a
+                      class="link"
+                      rel="no-referrer"
+                      href="https://github.com/cinnyamon"
                       >github.com/<br />cinnyamon</a
                     >
                     &gt;
@@ -608,6 +620,14 @@
               </div>
             </div>
           </div>
+          <div class="paw-buttons">
+            <div>
+              <img class="paw-filled" src="./icons/catpaw-filled.png" />
+            </div>
+            <div>
+              <img class="paw-hollow" src="./icons/catpaw-hollow.png" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -635,7 +655,10 @@
       src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"
     ></script>
     <!-- gsap scrambletext -->
-     <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrambleTextPlugin.min.js"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrambleTextPlugin.min.js"
+    ></script>
     <!-- mathjs -->
     <script
       defer

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      background-color: black;
+    }
+
+    .promise-avatar-example {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+  <body>
+    <div
+      class="pfp"
+      style="
+        width: 100px;
+        height: 100px;
+        background-color: blueviolet;
+        margin: auto;
+        position: relative;
+      "
+    ></div>
+
+    <script>
+      const pfpDiv = document.querySelector(".pfp");
+      let username = "cinnyamon";
+
+      async function showAvatar() {
+        try {
+          let githubResponse = await fetch(
+            `https://api.github.com/users/${username}`
+          );
+          let githubUser = await githubResponse;
+          return githubUser;
+        } catch (err) {
+          console.log(err);
+        }
+      }
+
+      async function adfbadfb(githubUser) {
+        const user = await showAvatar();
+        if (user) {
+          let img = document.createElement("img");
+          img.src = githubUser.avatar_url;
+          img.className = "promise-avatar-example";
+          pfpDiv.append(img);
+
+          await new Promise((resolve, reject) => setTimeout(resolve, 3000));
+
+          img.remove();
+        } else {
+          console.log("fuck your momma");
+        }
+      }
+
+      adfbadfb();
+    </script>
+  </body>
+</html>

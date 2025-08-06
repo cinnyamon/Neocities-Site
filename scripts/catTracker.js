@@ -1,7 +1,8 @@
 const catHeaderDiv = document.querySelector('.cat-header');
 const headpatNum = document.querySelector('.headpat-number');
 let headpatsCounter = localStorage.getItem('counter') || 0;
-const outerWrapper = document.querySelector('.outer_wrapper');
+const outerWrapper = document.querySelector('.outer-wrapper');
+
 
 
 headpatNum.innerHTML = `Headpat Counter: [${headpatsCounter}]<img id="heart-icon" src="./icons/pixel-heart.svg">`;
@@ -13,6 +14,10 @@ function init() {
   let isJumping = false;
   let isWalking = true; 
 
+  // variables for throttling moving events
+  const framesPerSec = 18;
+  let wait = 0;
+
   // getting dom content
   const headpatZone = document.querySelector('.headpat-zone');
   const pettingZone = document.querySelector('.petting-zone');
@@ -21,7 +26,14 @@ function init() {
   const cat = document.querySelector(".cat");
   const head = document.querySelector(".cat_head");
   const legs = document.querySelectorAll(".leg");
+  const footer = document.querySelector('.footer');
+
   
+
+  
+
+  let timerId;
+
   // setting default x and y positions
   const pos = {
     x: null,
@@ -33,6 +45,88 @@ function init() {
     x: null,
     y: null,
   }
+
+
+
+  // document.body.addEventListener('mousemove', e => {
+  //   if (Date.now() >= wait) {
+  //     const x = e.pageX
+  //     const y = e.pageY
+
+  //     console.log('x:', x, 'y:', y)
+  //     wait = Date.now() + 1000 / framesPerSec;
+  //   }
+  // })
+
+
+  // helping function to scroll to element in page
+  function scrollTo(target, ...args) {
+    const offsetPx = args[0];
+    const outerWrapperHeight = args[1];
+    const rect = target.getBoundingClientRect();
+    let scrollTarget;
+
+    if (outerWrapperHeight > 700) {
+      scrollTarget = window.scrollY + rect.top - offsetPx;
+    } else {
+      scrollTarget = window.scrollY + rect.bottom - (window.innerHeight + offsetPx);
+    }
+    console.log(scrollTarget)
+
+    window.scrollTo({
+      top: scrollTarget,
+      behavior: "smooth",
+    });
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    let outerWrapperHeight = parseFloat(window.getComputedStyle(outerWrapper).height)
+
+    console.log(outerWrapperHeight)
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        console.log('its intersecting')
+
+        if (timerId) clearTimeout(timerId);
+
+        timerId = setTimeout(() => {
+          scrollTo(outerWrapper, 150, outerWrapperHeight)
+          
+          // since theres no promise to be made for scrollTo im resorting to using a settimeout, might change it in the future to be based on the scroll position.
+          setTimeout(() => {
+            document.body.style.overflow = '';
+          }, 700);
+
+        }, 2000);
+
+        return;
+
+      }
+      
+      if (!entry.isIntersecting) {
+        console.log('its not intersecting anymore')
+        clearTimeout(timerId)
+        outerWrapper.style.overflow = 'hidden';
+        return;
+      }
+      console.log(entry.intersectionRatio)
+    })
+  }, {
+    threshold: 0.5
+  })
+
+  observer.observe(outerWrapper)
+
+ const addScrollButtons = () => {
+  document.createElement('div');
+
+ }
+
+
+
+
+
+
 
   
   // this handles most of the logic by using the flag iswalking to set the x and y as the
@@ -83,6 +177,7 @@ function init() {
   // revoke the above obviously
   pettingZone.addEventListener('mouseleave', () => {
     isWalking = true;
+    
     legs.forEach((leg) => leg.classList.add("walk"));
   });
 
@@ -135,13 +230,6 @@ function init() {
   pettingZone.addEventListener('touchstart', () => {
     isWalking = false;
     console.log('touch started', isWalking)
-
-    pettingZone.addEventListener('touchmove', () => {
-      console.log('heoo')
-      headpatsCounter++
-      headpats(headpatsCounter, head, headpatNum)
-    })
-  
     // console.log('posx:', pos.x)
   });
   pettingZone.addEventListener('touchend', () => {
@@ -150,7 +238,11 @@ function init() {
   });
 
 
-
+  pettingZone.addEventListener('touchmove', () => {
+    console.log('heoo')
+    headpatsCounter++
+    headpats(headpatsCounter, head, headpatNum)
+  })
   headpatZone.addEventListener('touchstart', () => {
     isWalking = false
   });

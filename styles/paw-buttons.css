@@ -1,0 +1,11 @@
+.paw-buttons {
+  position: relative;
+  top: 0;
+  right: 0;
+}
+
+.paw-filled,
+.paw-hollow {
+  filter: invert();
+  width: 100px;
+}
