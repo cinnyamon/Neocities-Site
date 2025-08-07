@@ -4,7 +4,9 @@ const openBtnDiv = document.querySelector('.open-btn');
 const openBtnP = document.getElementById('js-open-btn');
 const background = document.getElementById('bg');
 const header = document.querySelector('.header');
-const bgHeaderArray = [background, header];
+const pawButtons = document.querySelector('.paw-buttons');
+const bgHeaderArray = [background, header, pawButtons];
+
 
 // flag
 let sideNavOpen = false;
@@ -36,7 +38,7 @@ tl.to(openBtnDiv, {
     },
   }, "<");
 
-tl.to([header, background], {
+tl.to([background, header, pawButtons], {
     filter: 'blur(5px)'
   }, "<");
 

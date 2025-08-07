@@ -17,7 +17,7 @@ function init() {
   let timerId;
 
   // variables for throttling moving events
-  const framesPerSec = 60;
+  const framesPerSec = 30;
   let wait = 0;
 
   // getting dom content
@@ -302,27 +302,40 @@ function init() {
   };
 
   // handle touchscreen events
-  pettingZone.addEventListener('touchstart', () => {
+  pettingZone.addEventListener('touchstart', (e) => {
+    e.preventDefault();
     isWalking = false;
-    console.log('touch started', isWalking)
-    // console.log('posx:', pos.x)
+
+
   });
-  pettingZone.addEventListener('touchend', () => {
+  pettingZone.addEventListener('touchend', (e) => {
     isWalking = true;
-    console.log('touch ended', isWalking)
+    e.preventDefault();
+
+
   });
 
 
   pettingZone.addEventListener('touchmove', () => {
-    console.log('heoo')
+    // this fires the headpatcounter waaaay too many times however i think its pretty fun to spam it plus requires a bit of skill to know you have to drag from this zone inwards to do it so i leave it in but i throttle it
+    
+    if (Date.now() > wait) {
+      headpatsCounter++;
+      headpats(headpatsCounter, head, headpatNum);
+
+      wait = Date.now() + 1000 / framesPerSec
+    }
+  })
+  headpatZone.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    isWalking = false;
+  });
+  headpatZone.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    isWalking = true
+    
     headpatsCounter++
     headpats(headpatsCounter, head, headpatNum)
-  })
-  headpatZone.addEventListener('touchstart', () => {
-    isWalking = false
-  });
-  headpatZone.addEventListener('touchend', () => {
-    isWalking = true
   });
 
 
