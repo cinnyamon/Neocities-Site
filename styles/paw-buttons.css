@@ -1,11 +1,37 @@
 .paw-buttons {
   position: fixed;
-  bottom: 0;
-  right: 0;
+  bottom: 30px;
+  right: -100px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: fit-content;
+  opacity: 1;
+}
+
+.paw-buttons button {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 50%;
+  border: rgb(71, 71, 71) dotted 1px;
+}
+
+.paw-buttons button:hover {
+  background-color: rgba(99, 66, 150, 0.4);
 }
 
 .paw-filled,
 .paw-hollow {
   filter: invert();
-  width: 100px;
+  width: 40px;
+  height: 40px;
+}
+
+.paw-hollow {
+  transform: rotate(180deg);
 }

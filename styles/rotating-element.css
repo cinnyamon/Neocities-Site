@@ -9,6 +9,8 @@
   perspective: 500px;
   perspective-origin: 50% calc(50% - 100px);
   margin-bottom: 40px;
+  padding-top: 60px;
+  padding-bottom: 60px;
 }
 
 .scene {
@@ -164,6 +166,7 @@
     height: 300px;
     margin-bottom: 30px;
     padding-top: 50px;
+    padding-bottom: 50px;
   }
   .scene-shadow {
     width: 350px;
@@ -179,6 +182,9 @@
   }
   .rotatingelementdiv {
     height: 250px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 0;
   }
   .scene-shadow {
     width: 270px;

@@ -9,13 +9,15 @@ headpatNum.innerHTML = `Headpat Counter: [${headpatsCounter}]<img id="heart-icon
 
 
 function init() {
-
-  // flags for the walking animation and the jumping animation
+  // flags
   let isJumping = false;
   let isWalking = true; 
+  let buttonsShown = false;
+  let preventOverflowChange = false;
+  let timerId;
 
   // variables for throttling moving events
-  const framesPerSec = 18;
+  const framesPerSec = 60;
   let wait = 0;
 
   // getting dom content
@@ -27,12 +29,8 @@ function init() {
   const head = document.querySelector(".cat_head");
   const legs = document.querySelectorAll(".leg");
   const footer = document.querySelector('.footer');
-
-  
-
-  
-
-  let timerId;
+  const pawBtnsDiv = document.querySelector('.paw-buttons');
+  const paws = document.querySelectorAll('.paw-buttons > button');
 
   // setting default x and y positions
   const pos = {
@@ -46,21 +44,53 @@ function init() {
     y: null,
   }
 
+  function moveButtonsOnScroll () {
+    window.addEventListener('scroll', () => {
+      if (Date.now() > wait) {
+        const pawBtnsRect = pawBtnsDiv.getBoundingClientRect(); 
+        const outerWrapperRect = outerWrapper.getBoundingClientRect(); 
+        const wrapperVisible = window.scrollY + window.innerHeight > window.scrollY + outerWrapperRect.top
+        const pawBtnsAboveWrapper = pawBtnsRect.top <= outerWrapperRect.top
 
+        if (!wrapperVisible) return;
+          
+        if (pawBtnsAboveWrapper) {
+          if (buttonsShown) {
+            gsap.to(pawBtnsDiv, {
+              opacity: 0,
+              right: -100,
+              duration: 1.5,
+              ease: "power3.out",
+            })              
+            buttonsShown = false
+          }
+          return
+        } 
 
-  // document.body.addEventListener('mousemove', e => {
-  //   if (Date.now() >= wait) {
-  //     const x = e.pageX
-  //     const y = e.pageY
+        if (!buttonsShown) {
+            gsap.to(pawBtnsDiv, {
+              opacity: 1,
+              right: 30,
+              duration: 1,
+              ease: "power4.out",
+            })
+          buttonsShown = true
+        }
 
-  //     console.log('x:', x, 'y:', y)
-  //     wait = Date.now() + 1000 / framesPerSec;
-  //   }
-  // })
-
+        paws.forEach(paw => {
+          const scrollId = paw.dataset.scrollId
+          paw.addEventListener('click', (e) => {
+            scrollInPageButtons(e, scrollId);
+          })
+        })
+        
+        wait = Date.now() + 1000 / framesPerSec
+      }
+    });
+  }
 
   // helping function to scroll to element in page
-  function scrollTo(target, ...args) {
+  const scrollToCatWrapper = (target, ...args) => {
     const offsetPx = args[0];
     const outerWrapperHeight = args[1];
     const rect = target.getBoundingClientRect();
@@ -79,75 +109,98 @@ function init() {
     });
   }
 
+  const scrollInPageButtons = (scrollId) => {
+    preventOverflowChange = true;
+
+    setTimeout(() => {
+      document.body.style.overflow = '';
+  
+      if (scrollId === 'paw-up') {
+        setTimeout(() => {
+          window.scroll({
+            top: 0,
+            behavior: "smooth"
+          });
+        }, 0);
+        return;
+      }
+  
+      setTimeout(() => {
+        window.scroll({
+          top: document.body.scrollHeight,
+          behavior: "smooth"
+        });
+      }, 0);
+    }, 100);
+      return;
+  }
+
   const observer = new IntersectionObserver((entries) => {
     let outerWrapperHeight = parseFloat(window.getComputedStyle(outerWrapper).height)
+    // console.log(outerWrapperHeight)
 
-    console.log(outerWrapperHeight)
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        console.log('its intersecting')
+        // console.log('its intersecting')
+
+        if (!buttonsShown) {
+          gsap.to(pawBtnsDiv, {
+            opacity: 1,
+            right: 30,
+            duration: 1,
+            ease: "power4.out",
+          })
+          buttonsShown = true
+        }
 
         if (timerId) clearTimeout(timerId);
 
         timerId = setTimeout(() => {
-          scrollTo(outerWrapper, 150, outerWrapperHeight)
-          
-          // since theres no promise to be made for scrollTo im resorting to using a settimeout, might change it in the future to be based on the scroll position.
+          scrollToCatWrapper(outerWrapper, 150, outerWrapperHeight)
+          // since theres no promise to be made for scrollToCatWrapper im resorting to using a settimeout, might change it in the future to be based on the scroll position.
           setTimeout(() => {
-            document.body.style.overflow = '';
+            if (preventOverflowChange) return;
+
+            document.body.style.overflow = 'hidden';
           }, 600);
 
         }, 2000);
-
         return;
 
       }
       
       if (!entry.isIntersecting) {
-        console.log('its not intersecting anymore')
+        // console.log('its not intersecting anymore')
+        // do the buttons appearing thing
+        if (buttonsShown) {
+          gsap.to(pawBtnsDiv, {
+            opacity: 0,
+            right: -100,
+            duration: 1.5,
+            ease: "power3.out",
+          })              
+          buttonsShown = false
+        }
+
         clearTimeout(timerId)
         document.body.style.overflow = '';
         return;
       }
-      console.log(entry.intersectionRatio)
+      // console.log(entry.intersectionRatio)
+    })
+
+    paws.forEach(paw => {
+      const scrollId = paw.dataset.scrollId
+      paw.addEventListener('click', (e) => {
+        scrollInPageButtons(scrollId);
+      })
     })
   }, {
     threshold: 0.5
   })
 
-  observer.observe(outerWrapper)
-
- const addScrollButtons = () => {
-  document.createElement('div');
-
- }
-
-
-
-  function moveButtonsOnScroll () {
-    const pawBtnsDiv = document.querySelector('.paw-buttons');
-
-    window.addEventListener('scroll', () => {
-      const pawBtnsRect = pawBtnsDiv.getBoundingClientRect(); 
-      const outerWrapperRect = outerWrapper.getBoundingClientRect(); 
-
-      let viewportBottom = window.scrollY + window.innerHeight - pawBtnsRect.height;
-      let disappearTopCat = window.scrollY + outerWrapperRect.top;
-
-      if (viewportBottom >= disappearTopCat) {
-        pawBtnsDiv.style = 'border: 1px solid red';
-      } else {
-        pawBtnsDiv.style = 'border: 1px solid blue';
-      }
-
-      console.log(viewportBottom > disappearTopCat);
-      console.log('viewportbottom:', viewportBottom, 'disappeartopcatdiv:', disappearTopCat);
-
-      pawBtnsDiv.style.top = `${window.scrollY + window.innerHeight -200}px`;
-    });
-  }
-
-  moveButtonsOnScroll()
+  observer.observe(outerWrapper);
+ 
 
 
   

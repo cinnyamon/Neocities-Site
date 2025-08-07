@@ -43,6 +43,7 @@ imagesLoaded().then(() => {
   navButtons.forEach((button) => {
     const trailId = button.dataset.trailId;
     
+    
     if (trailId === 'mouse-trail') {
       if (JSON.parse(localStorage.getItem('mousetrail')) === true) {
         button.textContent = 'OFF'
