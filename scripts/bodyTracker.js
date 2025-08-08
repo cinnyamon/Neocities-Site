@@ -151,7 +151,6 @@ imagesLoaded().then(() => {
 //   'safe place!');
 
 const headerText = document.querySelectorAll('.header > p > a');
-console.log(headerText)
 
 for (let i = 0; i < headerText.length; i++) {
   const navLinks = headerText[i];

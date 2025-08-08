@@ -101,7 +101,6 @@ function init() {
     } else {
       scrollTarget = window.scrollY + rect.bottom - (window.innerHeight + offsetPx);
     }
-    console.log(scrollTarget)
 
     window.scrollTo({
       top: scrollTarget,
@@ -121,6 +120,9 @@ function init() {
             top: 0,
             behavior: "smooth"
           });
+          setTimeout(() => {
+            preventOverflowChange = false
+          }, 300);
         }, 0);
         return;
       }
@@ -156,7 +158,7 @@ function init() {
         if (timerId) clearTimeout(timerId);
 
         timerId = setTimeout(() => {
-          scrollToCatWrapper(outerWrapper, 150, outerWrapperHeight)
+          scrollToCatWrapper(outerWrapper, 100, outerWrapperHeight)
           // since theres no promise to be made for scrollToCatWrapper im resorting to using a settimeout, might change it in the future to be based on the scroll position.
           setTimeout(() => {
             if (preventOverflowChange) return;
