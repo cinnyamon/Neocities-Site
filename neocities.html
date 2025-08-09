@@ -42,7 +42,14 @@
     <link rel="stylesheet" href="./styles/under-development.css" />
     <link rel="stylesheet" href="./styles/terminal-colors-noscript.css" />
     <link rel="stylesheet" href="./styles/paw-buttons.css" />
+    <link rel="stylesheet" href="./styles/qa-grid.css" />
     <link rel="stylesheet" href="./styles/footer.css" />
+
+    <!-- gridstack -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/gridstack@latest/dist/gridstack.min.css"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div id="underdevelopment" class="hidden-by-default">
@@ -410,47 +417,97 @@
             </div>
           </div>
         </div>
-        <div class="grid">
+        <!-- <div class="qa-grid">
+          <p class="qa-grid-info-title">Information panel</p>
 
-          <div class="item">
-            <div class="item-content">
-              <p>Hello, you're probably asking yourself a few questions that I think I could answer within a few cards.</p>
+          <div class="grid-stack">
+            <div class="grid-stack-item">
+              <div class="grid-stack-item-content">
+                <p class="qa-item-title">
+                  Hello, you're probably asking yourself a few questions that I
+                  think I could answer within a few cards.
+                </p>
+              </div>
             </div>
-          </div>
 
-          <div class="item">
-            <div class="item-content">
-              <p>Who am I?</p>
-              <p>Some 21 year old beginner programmer that literally had no intention of ever learning to program until !!TIME!! months ago. Then I learnt HTML and CSS and swore to not learn JavaScript but somehow it attracted me with its endless posibilities for features and endless posibilities of errors out its ass.</p>
+            <div class="grid-stack-item">
+              <div class="grid-stack-item-content">
+                <p class="qa-item-title">Who am I?</p>
+                <p class="qa-content">
+                  Some 21 year old beginner programmer that literally had no
+                  intention of ever learning to program until !!TIME!! months
+                  ago. Then I learnt HTML and CSS and swore to not learn
+                  JavaScript but somehow it attracted me with its endless
+                  posibilities for features and endless posibilities of errors
+                  out its ass.
+                </p>
+              </div>
             </div>
-          </div>
 
-          <div class="item">
-            <div class="item-content">
-              <p>What is this website?</p>
-              <p>An attempt at my first website. Think it looks pretty good but I probably need a second opinion. Or third.</p>
+            <div class="grid-stack-item">
+              <div class="grid-stack-item-content">
+                <p class="qa-item-title">What is this website?</p>
+                <p class="qa-content">
+                  An attempt at my first website. Think it looks pretty good but
+                  I probably need a second opinion. Or third.
+                </p>
+              </div>
             </div>
-          </div>
 
-          <div class="item">
-            <div class="item-content">
-              <p>What can I do on here?</p>
-              <p>Idk mate, look around. If you're genuinely asking then the Terminal above has a few functionalities like:</p>
+            <div class="grid-stack-item">
+              <div class="grid-stack-item-content">
+                <p class="qa-item-title">What can I do on here?</p>
+                <p class="qa-content">
+                  Idk mate, look around. If you're genuinely asking then the
+                  Terminal above has a few functionalities like:
+                </p>
+                <ul class="qa-content">
+                  <li>Calc (short for calculator)</li>
+                  <li>Time</li>
+                  <li>Date</li>
+                  <p class="qa-content">Short versions of Time and Date</p>
+                  <li>Limited set of div's, p's and some attributes</li>
+                  <li>Drag these panels around for fun.</li>
+                  <li>Uh.. enter... any text... you want?..</li>
+                </ul>
+              </div>
             </div>
-          </div>
 
-          <div class="item">
-            <div class="item-content">
-              <li>Calc (short for calculator)</li>
-              <li>Time</li>
-              <li>Date</li>
-              <p>Short versions of Time and Date</p>
-              <li>Limited set of div's, p's and some attributes</li>
-              <li>Uh.. enter... any text... you want?..</li>
+            <div class="grid-stack-item">
+              <div class="grid-stack-item-content">
+                <p class="qa-item-title">
+                  Can I suggest a feature or command for the terminal?
+                </p>
+                <p class="qa-content">
+                  Yeah, just send an email at the address below you don't need
+                  to include formalities you can just send in the subject the
+                  command name and i'll look into it. If it's worth adding i'll
+                  email you back (if possible) with a thanks.
+                </p>
+              </div>
             </div>
-          </div>
 
-        </div>
+            <div class="grid-stack-item">
+              <div class="grid-stack-item-content">
+                <p class="qa-item-title">My artist girlfriend</p>
+
+                <img class="qa-content-img" src="./img/artist-promo.jpg" />
+                <p>a</p>
+              </div>
+            </div>
+
+            <div class="grid-stack-item">
+              <div class="grid-stack-item-content">
+                <p class="qa-item-title">Some more filler title</p>
+                <p class="qa-content">
+                  Some more filler text blah blah blah blah blah blah
+                </p>
+              </div>
+            </div>
+
+            
+          </div>
+        </div> -->
         <div class="kitten">
           <div class="outer-wrapper">
             <div class="cat-header">
@@ -710,6 +767,12 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <!-- muuri grid -->
+    <script src="https://cdn.jsdelivr.net/npm/muuri@0.9.5/dist/muuri.min.js"></script>
+
+    <!-- gridstack -->
+    <script src="https://cdn.jsdelivr.net/npm/gridstack@latest/dist/gridstack-all.min.js"></script>
+
     <!-- script files -->
     <script defer src="./scripts/underDevelopment.js"></script>
     <script defer src="./scripts/bodyTracker.js"></script>
@@ -718,5 +781,6 @@
     <script defer src="./scripts/catTracker.js"></script>
     <script defer src="./scripts/captcha.js"></script>
     <script defer src="./scripts/sidenav.js"></script>
+    <script defer src="./scripts/qaGrid.js"></script>
   </body>
 </html>
