@@ -12,14 +12,14 @@
 
 .grid-stack-item-content {
   height: auto;
-    padding: 10px;
-    box-sizing: border-box;
-    background: #333;
-    color: white;
-    font-family: monospace;
-    border-radius: 6px;
-    text-align: center;
-    word-break: break-word;
+  padding: 10px;
+
+  background: #333;
+  color: white;
+  font-family: monospace;
+  border-radius: 6px;
+  text-align: center;
+
 }
 
 .qa-content {

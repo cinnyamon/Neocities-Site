@@ -51,12 +51,15 @@
 
 
 
+const grid = document.querySelector('.grid-stack');
 
-// const grid = GridStack.init({
-//   column: 6,
-//   cellHeight: 100,  // required for measuring rows
-//   margin: 10
-// });
+
+new GridStack(grid, {
+    sizeToContent: true,
+    margin: '20px',
+    resizable: { autoHide: false, handles: "se" },
+    animate: true,
+})
 
 // window.addEventListener('load', () => {
 //   document.querySelectorAll('.grid-stack-item').forEach(item => {
