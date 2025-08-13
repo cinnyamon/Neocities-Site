@@ -55,7 +55,8 @@ const grid = document.querySelector('.grid-stack');
 
 
 new GridStack(grid, {
-    sizeToContent: true,
+    sizeToContent: false,
+    column: 4,
     margin: '20px',
     resizable: { autoHide: false, handles: "se" },
     animate: true,
