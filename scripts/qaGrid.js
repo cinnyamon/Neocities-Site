@@ -1,10 +1,10 @@
 const grid = document.querySelector('.grid-stack');
 
 new GridStack(grid, {
-    sizeToContent: true,
+    sizeToContent: false,
     column: 5,
     minRow: 1,
-    float: true,
+    
     cellHeight: 'auto',
     children: [
       {
@@ -142,7 +142,7 @@ new GridStack(grid, {
     },
 
     margin: '20px',
-    resizable: { autoHide: false, handles: "se" },
+    resizable: { autoHide: false},
     animate: true,
 })
 
