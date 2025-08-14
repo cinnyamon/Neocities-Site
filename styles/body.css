@@ -36,6 +36,7 @@ p {
   color: #4a28d1;
   text-decoration: none;
   overflow: auto;
+  transform: scale(1.06, 1);
 }
 
 button {

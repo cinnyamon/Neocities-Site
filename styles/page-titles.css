@@ -12,7 +12,7 @@
   font-size: 30px;
 }
 
-.title-text span:nth-child(1) {
+.rainbow {
   background: linear-gradient(to right,
       #e6348d 20%,
       #6f00ff 30%,
@@ -26,7 +26,7 @@
   animation: textgradient 5s ease-in-out infinite alternate;
 }
 
-.title-text span:nth-child(2) {
+.rainbow2 {
   background: linear-gradient(to right,
       #00affa 20%,
       #234bea 30%,
